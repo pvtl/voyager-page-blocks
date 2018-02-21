@@ -1,0 +1,53 @@
+{
+  "name": "pvtl/voyager-page-blocks",
+  "description": "Ahoy! - A package to implement page blocks into Voyager",
+  "keywords": [
+    "laravel",
+    "frontend",
+    "voyager",
+    "page",
+    "blocks"
+  ],
+  "license": "MIT",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Pivotal Agency",
+      "homepage": "http://pivotalagency.com.au",
+      "email": "tech@pivotalagency.com.au"
+    }
+  ],
+  "require": {
+    "laravel/framework": "5.5.*",
+    "tcg/voyager": "^1.0",
+    "pvtl/voyager-frontend": "~0.2.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^5.7"
+  },
+  "autoload": {
+    "classmap": [],
+    "psr-4": {
+      "Pvtl\\VoyagerPageBlocks\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "classmap": [],
+    "psr-4": {
+      "Pvtl\\VoyagerPageBlocks\\Tests\\": "tests/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Pvtl\\VoyagerPageBlocks\\PageBlocksServiceProvider"
+      ]
+    }
+  },
+  "scripts": {
+    "test": "phpunit",
+    "post-install-cmd": [
+      "@php artisan vendor:publish --provider='Pvtl\\VoyagerPageBlocks\\PageBlocksServiceProvider'"
+    ]
+  }
+}
