@@ -1,1 +1,1 @@
-{!! $blockData->content or '' !!}
+{!! $blockData->image_content or '' !!}

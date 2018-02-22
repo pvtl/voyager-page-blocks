@@ -1,1 +1,1 @@
-{!! $blockData->content or '' !!}
+{!! $blockData->select_content or '' !!}

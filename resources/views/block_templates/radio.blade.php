@@ -1,1 +1,1 @@
-{!! $blockData->content or '' !!}
+{!! $blockData->radio_content or '' !!}

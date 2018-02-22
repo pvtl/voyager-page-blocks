@@ -1,1 +1,1 @@
-{!! $blockData->content or '' !!}
+{!! $blockData->checkbox_content or '' !!}

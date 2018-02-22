@@ -1,1 +1,1 @@
-{!! $blockData->content !!}
+{!! $blockData->text_content !!}
