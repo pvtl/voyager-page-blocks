@@ -47,7 +47,7 @@
   "scripts": {
     "test": "phpunit",
     "post-install-cmd": [
-      "@php artisan vendor:publish --provider='Pvtl\\VoyagerPageBlocks\\PageBlocksServiceProvider'"
+      "@php artisan voyager-page-blocks:install'"
     ]
   }
 }

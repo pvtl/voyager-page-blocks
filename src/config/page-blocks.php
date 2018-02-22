@@ -14,8 +14,8 @@ return [
     'html_content' => [
         'name' => 'HTML Content',
         'fields' => [
-            'html' => [
-                'field' => 'content',
+            'html_content' => [
+                'field' => 'html_content',
                 'display_name' => 'A rich text area field to insert HTML and text',
                 'partial' => 'voyager::formfields.rich_text_box',
                 'required' => 1,

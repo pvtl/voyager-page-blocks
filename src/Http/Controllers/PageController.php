@@ -2,7 +2,8 @@
 
 namespace Pvtl\VoyagerPageBlocks\Http\Controllers;
 
-use App\Page;
+use Pvtl\VoyagerPageBlocks\Page;
+use Illuminate\Routing\Controller;
 
 class PageController extends Controller
 {

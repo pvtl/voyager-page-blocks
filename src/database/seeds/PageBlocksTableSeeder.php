@@ -1,5 +1,7 @@
 <?php
 
+namespace Pvtl\VoyagerPageBlocks\Database;
+
 use TCG\Voyager\Models\Role;
 use TCG\Voyager\Models\DataType;
 use TCG\Voyager\Models\Permission;
@@ -30,8 +32,8 @@ class PageBlocksTableSeeder extends Seeder
             'display_name_singular' => 'Page Block',
             'display_name_plural' => 'Page Blocks',
             'icon' => 'voyager-file-text',
-            'model_name' => 'App\PageBlock',
-            'controller' => 'Voyager\VoyagerPageBlocksController',
+            'model_name' => '\Pvtl\VoyagerPageBlocks\PageBlock',
+            'controller' => '\Pvtl\VoyagerPageBlocks\Http\Controllers\PageBlockController',
             'generate_permissions' => '1',
         ]);
 

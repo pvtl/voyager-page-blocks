@@ -19,7 +19,7 @@ $factory->define(Pvtl\VoyagerPageBlocks\PageBlock::class, function (Faker $faker
         'type' => 'template',
         'filepath' => 'html_content.blade.php',
         'data' => [
-            'content' => '<p>'.$faker->sentence.'</p>'
+            'content' => '<p>' . $faker->sentence . '</p>'
         ],
         'is_hidden' => false,
         'is_minimized' => false,

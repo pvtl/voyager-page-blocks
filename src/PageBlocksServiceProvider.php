@@ -21,9 +21,15 @@ class PageBlocksServiceProvider extends ServiceProvider
 
         // Defines which files to copy the root project
         $this->publishes([
+            __DIR__ . '/config' => base_path('config'),
             __DIR__ . '/../resources' => base_path('resources'),
-            __DIR__ . '/database' => base_path('database'),
+            __DIR__ . '/database/migrations' => base_path('database/migrations'),
         ]);
+
+        // Locate our factories for testing
+        $this->app->make('Illuminate\Database\Eloquent\Factory')->load(
+            __DIR__ . '/database/factories'
+        );
 
         if ($this->app->runningInConsole()) {
             $this->commands([
@@ -39,6 +45,6 @@ class PageBlocksServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->alias(PageBlocks::class, 'PageBlocks');
+
     }
 }

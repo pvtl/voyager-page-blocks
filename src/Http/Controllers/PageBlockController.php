@@ -2,13 +2,13 @@
 
 namespace Pvtl\VoyagerPageBlocks\Http\Controllers;
 
-use App\Page;
-use App\PageBlock;
+use Pvtl\VoyagerPageBlocks\Page;
+use Pvtl\VoyagerPageBlocks\PageBlock;
 use TCG\Voyager\Facades\Voyager;
-use Illuminate\Http\Request;
 use TCG\Voyager\Http\Controllers\VoyagerBreadController as BaseVoyagerBreadController;
+use Illuminate\Http\Request;
 
-class PageBlocksController extends BaseVoyagerBreadController
+class PageBlockController extends BaseVoyagerBreadController
 {
     public function edit(Request $request, $id)
     {

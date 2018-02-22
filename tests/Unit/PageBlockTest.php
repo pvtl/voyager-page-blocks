@@ -1,9 +1,10 @@
 <?php
 
-namespace Pvtl\VoyagerPageBlocks\Unit;
+namespace Pvtl\VoyagerPageBlocks\Tests\Unit;
 
-use App\PageBlock;
+use Illuminate\Database\Eloquent\Factory;
 use Tests\TestCase;
+use Pvtl\VoyagerPageBlocks\PageBlock;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class PageBlockTest extends TestCase

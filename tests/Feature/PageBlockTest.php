@@ -1,10 +1,10 @@
 <?php
 
-namespace Pvtl\VoyagerPageBlocks\Feature;
+namespace Pvtl\VoyagerPageBlocks\Tests\Feature;
 
-use App\Page;
-use App\PageBlock;
 use Tests\TestCase;
+use Pvtl\VoyagerPageBlocks\Page;
+use Pvtl\VoyagerPageBlocks\PageBlock;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class PageBlockTest extends TestCase
@@ -16,7 +16,7 @@ class PageBlockTest extends TestCase
         return factory(PageBlock::class)->create([
             'type' => 'template',
             'filepath' => 'html_content.blade.php',
-            'data' => ['content' => $content],
+            'data' => ['html_content' => $content],
             'is_hidden' => (bool)$hidden,
             'is_minimized' => false,
             'is_delete_denied' => false,
