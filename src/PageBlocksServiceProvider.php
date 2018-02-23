@@ -18,18 +18,18 @@ class PageBlocksServiceProvider extends ServiceProvider
     public function boot(Router $router)
     {
         $this->loadRoutesFrom(base_path('/routes/web.php'));
-        $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
+        $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
 
         // Defines which files to copy the root project
         $this->publishes([
-            __DIR__ . '/config' => base_path('config'),
+            __DIR__ . '/../config' => base_path('config'),
             __DIR__ . '/../resources' => base_path('resources'),
-            __DIR__ . '/database/migrations' => base_path('database/migrations'),
+            __DIR__ . '/../database/migrations' => base_path('database/migrations'),
         ]);
 
         // Locate our factories for testing
         $this->app->make('Illuminate\Database\Eloquent\Factory')->load(
-            __DIR__ . '/database/factories'
+            __DIR__ . '/../database/factories'
         );
 
         if ($this->app->runningInConsole()) {
