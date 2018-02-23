@@ -66,7 +66,7 @@ class InstallCommand extends Command
         $this->call('migrate');
 
         $this->info('Seeding data into the database');
-        $this->call('db:seed', ['--class' => 'Pvtl\VoyagerPageBlocks\Database\PageBlocksTableSeeder']);
+        $this->call('db:seed', ['--class' => 'PageBlocksTableSeeder']);
 
         $this->info('Successfully installed Voyager Page Blocks! Enjoy');
     }

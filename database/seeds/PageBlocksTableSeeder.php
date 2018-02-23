@@ -1,7 +1,5 @@
 <?php
 
-namespace Pvtl\VoyagerPageBlocks\Database;
-
 use TCG\Voyager\Models\Role;
 use TCG\Voyager\Models\DataType;
 use TCG\Voyager\Models\Permission;
