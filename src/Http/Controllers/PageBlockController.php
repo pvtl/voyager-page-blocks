@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 
 class PageBlockController extends BaseVoyagerBreadController
 {
+    public function index(Request $request)
+    {
+        return redirect('/admin/pages');
+    }
+
     public function edit(Request $request, $id)
     {
         $page = Page::findOrFail($id);
