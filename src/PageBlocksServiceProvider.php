@@ -17,6 +17,7 @@ class PageBlocksServiceProvider extends ServiceProvider
      */
     public function boot(Router $router)
     {
+        $this->loadRoutesFrom(base_path('/routes/web.php'));
         $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
 
         // Defines which files to copy the root project
