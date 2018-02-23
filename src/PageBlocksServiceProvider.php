@@ -23,9 +23,13 @@ class PageBlocksServiceProvider extends ServiceProvider
         // Defines which files to copy the root project
         $this->publishes([
             __DIR__ . '/../config' => base_path('config'),
-            __DIR__ . '/../resources' => base_path('resources'),
             __DIR__ . '/../database/migrations' => base_path('database/migrations'),
+            __DIR__ . '/../resources/views/block_templates' => base_path('resources/views'),
         ]);
+
+        // Load views
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'voyager-page-blocks');
+        $this->loadViewsFrom(__DIR__.'/../resources/views/vendor/voyager', 'voyager');
 
         // Locate our factories for testing
         $this->app->make('Illuminate\Database\Eloquent\Factory')->load(

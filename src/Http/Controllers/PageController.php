@@ -21,6 +21,8 @@ class PageController extends Controller
                 ];
             });
 
-        return view('voyager-frontend::modules/pages/default', compact('page', 'blocks'));
+        $page['body'] = view('voyager-page-blocks::default', compact('page', 'blocks'));
+
+        return view('voyager-frontend::modules/pages/default', compact('page'));
     }
 }
