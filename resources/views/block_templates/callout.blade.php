@@ -1,5 +1,5 @@
 <div
-    class="callout extra-large background-image"
+    class="callout callout-size-{!! $blockData->size or '0' !!} background-image @if ($blockData->fade_background === 'Yes') fade-background @endif"
     style="background-image: url({!! $blockData->background_image or '' !!});"
 >
     <div class="grid-container column text-center">
@@ -17,7 +17,6 @@
             </a>
         @endif
     </div> <!-- /.container -->
-
 </div> <!-- /.callout -->
 
 <div class="vspace-medium-2"></div>

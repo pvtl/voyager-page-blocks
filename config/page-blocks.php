@@ -11,14 +11,36 @@
 */
 
 return [
-    'hero_banner' => [
-        'name' => 'Hero Banner',
+    'callout' => [
+        'name' => 'Callout',
         'fields' => [
+            'size' => [
+                'field' => 'size',
+                'display_name' => 'Size (height) of section',
+                'partial' => 'voyager::formfields.select_dropdown',
+                'required' => 1,
+                'options' => [
+                    'Small',
+                    'Medium',
+                    'Large',
+                    'Extra Large',
+                ],
+                'placeholder' => 0,
+            ],
             'background_image' => [
                 'field' => 'background_image',
                 'display_name' => 'Background image',
                 'partial' => 'voyager::formfields.image',
                 'required' => 1,
+            ],
+            'fade_background' => [
+                'field' => 'fade_background',
+                'display_name' => 'Fade out background',
+                'partial' => 'voyager::formfields.checkbox',
+                'required' => 0,
+                'options' => [
+                    'Yes',
+                ],
             ],
             'title' => [
                 'field' => 'title',
@@ -46,10 +68,10 @@ return [
                 'display_name' => 'Link',
                 'partial' => 'voyager::formfields.text',
                 'required' => 0,
-                'placeholder' => '/posts',
+                'placeholder' => '#',
             ],
         ],
-        'template' => 'hero_banner',
+        'template' => 'callout',
         'compatible' => '*',
     ],
     'cards_one_column' => [
@@ -98,7 +120,7 @@ return [
                 'display_name' => 'Link',
                 'partial' => 'voyager::formfields.text',
                 'required' => 0,
-                'placeholder' => '/posts',
+                'placeholder' => '#',
             ],
         ],
         'template' => 'cards_one_column',
@@ -139,7 +161,7 @@ return [
                 'display_name' => 'Column 1: Link',
                 'partial' => 'voyager::formfields.text',
                 'required' => 0,
-                'placeholder' => '/posts',
+                'placeholder' => '#',
             ],
             'image2' => [
                 'field' => 'image2',
@@ -173,7 +195,7 @@ return [
                 'display_name' => 'Column 2: Link',
                 'partial' => 'voyager::formfields.text',
                 'required' => 0,
-                'placeholder' => '/posts',
+                'placeholder' => '#',
             ],
         ],
         'template' => 'cards_two_columns',
@@ -214,7 +236,7 @@ return [
                 'display_name' => 'Column 1: Link',
                 'partial' => 'voyager::formfields.text',
                 'required' => 0,
-                'placeholder' => '/posts',
+                'placeholder' => '#',
             ],
             'image2' => [
                 'field' => 'image2',
@@ -248,7 +270,7 @@ return [
                 'display_name' => 'Column 2: Link',
                 'partial' => 'voyager::formfields.text',
                 'required' => 0,
-                'placeholder' => '/posts',
+                'placeholder' => '#',
             ],
             'image3' => [
                 'field' => 'image3',
@@ -282,7 +304,7 @@ return [
                 'display_name' => 'Column 3: Link',
                 'partial' => 'voyager::formfields.text',
                 'required' => 0,
-                'placeholder' => '/posts',
+                'placeholder' => '#',
             ],
         ],
         'template' => 'cards_three_columns',
@@ -351,106 +373,124 @@ return [
         'template' => 'content_three_columns',
         'compatible' => '*',
     ],
-    'mixed_content' => [
-        'name' => 'Mixed Content (HTML/Text)',
+    'content_four_columns' => [
+        'name' => 'Content - 4 Columns',
         'fields' => [
             'html_content' => [
                 'field' => 'html_content',
-                'display_name' => 'HTML Content',
+                'display_name' => 'Column 1 content',
                 'partial' => 'voyager::formfields.rich_text_box',
                 'required' => 1,
-                'placeholder' => '<p>Hello World!</p>',
+                'placeholder' => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris.</p>',
             ],
-            'text_content' => [
-                'field' => 'text_content',
-                'display_name' => 'Text Area',
-                'partial' => 'voyager::formfields.text_area',
-                'required' => 1,
-                'placeholder' => 'Hello World!',
+            'html_content2' => [
+                'field' => 'html_content2',
+                'display_name' => 'Column 2 content',
+                'partial' => 'voyager::formfields.rich_text_box',
+                'required' => 0,
+                'placeholder' => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris.</p>',
+            ],
+            'html_content3' => [
+                'field' => 'html_content3',
+                'display_name' => 'Column 3 content',
+                'partial' => 'voyager::formfields.rich_text_box',
+                'required' => 0,
+                'placeholder' => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris.</p>',
+            ],
+            'html_content4' => [
+                'field' => 'html_content4',
+                'display_name' => 'Column 4 content',
+                'partial' => 'voyager::formfields.rich_text_box',
+                'required' => 0,
+                'placeholder' => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris.</p>',
             ],
         ],
-        'template' => 'mixed_content',
+        'template' => 'content_four_columns',
         'compatible' => '*',
     ],
-    'text_area' => [
-        'name' => 'Text Area',
+    'image_row' => [
+        'name' => 'Row of Images',
         'fields' => [
-            'text_content' => [
-                'field' => 'text_content',
-                'display_name' => 'A regular text area field to write words',
-                'partial' => 'voyager::formfields.text_area',
-                'required' => 1,
-                'placeholder' => 'Hello World!',
-            ],
-        ],
-        'template' => 'text_area',
-        'compatible' => '*',
-    ],
-    'image' => [
-        'name' => 'Image',
-        'fields' => [
-            'image_content' => [
-                'field' => 'image_content',
-                'display_name' => 'An image or piece of art to display to the world',
+            'image1' => [
+                'field' => 'image1',
+                'display_name' => 'Image 1',
                 'partial' => 'voyager::formfields.image',
-                'required' => 1,
+                'required' => 0,
+            ],
+            'link1' => [
+                'field' => 'link1',
+                'display_name' => 'Link for Image 1',
+                'partial' => 'voyager::formfields.text',
+                'required' => 0,
+                'placeholder' => '#',
+            ],
+            'image2' => [
+                'field' => 'image2',
+                'display_name' => 'Image 2',
+                'partial' => 'voyager::formfields.image',
+                'required' => 0,
+            ],
+            'link2' => [
+                'field' => 'link2',
+                'display_name' => 'Link for Image 2',
+                'partial' => 'voyager::formfields.text',
+                'required' => 0,
+                'placeholder' => '#',
+            ],
+            'image3' => [
+                'field' => 'image3',
+                'display_name' => 'Image 3',
+                'partial' => 'voyager::formfields.image',
+                'required' => 0,
+            ],
+            'link3' => [
+                'field' => 'link3',
+                'display_name' => 'Link for Image 3',
+                'partial' => 'voyager::formfields.text',
+                'required' => 0,
+                'placeholder' => '#',
+            ],
+            'image4' => [
+                'field' => 'image4',
+                'display_name' => 'Image 4',
+                'partial' => 'voyager::formfields.image',
+                'required' => 0,
+            ],
+            'link4' => [
+                'field' => 'link4',
+                'display_name' => 'Link for Image 4',
+                'partial' => 'voyager::formfields.text',
+                'required' => 0,
+                'placeholder' => '#',
+            ],
+            'image5' => [
+                'field' => 'image5',
+                'display_name' => 'Image 5',
+                'partial' => 'voyager::formfields.image',
+                'required' => 0,
+            ],
+            'link5' => [
+                'field' => 'link5',
+                'display_name' => 'Link for Image 5',
+                'partial' => 'voyager::formfields.text',
+                'required' => 0,
+                'placeholder' => '#',
+            ],
+            'image6' => [
+                'field' => 'image6',
+                'display_name' => 'Image 6',
+                'partial' => 'voyager::formfields.image',
+                'required' => 0,
+            ],
+            'link6' => [
+                'field' => 'link6',
+                'display_name' => 'Link for Image 6',
+                'partial' => 'voyager::formfields.text',
+                'required' => 0,
+                'placeholder' => '#',
             ],
         ],
-        'template' => 'image',
-        'compatible' => '*',
-    ],
-    'select' => [
-        'name' => 'Select Boxes',
-        'fields' => [
-            'select_content' => [
-                'field' => 'select_content',
-                'display_name' => 'A group of options that allow a single selection',
-                'partial' => 'voyager::formfields.select_dropdown',
-                'required' => 1,
-                'options' => [
-                    'Select Option 1',
-                    'Select Option 2',
-                ],
-                'placeholder' => 0,
-            ],
-        ],
-        'template' => 'select',
-        'compatible' => '*',
-    ],
-    'checkbox' => [
-        'name' => 'Checkboxes',
-        'fields' => [
-            'checkbox_content' => [
-                'field' => 'checkbox_content',
-                'display_name' => 'A group of checkboxes that allow multiple selections',
-                'partial' => 'voyager::formfields.checkbox',
-                'required' => 1,
-                'options' => [
-                    'Checkbox Option 1',
-                    'Checkbox Option 2',
-                ],
-                'placeholder' => 1,
-            ],
-        ],
-        'template' => 'checkbox',
-        'compatible' => '*',
-    ],
-    'radio' => [
-        'name' => 'Radio Buttons',
-        'fields' => [
-            'radio_content' => [
-                'field' => 'radio_content',
-                'display_name' => 'A group of radio buttons that allow a single selection',
-                'partial' => 'voyager::formfields.radio_btn',
-                'required' => 1,
-                'options' => [
-                    'Option 1',
-                    'Option 2',
-                ],
-                'placeholder' => 0,
-            ],
-        ],
-        'template' => 'radio',
+        'template' => 'image_row',
         'compatible' => '*',
     ],
 ];
