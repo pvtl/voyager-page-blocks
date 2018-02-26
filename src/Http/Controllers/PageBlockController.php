@@ -85,4 +85,19 @@ class PageBlockController extends BaseVoyagerBreadController
                 'alert-type' => 'success',
             ]);
     }
+
+    public function destroy(Request $request, $id)
+    {
+        $block = PageBlock::findOrFail($id);
+        $dataType = Voyager::model('DataType')->where('slug', '=', 'page-blocks')->first();
+
+        $block->delete();
+
+        return redirect()
+            ->back()
+            ->with([
+                'message' => __('voyager.generic.successfully_deleted') . " {$dataType->display_name_singular}",
+                'alert-type' => 'error',
+            ]);
+    }
 }
