@@ -34,9 +34,17 @@ class PageBlockController extends BaseVoyagerBreadController
         $template = $block->template();
         $dataType = Voyager::model('DataType')->where('slug', '=', 'page-blocks')->first();
 
-        // Get all block data
+        // Get all block data & validate
         $data = [];
         foreach ($template->fields as $row) {
+            $existingData = $block->data;
+
+            if ($row->partial === 'voyager::formfields.image' && is_null($request->input($row->field))) {
+                $data[$row->field] = $existingData->{$row->field};
+
+                continue;
+            }
+
             $data[$row->field] = $request->input($row->field);
         }
 
