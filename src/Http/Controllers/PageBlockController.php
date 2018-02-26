@@ -49,6 +49,18 @@ class PageBlockController extends BaseVoyagerBreadController
         }
 
         // Just.Do.It! (Nike, TM)
+        $validator = $this->validateBlock($request, $block);
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput()
+                ->with([
+                    'message' => __('voyager.json.validation_errors'),
+                    'alert-type' => 'error',
+                ]);
+        }
+
         $data = $this->uploadImages($request, $data);
 
         $block->data = $data;
