@@ -1,1 +1,0 @@
-{!! $blockData->html_content !!}

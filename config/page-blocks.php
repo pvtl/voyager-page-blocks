@@ -55,24 +55,35 @@ return [
     'cards_one_column' => [
         'name' => 'Cards - 1 Column',
         'fields' => [
+            'image_position' => [
+                'field' => 'image_position',
+                'display_name' => 'Position of Image',
+                'partial' => 'voyager::formfields.select_dropdown',
+                'required' => 1,
+                'options' => [
+                    'Left',
+                    'Right',
+                ],
+                'placeholder' => 0,
+            ],
             'image' => [
                 'field' => 'image',
                 'display_name' => 'Image',
                 'partial' => 'voyager::formfields.image',
-                'required' => 1,
+                'required' => 0,
             ],
             'title' => [
                 'field' => 'title',
                 'display_name' => 'Title',
                 'partial' => 'voyager::formfields.text',
-                'required' => 0,
+                'required' => 1,
                 'placeholder' => 'Changing the World!',
             ],
             'content' => [
                 'field' => 'content',
                 'display_name' => 'Content',
                 'partial' => 'voyager::formfields.text',
-                'required' => 0,
+                'required' => 1,
                 'placeholder' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris.',
             ],
             'button_text' => [
@@ -106,14 +117,14 @@ return [
                 'field' => 'title1',
                 'display_name' => 'Column 1: Title',
                 'partial' => 'voyager::formfields.text',
-                'required' => 0,
+                'required' => 1,
                 'placeholder' => 'Changing the World!',
             ],
             'content1' => [
                 'field' => 'content1',
                 'display_name' => 'Column 1: Content',
                 'partial' => 'voyager::formfields.text',
-                'required' => 0,
+                'required' => 1,
                 'placeholder' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris.',
             ],
             'button_text1' => [
@@ -140,14 +151,14 @@ return [
                 'field' => 'title2',
                 'display_name' => 'Column 2: Title',
                 'partial' => 'voyager::formfields.text',
-                'required' => 0,
+                'required' => 1,
                 'placeholder' => 'Changing the World!',
             ],
             'content2' => [
                 'field' => 'content2',
                 'display_name' => 'Column 2: Content',
                 'partial' => 'voyager::formfields.text',
-                'required' => 0,
+                'required' => 1,
                 'placeholder' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris.',
             ],
             'button_text2' => [
@@ -181,14 +192,14 @@ return [
                 'field' => 'title1',
                 'display_name' => 'Column 1: Title',
                 'partial' => 'voyager::formfields.text',
-                'required' => 0,
+                'required' => 1,
                 'placeholder' => 'Changing the World!',
             ],
             'content1' => [
                 'field' => 'content1',
                 'display_name' => 'Column 1: Content',
                 'partial' => 'voyager::formfields.text',
-                'required' => 0,
+                'required' => 1,
                 'placeholder' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris.',
             ],
             'button_text1' => [
@@ -215,14 +226,14 @@ return [
                 'field' => 'title2',
                 'display_name' => 'Column 2: Title',
                 'partial' => 'voyager::formfields.text',
-                'required' => 0,
+                'required' => 1,
                 'placeholder' => 'Changing the World!',
             ],
             'content2' => [
                 'field' => 'content2',
                 'display_name' => 'Column 2: Content',
                 'partial' => 'voyager::formfields.text',
-                'required' => 0,
+                'required' => 1,
                 'placeholder' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris.',
             ],
             'button_text2' => [
@@ -249,14 +260,14 @@ return [
                 'field' => 'title3',
                 'display_name' => 'Column 3: Title',
                 'partial' => 'voyager::formfields.text',
-                'required' => 0,
+                'required' => 1,
                 'placeholder' => 'Changing the World!',
             ],
             'content3' => [
                 'field' => 'content3',
                 'display_name' => 'Column 3: Content',
                 'partial' => 'voyager::formfields.text',
-                'required' => 0,
+                'required' => 1,
                 'placeholder' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris.',
             ],
             'button_text3' => [
@@ -277,18 +288,67 @@ return [
         'template' => 'cards_three_columns',
         'compatible' => '*',
     ],
-    'html_content' => [
-        'name' => 'HTML Content',
+    'content_one_column' => [
+        'name' => 'Content - 1 Column',
         'fields' => [
             'html_content' => [
                 'field' => 'html_content',
-                'display_name' => 'A rich text area field to insert HTML and text',
+                'display_name' => 'Column 1 content',
                 'partial' => 'voyager::formfields.rich_text_box',
                 'required' => 1,
-                'placeholder' => '<p>Hello World!</p>',
+                'placeholder' => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris.</p>',
             ],
         ],
-        'template' => 'html_content',
+        'template' => 'content_one_column',
+        'compatible' => '*',
+    ],
+    'content_two_columns' => [
+        'name' => 'Content - 2 Columns',
+        'fields' => [
+            'html_content' => [
+                'field' => 'html_content',
+                'display_name' => 'Column 1 content',
+                'partial' => 'voyager::formfields.rich_text_box',
+                'required' => 1,
+                'placeholder' => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris.</p>',
+            ],
+            'html_content2' => [
+                'field' => 'html_content2',
+                'display_name' => 'Column 2 content',
+                'partial' => 'voyager::formfields.rich_text_box',
+                'required' => 0,
+                'placeholder' => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris.</p>',
+            ],
+        ],
+        'template' => 'content_two_columns',
+        'compatible' => '*',
+    ],
+    'content_three_columns' => [
+        'name' => 'Content - 3 Columns',
+        'fields' => [
+            'html_content' => [
+                'field' => 'html_content',
+                'display_name' => 'Column 1 content',
+                'partial' => 'voyager::formfields.rich_text_box',
+                'required' => 1,
+                'placeholder' => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris.</p>',
+            ],
+            'html_content2' => [
+                'field' => 'html_content2',
+                'display_name' => 'Column 2 content',
+                'partial' => 'voyager::formfields.rich_text_box',
+                'required' => 0,
+                'placeholder' => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris.</p>',
+            ],
+            'html_content3' => [
+                'field' => 'html_content3',
+                'display_name' => 'Column 3 content',
+                'partial' => 'voyager::formfields.rich_text_box',
+                'required' => 0,
+                'placeholder' => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris.</p>',
+            ],
+        ],
+        'template' => 'content_three_columns',
         'compatible' => '*',
     ],
     'mixed_content' => [
