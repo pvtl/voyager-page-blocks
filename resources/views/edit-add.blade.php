@@ -113,12 +113,12 @@
                                 <label for="cache_ttl" style="display: inline; padding-right: 5px;">Cache Time</label>
                                 <select name="cache_ttl" id="cache_ttl">
                                     <option value="0" selected="selected">None / Off</option>
-                                    <option value="300">5 mins</option>
-                                    <option value="1800">30 mins</option>
-                                    <option value="3600">1 Hour</option>
-                                    <option value="14400">4 Hours</option>
-                                    <option value="86400">1 Day</option>
-                                    <option value="604800">7 Days</option>
+                                    <option value="5">5 mins</option>
+                                    <option value="30">30 mins</option>
+                                    <option value="60">1 Hour</option>
+                                    <option value="240">4 Hours</option>
+                                    <option value="1440">1 Day</option>
+                                    <option value="10080">7 Days</option>
                                 </select>
 
                                 <br>

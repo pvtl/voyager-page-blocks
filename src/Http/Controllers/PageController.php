@@ -17,7 +17,7 @@ class PageController extends Controller
             ->map(function ($block) {
                 return (object)[
                     'template' => $block->template()->template,
-                    'data' => $block->data,
+                    'data' => $block->cachedData,
                 ];
             });
 

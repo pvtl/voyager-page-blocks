@@ -2,11 +2,16 @@
 
 namespace Pvtl\VoyagerPageBlocks;
 
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Database\Eloquent\Model;
 
 class PageBlock extends Model
 {
+    protected $touches = [
+        'page',
+    ];
+
     /**
      * The attributes that should be mutated to dates.
      *
@@ -44,6 +49,16 @@ class PageBlock extends Model
         'cache_ttl',
     ];
 
+    public function cacheKey()
+    {
+        return sprintf(
+            "%s/%s-%s",
+            $this->getTable(),
+            $this->getKey(),
+            $this->updated_at->timestamp
+        );
+    }
+
     public function page()
     {
         return $this->belongsTo('TCG\Voyager\Models\Page');
@@ -65,5 +80,12 @@ class PageBlock extends Model
     public function getDataAttribute($value)
     {
         return json_decode($value);
+    }
+
+    public function getCachedDataAttribute()
+    {
+        return Cache::remember($this->cacheKey() . ':datum', $this->cache_ttl, function () {
+            return $this->data;
+        });
     }
 }
