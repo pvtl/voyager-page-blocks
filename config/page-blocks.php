@@ -27,12 +27,6 @@ return [
                 ],
                 'placeholder' => 0,
             ],
-            'background_image' => [
-                'field' => 'background_image',
-                'display_name' => 'Background image',
-                'partial' => 'voyager::formfields.image',
-                'required' => 1,
-            ],
             'fade_background' => [
                 'field' => 'fade_background',
                 'display_name' => 'Fade out background',
@@ -41,6 +35,22 @@ return [
                 'options' => [
                     'Yes',
                 ],
+            ],
+            'br_1' => [
+                'field' => 'br_1',
+                'display_name' => 'Line Break',
+                'partial' => 'break',
+            ],
+            'background_image' => [
+                'field' => 'background_image',
+                'display_name' => 'Background image',
+                'partial' => 'voyager::formfields.image',
+                'required' => 1,
+            ],
+            'br_2' => [
+                'field' => 'br_2',
+                'display_name' => 'Line Break',
+                'partial' => 'break',
             ],
             'title' => [
                 'field' => 'title',
@@ -55,6 +65,11 @@ return [
                 'partial' => 'voyager::formfields.text',
                 'required' => 0,
                 'placeholder' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris.',
+            ],
+            'br_3' => [
+                'field' => 'br_3',
+                'display_name' => 'Line Break',
+                'partial' => 'break',
             ],
             'button_text' => [
                 'field' => 'button_text',
@@ -77,6 +92,12 @@ return [
     'cards_one_column' => [
         'name' => 'Cards - 1 Column',
         'fields' => [
+            'image' => [
+                'field' => 'image',
+                'display_name' => 'Image',
+                'partial' => 'voyager::formfields.image',
+                'required' => 0,
+            ],
             'image_position' => [
                 'field' => 'image_position',
                 'display_name' => 'Position of Image',
@@ -88,11 +109,10 @@ return [
                 ],
                 'placeholder' => 0,
             ],
-            'image' => [
-                'field' => 'image',
-                'display_name' => 'Image',
-                'partial' => 'voyager::formfields.image',
-                'required' => 0,
+            'br_1' => [
+                'field' => 'br_1',
+                'display_name' => 'Line Break',
+                'partial' => 'break',
             ],
             'title' => [
                 'field' => 'title',
@@ -107,6 +127,11 @@ return [
                 'partial' => 'voyager::formfields.text',
                 'required' => 1,
                 'placeholder' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris.',
+            ],
+            'br_2' => [
+                'field' => 'br_2',
+                'display_name' => 'Line Break',
+                'partial' => 'break',
             ],
             'button_text' => [
                 'field' => 'button_text',
@@ -135,6 +160,11 @@ return [
                 'partial' => 'voyager::formfields.image',
                 'required' => 0,
             ],
+            'br_1' => [
+                'field' => 'br_1',
+                'display_name' => 'Line Break',
+                'partial' => 'break',
+            ],
             'title1' => [
                 'field' => 'title1',
                 'display_name' => 'Column 1: Title',
@@ -148,6 +178,11 @@ return [
                 'partial' => 'voyager::formfields.text',
                 'required' => 1,
                 'placeholder' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris.',
+            ],
+            'br_2' => [
+                'field' => 'br_2',
+                'display_name' => 'Line Break',
+                'partial' => 'break',
             ],
             'button_text1' => [
                 'field' => 'button_text1',
@@ -163,11 +198,21 @@ return [
                 'required' => 0,
                 'placeholder' => '#',
             ],
+            'br_3' => [
+                'field' => 'br_3',
+                'display_name' => 'Line Break',
+                'partial' => 'break',
+            ],
             'image2' => [
                 'field' => 'image2',
                 'display_name' => 'Column 2: Image',
                 'partial' => 'voyager::formfields.image',
                 'required' => 0,
+            ],
+            'br_4' => [
+                'field' => 'br_4',
+                'display_name' => 'Line Break',
+                'partial' => 'break',
             ],
             'title2' => [
                 'field' => 'title2',
@@ -182,6 +227,11 @@ return [
                 'partial' => 'voyager::formfields.text',
                 'required' => 1,
                 'placeholder' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris.',
+            ],
+            'br_5' => [
+                'field' => 'br_5',
+                'display_name' => 'Line Break',
+                'partial' => 'break',
             ],
             'button_text2' => [
                 'field' => 'button_text2',
@@ -210,6 +260,11 @@ return [
                 'partial' => 'voyager::formfields.image',
                 'required' => 0,
             ],
+            'br_1' => [
+                'field' => 'br_1',
+                'display_name' => 'Line Break',
+                'partial' => 'break',
+            ],
             'title1' => [
                 'field' => 'title1',
                 'display_name' => 'Column 1: Title',
@@ -223,6 +278,11 @@ return [
                 'partial' => 'voyager::formfields.text',
                 'required' => 1,
                 'placeholder' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris.',
+            ],
+            'br_2' => [
+                'field' => 'br_2',
+                'display_name' => 'Line Break',
+                'partial' => 'break',
             ],
             'button_text1' => [
                 'field' => 'button_text1',
@@ -238,11 +298,21 @@ return [
                 'required' => 0,
                 'placeholder' => '#',
             ],
+            'br_3' => [
+                'field' => 'br_3',
+                'display_name' => 'Line Break',
+                'partial' => 'break',
+            ],
             'image2' => [
                 'field' => 'image2',
                 'display_name' => 'Column 2: Image',
                 'partial' => 'voyager::formfields.image',
                 'required' => 0,
+            ],
+            'br_4' => [
+                'field' => 'br_4',
+                'display_name' => 'Line Break',
+                'partial' => 'break',
             ],
             'title2' => [
                 'field' => 'title2',
@@ -258,6 +328,11 @@ return [
                 'required' => 1,
                 'placeholder' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris.',
             ],
+            'br_5' => [
+                'field' => 'br_5',
+                'display_name' => 'Line Break',
+                'partial' => 'break',
+            ],
             'button_text2' => [
                 'field' => 'button_text2',
                 'display_name' => 'Column 2: Button Text',
@@ -272,11 +347,21 @@ return [
                 'required' => 0,
                 'placeholder' => '#',
             ],
+            'br_6' => [
+                'field' => 'br_6',
+                'display_name' => 'Line Break',
+                'partial' => 'break',
+            ],
             'image3' => [
                 'field' => 'image3',
                 'display_name' => 'Column 3: Image',
                 'partial' => 'voyager::formfields.image',
                 'required' => 0,
+            ],
+            'br_7' => [
+                'field' => 'br_7',
+                'display_name' => 'Line Break',
+                'partial' => 'break',
             ],
             'title3' => [
                 'field' => 'title3',
@@ -291,6 +376,11 @@ return [
                 'partial' => 'voyager::formfields.text',
                 'required' => 1,
                 'placeholder' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris.',
+            ],
+            'br_8' => [
+                'field' => 'br_8',
+                'display_name' => 'Line Break',
+                'partial' => 'break',
             ],
             'button_text3' => [
                 'field' => 'button_text3',
@@ -334,6 +424,11 @@ return [
                 'required' => 1,
                 'placeholder' => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris.</p>',
             ],
+            'br_1' => [
+                'field' => 'br_1',
+                'display_name' => 'Line Break',
+                'partial' => 'break',
+            ],
             'html_content2' => [
                 'field' => 'html_content2',
                 'display_name' => 'Column 2 content',
@@ -355,12 +450,22 @@ return [
                 'required' => 1,
                 'placeholder' => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris.</p>',
             ],
+            'br_1' => [
+                'field' => 'br_1',
+                'display_name' => 'Line Break',
+                'partial' => 'break',
+            ],
             'html_content2' => [
                 'field' => 'html_content2',
                 'display_name' => 'Column 2 content',
                 'partial' => 'voyager::formfields.rich_text_box',
                 'required' => 0,
                 'placeholder' => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris.</p>',
+            ],
+            'br_2' => [
+                'field' => 'br_2',
+                'display_name' => 'Line Break',
+                'partial' => 'break',
             ],
             'html_content3' => [
                 'field' => 'html_content3',
@@ -383,6 +488,11 @@ return [
                 'required' => 1,
                 'placeholder' => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris.</p>',
             ],
+            'br_1' => [
+                'field' => 'br_1',
+                'display_name' => 'Line Break',
+                'partial' => 'break',
+            ],
             'html_content2' => [
                 'field' => 'html_content2',
                 'display_name' => 'Column 2 content',
@@ -390,12 +500,22 @@ return [
                 'required' => 0,
                 'placeholder' => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris.</p>',
             ],
+            'br_2' => [
+                'field' => 'br_2',
+                'display_name' => 'Line Break',
+                'partial' => 'break',
+            ],
             'html_content3' => [
                 'field' => 'html_content3',
                 'display_name' => 'Column 3 content',
                 'partial' => 'voyager::formfields.rich_text_box',
                 'required' => 0,
                 'placeholder' => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris.</p>',
+            ],
+            'br_3' => [
+                'field' => 'br_3',
+                'display_name' => 'Line Break',
+                'partial' => 'break',
             ],
             'html_content4' => [
                 'field' => 'html_content4',
@@ -424,6 +544,11 @@ return [
                 'required' => 0,
                 'placeholder' => '#',
             ],
+            'br_1' => [
+                'field' => 'br_1',
+                'display_name' => 'Line Break',
+                'partial' => 'break',
+            ],
             'image2' => [
                 'field' => 'image2',
                 'display_name' => 'Image 2',
@@ -436,6 +561,11 @@ return [
                 'partial' => 'voyager::formfields.text',
                 'required' => 0,
                 'placeholder' => '#',
+            ],
+            'br_2' => [
+                'field' => 'br_2',
+                'display_name' => 'Line Break',
+                'partial' => 'break',
             ],
             'image3' => [
                 'field' => 'image3',
@@ -450,6 +580,11 @@ return [
                 'required' => 0,
                 'placeholder' => '#',
             ],
+            'br_3' => [
+                'field' => 'br_3',
+                'display_name' => 'Line Break',
+                'partial' => 'break',
+            ],
             'image4' => [
                 'field' => 'image4',
                 'display_name' => 'Image 4',
@@ -463,6 +598,11 @@ return [
                 'required' => 0,
                 'placeholder' => '#',
             ],
+            'br_4' => [
+                'field' => 'br_4',
+                'display_name' => 'Line Break',
+                'partial' => 'break',
+            ],
             'image5' => [
                 'field' => 'image5',
                 'display_name' => 'Image 5',
@@ -475,6 +615,11 @@ return [
                 'partial' => 'voyager::formfields.text',
                 'required' => 0,
                 'placeholder' => '#',
+            ],
+            'br_5' => [
+                'field' => 'br_5',
+                'display_name' => 'Line Break',
+                'partial' => 'break',
             ],
             'image6' => [
                 'field' => 'image6',
