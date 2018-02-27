@@ -2,12 +2,12 @@
 
 namespace Pvtl\VoyagerPageBlocks\Http\Controllers;
 
+use Illuminate\Http\Request;
+use TCG\Voyager\Facades\Voyager;
 use Pvtl\VoyagerPageBlocks\Page;
 use Pvtl\VoyagerPageBlocks\PageBlock;
 use Pvtl\VoyagerPageBlocks\Traits\BlockHelper;
-use TCG\Voyager\Facades\Voyager;
 use TCG\Voyager\Http\Controllers\VoyagerBreadController as BaseVoyagerBreadController;
-use Illuminate\Http\Request;
 
 class PageBlockController extends BaseVoyagerBreadController
 {
@@ -18,6 +18,14 @@ class PageBlockController extends BaseVoyagerBreadController
         return redirect('/admin/pages');
     }
 
+    /**
+     * POST B(R)EAD - Read data.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
+     *
+     * @return view
+     */
     public function edit(Request $request, $id)
     {
         $page = Page::findOrFail($id);
@@ -28,6 +36,14 @@ class PageBlockController extends BaseVoyagerBreadController
         ]);
     }
 
+    /**
+     * POST BR(E)AD - Edit data.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(Request $request, $id)
     {
         $block = PageBlock::findOrFail($id);
@@ -67,7 +83,6 @@ class PageBlockController extends BaseVoyagerBreadController
         $block->is_hidden = $request->has('is_hidden');
         $block->is_delete_denied = $request->has('is_delete_denied');
         $block->cache_ttl = $request->input('cache_ttl');
-        $block->order = $request->input('order');
         $block->save();
 
         return redirect()
@@ -76,6 +91,22 @@ class PageBlockController extends BaseVoyagerBreadController
                 'message' => __('voyager.generic.successfully_updated') . " {$dataType->display_name_singular}",
                 'alert-type' => 'success',
             ]);
+    }
+
+    /**
+     * POST - Order data.
+     *
+     * @param \Illuminate\Http\Request $request
+     */
+    public function order(Request $request)
+    {
+        $blockOrder = json_decode($request->input('order'));
+
+        foreach ($blockOrder as $index => $item) {
+            $block = PageBlock::findOrFail($item->id);
+            $block->order = $index + 1;
+            $block->save();
+        }
     }
 
     /**
@@ -106,6 +137,14 @@ class PageBlockController extends BaseVoyagerBreadController
             ]);
     }
 
+    /**
+     * DELETE BREA(D) - Delete data.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroy(Request $request, $id)
     {
         $block = PageBlock::findOrFail($id);
