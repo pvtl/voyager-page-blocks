@@ -4,7 +4,9 @@
 >
     <div class="grid-container column text-center">
         @if (!empty($blockData->title))
-            <h1>{!! $blockData->title or '' !!}</h1>
+            @if ($blockData->size > 1) <h1> @else <h2> @endif
+                {!! $blockData->title or '' !!}
+            @if ($blockData->size > 1) </h1> @else </h2> @endif
         @endif
 
         @if (!empty($blockData->content))
