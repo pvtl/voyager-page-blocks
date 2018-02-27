@@ -201,6 +201,7 @@
 
                                     <span class="btn-group-xs">
                                         <button
+                                            data-delete-block-btn
                                             type="submit"
                                             style="float:right; margin-top:22px"
                                             class="btn btn-danger btn-xs delete"
@@ -219,18 +220,26 @@
 @section('javascript')
     <script>
         $('document').ready(function () {
+            // Enable CHECKBOX toggle component
             $('.toggleswitch').bootstrapToggle();
 
-            // Make tinymce a 'lil smaller, height-wise
+            // Make TINYMCE a 'lil smaller, height-wise
             setTimeout(function() {
                 $('.mce-tinymce').each(function() {
                     $(this).find('iframe').css({'height': 250, 'min-height': 250});
                 });
             }, 1000);
 
-            // Image fields types
+            // IMAGE fields types
             $('input[type=file]').each(function() {
                 $(this).closest('.form-group').addClass('vpb-image-group');
+            });
+
+            // Confirm DELETE block
+            $("[data-delete-block-btn]").on('click', function(e){
+                e.preventDefault();
+                var result = confirm("Are you sure you want to delete this block?");
+                if (result) $(this).closest('form').submit();
             });
         });
     </script>
