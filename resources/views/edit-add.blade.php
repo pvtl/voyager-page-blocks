@@ -4,9 +4,23 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <style type="text/css">
+        /* Image field type */
         .vpb-image-group label { display: block; }
         .vpb-image-group img { float: left; width: 28% !important; margin-right: 2%; }
         .vpb-image-group input[type=file] { float: left; width: 70%; }
+
+        /* Toggle Button */
+        .toggle.btn {
+            box-shadow: 0 5px 9px -3px rgba(0,0,0,0.2);
+            border: 1px solid rgba(0,0,0,0.2) !important;
+        }
+
+        /* Make Inputs a 'lil more visible */
+        select,
+        input[type="text"],
+        .panel-body .select2-selection, {
+            border: 1px solid rgba(0,0,0,0.17)
+        }
     </style>
 @stop
 
@@ -77,11 +91,16 @@
                     @php
                         $template = $block->template();
                         $dataTypeContent = $block->data;
+                        $numOfBlocks = count($pageBlocks);
                     @endphp
                     <div class="panel panel-bordered panel-info">
                         <div class="panel-heading">
                             <h3 class="panel-title">
-                                <a class="panel-action voyager-angle-down" data-toggle="panel-collapse" style="cursor:pointer">
+                                <a
+                                    class="panel-action @if ($numOfBlocks > 1)panel-collapsed voyager-angle-up @else voyager-angle-down @endif"
+                                    data-toggle="panel-collapse"
+                                    style="cursor:pointer"
+                                >
                                     {{ $template->name }}
                                     @if (!empty($template->description)) <span class="panel-desc"> {{ $template->description }}</span>@endif
                                 </a>
@@ -91,7 +110,7 @@
                             </div>
                         </div>
 
-                        <div class="panel-body">
+                        <div class="panel-body" @if ($numOfBlocks > 1)style="display:none" @endif>
                             <form role="form" action="{{ route('voyager.page-blocks.update', $block->id) }}" method="POST"
                                 enctype="multipart/form-data">
                                 {{ method_field("PUT") }}
@@ -112,7 +131,7 @@
                                     @endforeach
                                 </div> <!-- /.row -->
 
-                                <div class="well" style="padding-bottom: 0; margin-bottom: 10px">
+                                <div class="well" style="padding-bottom:0; margin-bottom:10px">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -166,18 +185,27 @@
                                     </div> <!-- /.row -->
                                 </div> <!-- /.well -->
 
-                                <button
-                                    style="float: left;"
-                                    type="submit"
-                                    class="btn btn-primary save"
-                                >{{ __('voyager.generic.save') }} This Block</button>
+                                <span class="btn-group-lg">
+                                    <button
+                                        style="float:left"
+                                        type="submit"
+                                        class="btn btn-success btn-lg save"
+                                    >{{ __('voyager.generic.save') }} This Block</button>
+                                </span>
                             </form>
 
                             @if (!$block->is_delete_denied)
                                 <form method="POST" action="{{ route('voyager.page-blocks.destroy', $block->id) }}">
                                     {{ method_field("DELETE") }}
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <button type="submit" style="float: right;" class="btn btn-danger delete">{{ __('voyager.generic.delete') }} This Block</button>
+
+                                    <span class="btn-group-xs">
+                                        <button
+                                            type="submit"
+                                            style="float:right; margin-top:22px"
+                                            class="btn btn-danger btn-xs delete"
+                                        >{{ __('voyager.generic.delete') }} This Block</button>
+                                    </span>
                                 </form>
                             @endif
                         </div> <!-- /.panel-body -->
