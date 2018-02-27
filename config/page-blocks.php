@@ -32,9 +32,6 @@ return [
                 'display_name' => 'Fade out background',
                 'partial' => 'voyager::formfields.checkbox',
                 'required' => 0,
-                'options' => [
-                    'Yes',
-                ],
             ],
             'br_1' => [
                 'field' => 'br_1',

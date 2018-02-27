@@ -1,5 +1,5 @@
 <div
-    class="callout callout-size-{!! $blockData->size or '0' !!} background-image @if ($blockData->fade_background === 'Yes') fade-background @endif"
+    class="callout callout-size-{!! $blockData->size or '0' !!} background-image @if ($blockData->fade_background === 'on') fade-background @endif"
     style="background-image: url({!! $blockData->background_image or '' !!});"
 >
     <div class="grid-container column text-center">
