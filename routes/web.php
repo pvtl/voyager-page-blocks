@@ -6,7 +6,7 @@
 Route::group([
     'as' => 'voyager.page-blocks.',
     'prefix' => 'admin/page-blocks/',
-    // 'middleware' => 'admin.user'
+    'middleware' => ['web', 'admin.user']
 ], function () {
     $controller = '\Pvtl\VoyagerPageBlocks\Http\Controllers\PageBlockController';
 
@@ -16,4 +16,4 @@ Route::group([
 /**
  * Frontend Route/s
  */
-Route::get('/{slug?}', '\Pvtl\VoyagerPageBlocks\Http\Controllers\PageController@getPage');
+Route::get('/{slug?}', '\Pvtl\VoyagerPageBlocks\Http\Controllers\PageController@getPage')->middleware('web');

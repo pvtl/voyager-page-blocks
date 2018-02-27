@@ -32,7 +32,6 @@
         .dd-dragging .panel-body {
             display: none !important;
         }
-        .dd .panel { z-index: 0; }
         .order-handle {
             z-index: 1;
             position: absolute;
@@ -59,7 +58,7 @@
 @section('content')
     <div class="page-content edit-add container-fluid">
         <div class="row">
-            <div class="col-md-4 col-lg-3 col-xl-2">
+            <div class="col-md-3 col-xl-2">
                 <div class="panel panel-bordered panel-primary">
                     <div class="panel-heading">
                         <h3 class="panel-title">Add Block</h3>
@@ -98,7 +97,7 @@
                 </div> <!-- /.panel -->
             </div> <!-- /.col -->
 
-            <div class="col-md-8 col-lg-9 col-xl-10">
+            <div class="col-md-9 col-xl-10">
                 @if (count($errors) > 0)
                     <div class="alert alert-danger">
                         <ul>
