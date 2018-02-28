@@ -14,7 +14,7 @@
         @endif
         
         @if (!empty($blockData->link))
-            <a href="{!! $blockData->link or '#' !!}" class="button large">
+            <a href="{!! $blockData->link or '#' !!}" class="button light large">
                 {!! $blockData->button_text or 'Learn More' !!}
             </a>
         @endif
