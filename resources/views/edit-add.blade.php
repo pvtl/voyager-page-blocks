@@ -165,13 +165,27 @@
                                                         <div class="form-group">
                                                             <label for="cache_ttl">Cache Time</label>
                                                             <select name="cache_ttl" id="cache_ttl" class="form-control">
-                                                                <option value="0" selected="selected">None / Off</option>
-                                                                <option value="5">5 mins</option>
-                                                                <option value="30">30 mins</option>
-                                                                <option value="60">1 Hour</option>
-                                                                <option value="240">4 Hours</option>
-                                                                <option value="1440">1 Day</option>
-                                                                <option value="10080">7 Days</option>
+                                                                <option value="0" {!! $block->cache_ttl === 0 ? 'selected="selected"' : '' !!}>
+                                                                    None / Off
+                                                                </option>
+                                                                <option value="5" {!! $block->cache_ttl === 5 ? 'selected="selected"' : '' !!}>
+                                                                    5 mins
+                                                                </option>
+                                                                <option value="30" {!! $block->cache_ttl === 30 ? 'selected="selected"' : '' !!}>
+                                                                    30 mins
+                                                                </option>
+                                                                <option value="60" {!! $block->cache_ttl === 60 ? 'selected="selected"' : '' !!}>
+                                                                    1 Hour
+                                                                </option>
+                                                                <option value="240" {!! $block->cache_ttl === 240 ? 'selected="selected"' : '' !!}>
+                                                                    4 Hours
+                                                                </option>
+                                                                <option value="1440" {!! $block->cache_ttl === 1440 ? 'selected="selected"' : '' !!}>
+                                                                    1 Day
+                                                                </option>
+                                                                <option value="10080" {!! $block->cache_ttl === 10080 ? 'selected="selected"' : '' !!}>
+                                                                    7 Days
+                                                                </option>
                                                             </select>
                                                         </div> <!-- /.form-group -->
                                                     </div> <!-- /.col -->
