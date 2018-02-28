@@ -5,6 +5,7 @@ namespace Pvtl\VoyagerPageBlocks\Http\Controllers;
 use Illuminate\Http\Request;
 use TCG\Voyager\Facades\Voyager;
 use Pvtl\VoyagerPageBlocks\Page;
+use Illuminate\Support\Facades\URL;
 use Pvtl\VoyagerPageBlocks\PageBlock;
 use Pvtl\VoyagerPageBlocks\Traits\BlockHelper;
 use TCG\Voyager\Http\Controllers\VoyagerBreadController as BaseVoyagerBreadController;
@@ -86,7 +87,7 @@ class PageBlockController extends BaseVoyagerBreadController
         $block->save();
 
         return redirect()
-            ->back()
+            ->to(URL::previous() . "#block-id-" . $id)
             ->with([
                 'message' => __('voyager.generic.successfully_updated') . " {$dataType->display_name_singular}",
                 'alert-type' => 'success',
@@ -110,6 +111,18 @@ class PageBlockController extends BaseVoyagerBreadController
     }
 
     /**
+     * POST - Minimize Block
+     *
+    * @param \Illuminate\Http\Request $request
+     */
+    public function minimize(Request $request)
+    {
+        $block = PageBlock::findOrFail((int)$request->id);
+        $block->is_minimized = (int)$request->is_minimized;
+        $block->save();
+    }
+
+    /**
      * POST BRE(A)D - Store data.
      *
      * @param \Illuminate\Http\Request $request
@@ -122,7 +135,7 @@ class PageBlockController extends BaseVoyagerBreadController
         $dataType = Voyager::model('DataType')->where('slug', '=', 'page-blocks')->first();
         list($type, $filepath) = explode('|', $request->input('type'));
 
-        $page->blocks()->create([
+        $block = $page->blocks()->create([
             'type' => $type,
             'filepath' => $filepath,
             'data' => $this->generatePlaceholders($request),
@@ -130,7 +143,7 @@ class PageBlockController extends BaseVoyagerBreadController
         ]);
 
         return redirect()
-            ->route('voyager.page-blocks.edit', $page->id)
+            ->route('voyager.page-blocks.edit', array($page->id, '#block-id-' . $block->id))
             ->with([
                 'message' => __('voyager.generic.successfully_added_new') . " {$dataType->display_name_singular}",
                 'alert-type' => 'success',

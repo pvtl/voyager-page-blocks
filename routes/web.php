@@ -11,6 +11,7 @@ Route::group([
     $controller = '\Pvtl\VoyagerPageBlocks\Http\Controllers\PageBlockController';
 
     Route::post('order', ['uses' => $controller . '@order', 'as' => 'order']);
+    Route::post('minimize', ['uses' => $controller . '@minimize', 'as' => 'minimize']);
 });
 
 /**
