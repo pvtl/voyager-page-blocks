@@ -12,13 +12,16 @@ trait BlockHelper
     {
         $configKey = preg_replace('/.blade.php/', '', $block->filepath);
         $configFields = config("page-blocks.$configKey.fields");
+        $validationMessages = array();
 
         $validationRules = array_map(function ($field) use ($block, $configKey, &$validationMessages) {
             $required = array_key_exists('required', $field) ? $field['required'] : '';
 
             // When this field already has data in DB, it doesn't need to be validated against 'required'
-            $fieldKey = $field['field'];
-            if (!empty($block->data->$fieldKey)) return '';
+            if (array_key_exists('field', $field)) {
+                $fieldKey = $field['field'];
+                if (!empty($block->data->$fieldKey)) return '';
+            }
 
             // Replace the attribute field with its display name
             $validationMessages["{$field['field']}.required"] = "The {$field['display_name']} field is required";
