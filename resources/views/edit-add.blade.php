@@ -23,7 +23,10 @@
         }
 
         /* Reorder */
-        .dd .dd-placeholder { max-height: 61px; margin-bottom: 22px; }
+        .dd .dd-placeholder {
+            max-height: 61px;
+            margin-bottom: 22px;
+        }
         .dd h3.panel-title, 
         .dd-dragel h3.panel-title {
             padding-left: 55px;
@@ -41,6 +44,7 @@
             color: #fff;
             line-height: 20px;
             box-shadow: inset -2px 0px 2px rgba(0,0,0,0.1);
+            cursor: move;
         }
     </style>
 @stop
