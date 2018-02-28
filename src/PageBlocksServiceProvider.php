@@ -24,7 +24,6 @@ class PageBlocksServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../config' => base_path('config'),
             __DIR__ . '/../database/migrations' => base_path('database/migrations'),
-            __DIR__ . '/../resources/views/block_templates' => base_path('resources/views/block_templates'),
             __DIR__ . '/../database/seeds' => base_path('database/seeds'),
         ]);
 

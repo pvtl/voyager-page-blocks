@@ -1,4 +1,4 @@
 @foreach($blocks as $block)
-    @component('block_templates/' . $block->template, ['blockData' => $block->data])
+    @component('voyager-page-blocks::block_templates/' . $block->template, ['blockData' => $block->data])
     @endcomponent
 @endforeach
