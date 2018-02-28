@@ -156,7 +156,7 @@ class PageBlockController extends BaseVoyagerBreadController
             ->back()
             ->with([
                 'message' => __('voyager.generic.successfully_deleted') . " {$dataType->display_name_singular}",
-                'alert-type' => 'error',
+                'alert-type' => 'success',
             ]);
     }
 }
