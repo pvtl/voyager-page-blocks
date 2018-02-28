@@ -13,6 +13,7 @@ class CreatePageBlocksTable extends Migration
      */
     public function up()
     {
+        // Add new table for page blocks
         Schema::create('page_blocks', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('page_id');
@@ -29,6 +30,14 @@ class CreatePageBlocksTable extends Migration
 
             $table->timestamps();
         });
+
+        // If we take this approach, we'll need to also remove the respective row from data_rows.
+        // -- We can then delete resources/views/vendor/voyager/pages/edit-add.blade.php
+        //
+        // Remove the body attribute
+        // Schema::table('pages', function (Blueprint $table) {
+        //     $table->dropColumn('body');
+        // });
     }
 
     /**
@@ -38,6 +47,12 @@ class CreatePageBlocksTable extends Migration
      */
     public function down()
     {
+        // Remove Page Blocks table
         Schema::dropIfExists('page_blocks');
+
+        // Add the body attribute back
+        // Schema::table('pages', function (Blueprint $table) {
+        //     $table->text('body')->nullable();
+        // });
     }
 }

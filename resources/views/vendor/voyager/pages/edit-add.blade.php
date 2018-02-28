@@ -55,6 +55,9 @@
                                 @php
                                     $options = json_decode($row->details);
                                     $display_options = isset($options->display) ? $options->display : NULL;
+
+                                    // Hide body attribute
+                                    if ($row->field === 'body') continue;
                                 @endphp
                                 @if ($options && isset($options->formfields_custom))
                                     @include('voyager::formfields.custom.' . $options->formfields_custom)
