@@ -17,4 +17,6 @@ Route::group([
 /**
  * Frontend Route/s
  */
-Route::get('/{slug?}', '\Pvtl\VoyagerPageBlocks\Http\Controllers\PageController@getPage')->middleware('web');
+if (!Request::is('posts')) {
+    Route::get('/{slug?}', '\Pvtl\VoyagerPageBlocks\Http\Controllers\PageController@getPage')->middleware('web');
+}
