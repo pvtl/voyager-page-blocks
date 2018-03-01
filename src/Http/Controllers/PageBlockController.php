@@ -123,6 +123,26 @@ class PageBlockController extends BaseVoyagerBreadController
     }
 
     /**
+     * POST - Change Page Layout
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param int $id - the page id
+     */
+    public function changeLayout(Request $request, $id)
+    {
+        $page = Page::findOrFail((int)$id);
+        $page->layout = $request->layout;
+        $page->save();
+
+        return redirect()
+            ->back()
+            ->with([
+                'message' => __('voyager.generic.successfully_updated') . " Page Layout",
+                'alert-type' => 'success',
+            ]);
+    }
+
+    /**
      * POST BRE(A)D - Store data.
      *
      * @param \Illuminate\Http\Request $request

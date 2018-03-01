@@ -10,6 +10,7 @@ Route::group([
 ], function () {
     $controller = '\Pvtl\VoyagerPageBlocks\Http\Controllers\PageBlockController';
 
+    Route::post('layout/{id}', ['uses' => $controller . '@changeLayout', 'as' => 'layout']);
     Route::post('order', ['uses' => $controller . '@order', 'as' => 'order']);
     Route::post('minimize', ['uses' => $controller . '@minimize', 'as' => 'minimize']);
 });

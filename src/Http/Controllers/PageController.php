@@ -4,6 +4,7 @@ namespace Pvtl\VoyagerPageBlocks\Http\Controllers;
 
 use Pvtl\VoyagerPageBlocks\Page;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\View;
 
 class PageController extends Controller
 {
@@ -20,9 +21,15 @@ class PageController extends Controller
                     'data' => $block->cachedData,
                 ];
             });
-
+        
+        // Override standard body content, with page block content
         $page['body'] = view('voyager-page-blocks::default', compact('page', 'blocks'));
 
-        return view('voyager-frontend::modules/pages/default', compact('page'));
+        // Check that the page Layout View exists
+        $layout = (!empty($page->layout)) ? $page->layout : 'default';
+        if (!View::exists('voyager-frontend::layouts.' . $layout)) $layout = 'default';
+
+        // Return the full page
+        return view('voyager-frontend::modules/pages/default', compact('page', 'layout'));
     }
 }
