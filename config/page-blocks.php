@@ -84,7 +84,6 @@ return [
             ],
         ],
         'template' => 'callout',
-        'compatible' => '*',
     ],
     'cards_one_column' => [
         'name' => 'Cards - 1 Column',
@@ -146,7 +145,6 @@ return [
             ],
         ],
         'template' => 'cards_one_column',
-        'compatible' => '*',
     ],
     'cards_two_columns' => [
         'name' => 'Cards - 2 Columns',
@@ -246,7 +244,6 @@ return [
             ],
         ],
         'template' => 'cards_two_columns',
-        'compatible' => '*',
     ],
     'cards_three_columns' => [
         'name' => 'Cards - 3 Columns',
@@ -395,7 +392,6 @@ return [
             ],
         ],
         'template' => 'cards_three_columns',
-        'compatible' => '*',
     ],
     'content_one_column' => [
         'name' => 'Content - 1 Column',
@@ -409,7 +405,6 @@ return [
             ],
         ],
         'template' => 'content_one_column',
-        'compatible' => '*',
     ],
     'content_two_columns' => [
         'name' => 'Content - 2 Columns',
@@ -435,7 +430,6 @@ return [
             ],
         ],
         'template' => 'content_two_columns',
-        'compatible' => '*',
     ],
     'content_three_columns' => [
         'name' => 'Content - 3 Columns',
@@ -473,7 +467,6 @@ return [
             ],
         ],
         'template' => 'content_three_columns',
-        'compatible' => '*',
     ],
     'content_four_columns' => [
         'name' => 'Content - 4 Columns',
@@ -523,7 +516,6 @@ return [
             ],
         ],
         'template' => 'content_four_columns',
-        'compatible' => '*',
     ],
     'image_row' => [
         'name' => 'Row of Images',
@@ -633,6 +625,43 @@ return [
             ],
         ],
         'template' => 'image_row',
-        'compatible' => '*',
+    ],
+    'testimonial' => [
+        'name' => 'Testimonial',
+        'fields' => [
+            'content' => [
+                'field' => 'content',
+                'display_name' => 'Testimonial Content',
+                'partial' => 'voyager::formfields.text_area',
+                'required' => 1,
+                'placeholder' => 'Company X is both attractive and highly adaptable. Company X has really helped our business thrive - I can\'t wait to see what comes next for us.',
+            ],
+            'title' => [
+                'field' => 'title',
+                'display_name' => 'Person',
+                'partial' => 'voyager::formfields.text',
+                'required' => 1,
+                'placeholder' => 'John Smith',
+            ],
+            'sub_title' => [
+                'field' => 'sub_title',
+                'display_name' => 'Sub Text',
+                'partial' => 'voyager::formfields.text',
+                'required' => 0,
+                'placeholder' => 'Founder &amp; CEO',
+            ],
+            'br_1' => [
+                'field' => 'br_1',
+                'display_name' => 'Line Break',
+                'partial' => 'break',
+            ],
+            'image' => [
+                'field' => 'image',
+                'display_name' => 'Image',
+                'partial' => 'voyager::formfields.image',
+                'required' => 0,
+            ],
+        ],
+        'template' => 'testimonial',
     ],
 ];
