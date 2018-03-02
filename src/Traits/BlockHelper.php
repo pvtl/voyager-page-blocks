@@ -10,7 +10,7 @@ trait BlockHelper
 {
     public function validateBlock(\Illuminate\Http\Request $request, PageBlock $block): \Illuminate\Validation\Validator
     {
-        $configKey = preg_replace('/.blade.php/', '', $block->filepath);
+        $configKey = preg_replace('/.blade.php/', '', $block->path);
         $configFields = config("page-blocks.$configKey.fields");
         $validationMessages = array();
 

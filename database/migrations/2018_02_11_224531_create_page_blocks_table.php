@@ -18,7 +18,7 @@ class CreatePageBlocksTable extends Migration
             $table->increments('id');
             $table->integer('page_id');
             $table->enum('type', ['template', 'include'])->default('include');
-            $table->string('filepath');
+            $table->string('path');
             $table->mediumText('data');
             $table->boolean('is_hidden')->default(false);
             $table->boolean('is_minimized')->default(false);

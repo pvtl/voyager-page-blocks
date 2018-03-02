@@ -153,11 +153,11 @@ class PageBlockController extends BaseVoyagerBreadController
     {
         $page = Page::findOrFail($request->input('page_id'));
         $dataType = Voyager::model('DataType')->where('slug', '=', 'page-blocks')->first();
-        list($type, $filepath) = explode('|', $request->input('type'));
+        list($type, $path) = explode('|', $request->input('type'));
 
         $block = $page->blocks()->create([
             'type' => $type,
-            'filepath' => $filepath,
+            'path' => $path,
             'data' => $this->generatePlaceholders($request),
             'order' => time(),
         ]);

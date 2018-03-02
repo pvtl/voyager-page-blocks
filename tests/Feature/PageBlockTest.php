@@ -15,7 +15,7 @@ class PageBlockTest extends TestCase
     {
         return factory(PageBlock::class)->create([
             'type' => 'template',
-            'filepath' => 'html_content.blade.php',
+            'path' => 'html_content.blade.php',
             'data' => ['html_content' => $content],
             'is_hidden' => (bool)$hidden,
             'is_minimized' => false,

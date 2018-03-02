@@ -17,7 +17,7 @@ $factory->define(Pvtl\VoyagerPageBlocks\PageBlock::class, function (Faker $faker
     return [
         'page_id' => 1,
         'type' => 'template',
-        'filepath' => 'content_one_column.blade.php',
+        'path' => 'content_one_column.blade.php',
         'data' => [
             'html_content' => '<p>' . $faker->sentence . '</p>'
         ],

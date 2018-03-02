@@ -41,7 +41,7 @@ class PageBlock extends Model
      */
     protected $fillable = [
         'type',
-        'filepath',
+        'path',
         'data',
         'is_hidden',
         'is_minimized',
@@ -67,11 +67,11 @@ class PageBlock extends Model
     // Fetch config for block template
     public function template()
     {
-        if ($this->type !== 'template' || empty($this->filepath)) {
+        if ($this->type !== 'template' || empty($this->path)) {
             return null;
         }
 
-        $templateKey = substr($this->filepath, 0, strpos($this->filepath, '.'));
+        $templateKey = substr($this->path, 0, strpos($this->path, '.'));
         $templateConfig = json_encode(Config::get("page-blocks.$templateKey"));
 
         return json_decode($templateConfig);
