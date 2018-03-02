@@ -1,31 +1,33 @@
-<div class="grid-container">
-    <div class="block-image-text">
-        @if (!empty($blockData->image) && $blockData->image_position == 0)
-            <div class="block-image-text-img">
-                <img src="{!! $blockData->image or '' !!}">
-            </div> <!-- /.block-image-text-img -->
-        @endif
-
-        <div class="block-image-text-content">
-            @if (!empty($blockData->title))
-                <h4>{!! $blockData->title or '' !!}</h4>
-            @endif
-            
-            @if (!empty($blockData->content))
-                <p>{!! $blockData->content or '' !!}</p>
+<!-- ONE CARD BLOCK -->
+<div class="page-block @if (in_array($blockData->spaces, [0, 2])) page-block-space-bottom @endif @if (in_array($blockData->spaces, [1, 2])) page-block-space-top @endif">
+    <div class="grid-container">
+        <div class="block-image-text" data-scrollreveal>
+            @if (!empty($blockData->image_1) && $blockData->image_position_1 == 0)
+                <div class="block-image-text-img">
+                    <img src="{!! $blockData->image_1 or '' !!}">
+                </div> <!-- /.block-image-text-img -->
             @endif
 
-            @if (!empty($blockData->link))
-                <a href="{!! $blockData->link or '' !!}" class="button round">{!! $blockData->button_text or 'Learn More' !!}</a>
+            <div class="block-image-text-content">
+                @if (!empty($blockData->title_1))
+                    <h4>{!! $blockData->title_1 or '' !!}</h4>
+                @endif
+                
+                @if (!empty($blockData->content_1))
+                    <p>{!! $blockData->content_1 or '' !!}</p>
+                @endif
+
+                @if (!empty($blockData->link_1))
+                    <a href="{!! $blockData->link_1 or '' !!}" class="button round">{!! $blockData->button_text_1 or 'Learn More' !!}</a>
+                @endif
+            </div> <!-- /.block-image-text-content -->
+
+            @if (!empty($blockData->image_1) && $blockData->image_position_1 == 1)
+                <div class="block-image-text-img">
+                    <img src="{!! $blockData->image_1 or '' !!}">
+                </div> <!-- /.block-image-text-img -->
             @endif
-        </div> <!-- /.block-image-text-content -->
-
-        @if (!empty($blockData->image) && $blockData->image_position == 1)
-            <div class="block-image-text-img">
-                <img src="{!! $blockData->image or '' !!}">
-            </div> <!-- /.block-image-text-img -->
-        @endif
-    </div> <!-- /.block-image-text -->
-</div> <!-- /.grid-container -->
-
-<div class="vspace-medium-2"></div>
+        </div> <!-- /.block-image-text -->
+    </div> <!-- /.grid-container -->
+</div> <!-- /.page-block -->
+<!-- /ONE CARD BLOCK -->

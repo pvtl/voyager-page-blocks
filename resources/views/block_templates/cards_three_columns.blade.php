@@ -1,77 +1,79 @@
-<div class="grid-container">
-    <div class="grid-x grid-padding-x">
-        <div class="cell small-12 medium-4">
-            <div class="card">
-                @if (!empty($blockData->image1))
-                    @if (!empty($blockData->link1))<a href="{!! $blockData->link1 or '' !!}">@endif
-                    <img src="{!! $blockData->image1 or '' !!}">
-                    @if (!empty($blockData->link1))</a>@endif
-                @endif
-
-                <div class="card-section">
-                    @if (!empty($blockData->title1))
-                        <h4>{!! $blockData->title1 or '' !!}</h4>
+<!-- THREE CARD BLOCK -->
+<div class="page-block @if (in_array($blockData->spaces, [0, 2])) page-block-space-bottom @endif @if (in_array($blockData->spaces, [1, 2])) page-block-space-top @endif">
+    <div class="grid-container">
+        <div class="grid-x grid-padding-x">
+            <div class="cell small-12 medium-4" data-scrollreveal>
+                <div class="card">
+                    @if (!empty($blockData->image_1))
+                        @if (!empty($blockData->link_1))<a href="{!! $blockData->link_1 or '' !!}">@endif
+                        <img src="{!! $blockData->image_1 or '' !!}">
+                        @if (!empty($blockData->link_1))</a>@endif
                     @endif
 
-                    @if (!empty($blockData->content1))
-                        <p>{!! $blockData->content1 or '' !!}</p>
+                    <div class="card-section">
+                        @if (!empty($blockData->title_1))
+                            <h4>{!! $blockData->title_1 or '' !!}</h4>
+                        @endif
+
+                        @if (!empty($blockData->content_1))
+                            <p>{!! $blockData->content_1 or '' !!}</p>
+                        @endif
+
+                        @if (!empty($blockData->link_1))
+                            <a href="{!! $blockData->link_1 or '' !!}" class="button">{!! $blockData->button_text_1 or 'Learn More' !!}</a>
+                        @endif
+                    </div> <!-- /.card-section -->
+                </div> <!-- /.card -->
+            </div> <!-- /.cell -->
+
+            <div class="cell small-12 medium-4" data-scrollreveal>
+                <div class="card">
+                    @if (!empty($blockData->image_2))
+                        @if (!empty($blockData->link_2))<a href="{!! $blockData->link_2 or '' !!}">@endif
+                        <img src="{!! $blockData->image_2 or '' !!}">
+                        @if (!empty($blockData->link_2))</a>@endif
                     @endif
 
-                    @if (!empty($blockData->link1))
-                        <a href="{!! $blockData->link1 or '' !!}" class="button">{!! $blockData->button_text1 or 'Learn More' !!}</a>
-                    @endif
-                </div> <!-- /.card-section -->
-            </div> <!-- /.card -->
-        </div> <!-- /.cell -->
+                    <div class="card-section">
+                        @if (!empty($blockData->title_2))
+                            <h4>{!! $blockData->title_2 or '' !!}</h4>
+                        @endif
 
-        <div class="cell small-12 medium-4">
-            <div class="card">
-                @if (!empty($blockData->image2))
-                    @if (!empty($blockData->link2))<a href="{!! $blockData->link2 or '' !!}">@endif
-                    <img src="{!! $blockData->image2 or '' !!}">
-                    @if (!empty($blockData->link2))</a>@endif
-                @endif
+                        @if (!empty($blockData->content_2))
+                            <p>{!! $blockData->content_2 or '' !!}</p>
+                        @endif
 
-                <div class="card-section">
-                    @if (!empty($blockData->title2))
-                        <h4>{!! $blockData->title2 or '' !!}</h4>
-                    @endif
+                        @if (!empty($blockData->link_2))
+                            <a href="{!! $blockData->link_2 or '' !!}" class="button">{!! $blockData->button_text_2 or 'Learn More' !!}</a>
+                        @endif
+                    </div> <!-- /.card-section -->
+                </div> <!-- /.card -->
+            </div> <!-- /.cell -->
 
-                    @if (!empty($blockData->content2))
-                        <p>{!! $blockData->content2 or '' !!}</p>
-                    @endif
-
-                    @if (!empty($blockData->link2))
-                        <a href="{!! $blockData->link2 or '' !!}" class="button">{!! $blockData->button_text2 or 'Learn More' !!}</a>
-                    @endif
-                </div> <!-- /.card-section -->
-            </div> <!-- /.card -->
-        </div> <!-- /.cell -->
-
-        <div class="cell small-12 medium-4">
-            <div class="card">
-                @if (!empty($blockData->image3))
-                    @if (!empty($blockData->link3))<a href="{!! $blockData->link3 or '' !!}">@endif
-                    <img src="{!! $blockData->image3 or '' !!}">
-                    @if (!empty($blockData->link3))</a>@endif
-                @endif
-
-                <div class="card-section">
-                    @if (!empty($blockData->title3))
-                        <h4>{!! $blockData->title3 or '' !!}</h4>
+            <div class="cell small-12 medium-4" data-scrollreveal>
+                <div class="card">
+                    @if (!empty($blockData->image_3))
+                        @if (!empty($blockData->link_3))<a href="{!! $blockData->link_3 or '' !!}">@endif
+                        <img src="{!! $blockData->image_3 or '' !!}">
+                        @if (!empty($blockData->link_3))</a>@endif
                     @endif
 
-                    @if (!empty($blockData->content3))
-                        <p>{!! $blockData->content3 or '' !!}</p>
-                    @endif
+                    <div class="card-section">
+                        @if (!empty($blockData->title_3))
+                            <h4>{!! $blockData->title_3 or '' !!}</h4>
+                        @endif
 
-                    @if (!empty($blockData->link3))
-                        <a href="{!! $blockData->link3 or '' !!}" class="button">{!! $blockData->button_text3 or 'Learn More' !!}</a>
-                    @endif
-                </div> <!-- /.card-section -->
-            </div> <!-- /.card -->
-        </div> <!-- /.cell -->
-    </div> <!-- /.grid -->
-</div> <!-- /.container -->
+                        @if (!empty($blockData->content_3))
+                            <p>{!! $blockData->content_3 or '' !!}</p>
+                        @endif
 
-<div class="vspace-medium-2"></div>
+                        @if (!empty($blockData->link_3))
+                            <a href="{!! $blockData->link_3 or '' !!}" class="button">{!! $blockData->button_text_3 or 'Learn More' !!}</a>
+                        @endif
+                    </div> <!-- /.card-section -->
+                </div> <!-- /.card -->
+            </div> <!-- /.cell -->
+        </div> <!-- /.grid -->
+    </div> <!-- /.container -->
+</div> <!-- /.page-block -->
+<!-- /THREE CARD BLOCK -->
