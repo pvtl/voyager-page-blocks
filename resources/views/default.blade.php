@@ -1,4 +1,14 @@
 @foreach($blocks as $block)
-    @component('voyager-page-blocks::block_templates/' . $block->template, ['blockData' => $block->data])
-    @endcomponent
+    @if(View::exists('voyager-page-blocks::block_templates/' . $block->template))
+        @component('voyager-page-blocks::block_templates/' . $block->template, ['blockData' => $block->data])
+        @endcomponent
+    @else
+        <div class="page-block">
+            <div class="callout alert">
+                <div class="grid-container column text-center">
+                    <h2><< !! Warning: Missing Block !! >></h2>
+                </div>
+            </div>
+        </div>
+    @endif
 @endforeach
