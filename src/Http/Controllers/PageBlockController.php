@@ -53,29 +53,34 @@ class PageBlockController extends BaseVoyagerBreadController
 
         // Get all block data & validate
         $data = [];
-        foreach ($template->fields as $row) {
-            $existingData = $block->data;
 
-            if ($row->partial === 'voyager::formfields.image' && is_null($request->input($row->field))) {
-                $data[$row->field] = $existingData->{$row->field};
+        if ($block->type !== 'include') {
+            foreach ($template->fields as $row) {
+                $existingData = $block->data;
 
-                continue;
+                if ($row->partial === 'voyager::formfields.image' && is_null($request->input($row->field))) {
+                    $data[$row->field] = $existingData->{$row->field};
+
+                    continue;
+                }
+
+                $data[$row->field] = $request->input($row->field);
             }
 
-            $data[$row->field] = $request->input($row->field);
-        }
-
-        // Just.Do.It! (Nike, TM)
-        $validator = $this->validateBlock($request, $block);
-        if ($validator->fails()) {
-            return redirect()
-                ->back()
-                ->withErrors($validator)
-                ->withInput()
-                ->with([
-                    'message' => __('voyager.json.validation_errors'),
-                    'alert-type' => 'error',
-                ]);
+            // Just.Do.It! (Nike, TM)
+            $validator = $this->validateBlock($request, $block);
+            if ($validator->fails()) {
+                return redirect()
+                    ->back()
+                    ->withErrors($validator)
+                    ->withInput()
+                    ->with([
+                        'message' => __('voyager.json.validation_errors'),
+                        'alert-type' => 'error',
+                    ]);
+            }
+        } else {
+            $block->path = $request->input('path');
         }
 
         $data = $this->uploadImages($request, $data);
@@ -153,12 +158,18 @@ class PageBlockController extends BaseVoyagerBreadController
     {
         $page = Page::findOrFail($request->input('page_id'));
         $dataType = Voyager::model('DataType')->where('slug', '=', 'page-blocks')->first();
-        list($type, $path) = explode('|', $request->input('type'));
+
+        if ($request->input('type') === 'include') {
+            $type = $request->input('type');
+            $path = 'Pvtl\VoyagerPageBlocks\Http\Controllers\IncludeController@render';
+        } else {
+            list($type, $path) = explode('|', $request->input('type'));
+        }
 
         $block = $page->blocks()->create([
             'type' => $type,
             'path' => $path,
-            'data' => $this->generatePlaceholders($request),
+            'data' => $type === 'include' ? '' : $this->generatePlaceholders($request),
             'order' => time(),
         ]);
 

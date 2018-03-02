@@ -67,8 +67,10 @@ class PageBlock extends Model
     // Fetch config for block template
     public function template()
     {
-        if ($this->type !== 'template' || empty($this->path)) {
-            return null;
+        if ($this->type === 'include') {
+            return (object)[
+                'template' => $this->type,
+            ];
         }
 
         $templateKey = substr($this->path, 0, strpos($this->path, '.'));
