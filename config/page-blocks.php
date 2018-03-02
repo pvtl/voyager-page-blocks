@@ -11,7 +11,7 @@
 */
 $blocks = array();
 
-// The field we use to add extra spacing
+// The 'global' fields we'll use on multiple blocks
 $spacesField = [
     'field' => 'spaces',
     'display_name' => 'Add Vertical Space',
@@ -24,6 +24,14 @@ $spacesField = [
         'None',
     ],
     'placeholder' => 0,
+];
+
+$animationsField = [
+    'field' => 'animate',
+    'display_name' => 'Animate this block (in)?',
+    'partial' => 'voyager::formfields.checkbox',
+    'placeholder' => 'on',
+    'required' => 0,
 ];
 
 /**
@@ -108,6 +116,7 @@ $blocks['callout'] = [
             'partial' => 'break',
         ],
         'spaces' => $spacesField,
+        'animate' => $animationsField,
     ],
 ];
 
@@ -139,6 +148,7 @@ foreach ($columns as $i => $block) {
         ];
     }
     $blocks[$block]['fields']['spaces'] = $spacesField;
+    $blocks[$block]['fields']['animate'] = $animationsField;
 }
 
 /**
@@ -222,6 +232,7 @@ foreach ($columns as $i => $block) {
         ];
     }
     $blocks[$block]['fields']['spaces'] = $spacesField;
+    $blocks[$block]['fields']['animate'] = $animationsField;
 }
 
 /**
@@ -230,118 +241,43 @@ foreach ($columns as $i => $block) {
 $blocks['image_row'] = [
     'name' => 'Row of Images',
     'template' => 'image_row',
-    'fields' => [
-        'image1' => [
-            'field' => 'image1',
-            'display_name' => 'Image 1',
-            'partial' => 'voyager::formfields.image',
-            'required' => 0,
-        ],
-        'link1' => [
-            'field' => 'link1',
-            'display_name' => 'Link for Image 1',
-            'partial' => 'voyager::formfields.text',
-            'required' => 0,
-            'placeholder' => '#',
-        ],
-        'br_1' => [
-            'field' => 'br_1',
-            'display_name' => 'Line Break',
-            'partial' => 'break',
-        ],
-        'image2' => [
-            'field' => 'image2',
-            'display_name' => 'Image 2',
-            'partial' => 'voyager::formfields.image',
-            'required' => 0,
-        ],
-        'link2' => [
-            'field' => 'link2',
-            'display_name' => 'Link for Image 2',
-            'partial' => 'voyager::formfields.text',
-            'required' => 0,
-            'placeholder' => '#',
-        ],
-        'br_2' => [
-            'field' => 'br_2',
-            'display_name' => 'Line Break',
-            'partial' => 'break',
-        ],
-        'image3' => [
-            'field' => 'image3',
-            'display_name' => 'Image 3',
-            'partial' => 'voyager::formfields.image',
-            'required' => 0,
-        ],
-        'link3' => [
-            'field' => 'link3',
-            'display_name' => 'Link for Image 3',
-            'partial' => 'voyager::formfields.text',
-            'required' => 0,
-            'placeholder' => '#',
-        ],
-        'br_3' => [
-            'field' => 'br_3',
-            'display_name' => 'Line Break',
-            'partial' => 'break',
-        ],
-        'image4' => [
-            'field' => 'image4',
-            'display_name' => 'Image 4',
-            'partial' => 'voyager::formfields.image',
-            'required' => 0,
-        ],
-        'link4' => [
-            'field' => 'link4',
-            'display_name' => 'Link for Image 4',
-            'partial' => 'voyager::formfields.text',
-            'required' => 0,
-            'placeholder' => '#',
-        ],
-        'br_4' => [
-            'field' => 'br_4',
-            'display_name' => 'Line Break',
-            'partial' => 'break',
-        ],
-        'image5' => [
-            'field' => 'image5',
-            'display_name' => 'Image 5',
-            'partial' => 'voyager::formfields.image',
-            'required' => 0,
-        ],
-        'link5' => [
-            'field' => 'link5',
-            'display_name' => 'Link for Image 5',
-            'partial' => 'voyager::formfields.text',
-            'required' => 0,
-            'placeholder' => '#',
-        ],
-        'br_5' => [
-            'field' => 'br_5',
-            'display_name' => 'Line Break',
-            'partial' => 'break',
-        ],
-        'image6' => [
-            'field' => 'image6',
-            'display_name' => 'Image 6',
-            'partial' => 'voyager::formfields.image',
-            'required' => 0,
-        ],
-        'link6' => [
-            'field' => 'link6',
-            'display_name' => 'Link for Image 6',
-            'partial' => 'voyager::formfields.text',
-            'required' => 0,
-            'placeholder' => '#',
-        ],
-        'br_6' => [
-            'field' => 'br_6',
-            'display_name' => 'Line Break',
-            'partial' => 'break',
-        ],
-        'spaces' => $spacesField,
-    ],
 ];
+$blocks['image_row']['fields']['title'] = [
+    'field' => 'title',
+    'display_name' => 'Person',
+    'partial' => 'voyager::formfields.text',
+    'required' => 0,
+    'placeholder' => 'Our Partners',
+];
+$blocks['image_row']['fields']['sub_title'] = [
+    'field' => 'sub_title',
+    'display_name' => 'Sub Text',
+    'partial' => 'voyager::formfields.text',
+    'required' => 0,
+    'placeholder' => 'The glue that keeps our company thriving.',
+];
+for ($col = 1; $col <= 6; $col++) {
+    $blocks['image_row']['fields']["image_{$col}"] = [
+        'field' => "image_{$col}",
+        'display_name' => "Image {$col}",
+        'partial' => 'voyager::formfields.image',
+        'required' => 0,
+    ];
+    $blocks['image_row']['fields']["link_{$col}"] = [
+        'field' => "link_{$col}",
+        'display_name' => "Link for Image {$col}",
+        'partial' => 'voyager::formfields.text',
+        'required' => 0,
+        'placeholder' => '#',
+    ];
+    $blocks['image_row']['fields']["br_{$col}"] = [
+        'field' => "br_{$col}",
+        'display_name' => 'Line Break',
+        'partial' => 'break',
+    ];
+}
+$blocks['image_row']['fields']['spaces'] = $spacesField;
+$blocks['image_row']['fields']['animate'] = $animationsField;
 
 /**
  * Testimonial Block
@@ -388,6 +324,7 @@ $blocks['testimonial'] = [
             'partial' => 'break',
         ],
         'spaces' => $spacesField,
+        'animate' => $animationsField,
     ],
 ];
 

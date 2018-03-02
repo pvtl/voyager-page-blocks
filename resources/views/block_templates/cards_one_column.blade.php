@@ -1,7 +1,7 @@
 <!-- ONE CARD BLOCK -->
 <div class="page-block @if (in_array($blockData->spaces, [0, 2])) page-block-space-bottom @endif @if (in_array($blockData->spaces, [1, 2])) page-block-space-top @endif">
     <div class="grid-container">
-        <div class="block-image-text" data-scrollreveal>
+        <div class="block-image-text" @if (!empty($blockData->animate)) data-scrollreveal @endif>
             @if (!empty($blockData->image_1) && $blockData->image_position_1 == 0)
                 <div class="block-image-text-img">
                     <img src="{!! $blockData->image_1 or '' !!}">

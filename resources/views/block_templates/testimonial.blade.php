@@ -5,7 +5,10 @@
 
         <div class="grid-container text-center">
             <div class="grid-x grid-padding-x">
-                <div class="cell medium-8 medium-offset-2" data-scrollreveal>
+                <div
+                    class="cell medium-8 medium-offset-2"
+                    @if (!empty($blockData->animate)) data-scrollreveal @endif
+                >
                     @if (!empty($blockData->content))
                         <h3 class="featured-testimonial-quote">{!! $blockData->content or '' !!}</h3>
                     @endif

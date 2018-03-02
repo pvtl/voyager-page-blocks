@@ -2,7 +2,7 @@
 <div class="page-block @if (in_array($blockData->spaces, [0, 2])) page-block-space-bottom @endif @if (in_array($blockData->spaces, [1, 2])) page-block-space-top @endif">
     <div class="grid-container">
         <div class="grid-x grid-padding-x">
-            <div class="cell small-12 medium-4" data-scrollreveal>
+            <div class="cell small-12 medium-4" @if (!empty($blockData->animate)) data-scrollreveal @endif>
                 <div class="card">
                     @if (!empty($blockData->image_1))
                         @if (!empty($blockData->link_1))<a href="{!! $blockData->link_1 or '' !!}">@endif
@@ -26,7 +26,7 @@
                 </div> <!-- /.card -->
             </div> <!-- /.cell -->
 
-            <div class="cell small-12 medium-4" data-scrollreveal>
+            <div class="cell small-12 medium-4" @if (!empty($blockData->animate)) data-scrollreveal @endif>
                 <div class="card">
                     @if (!empty($blockData->image_2))
                         @if (!empty($blockData->link_2))<a href="{!! $blockData->link_2 or '' !!}">@endif
@@ -50,7 +50,7 @@
                 </div> <!-- /.card -->
             </div> <!-- /.cell -->
 
-            <div class="cell small-12 medium-4" data-scrollreveal>
+            <div class="cell small-12 medium-4" @if (!empty($blockData->animate)) data-scrollreveal @endif>
                 <div class="card">
                     @if (!empty($blockData->image_3))
                         @if (!empty($blockData->link_3))<a href="{!! $blockData->link_3 or '' !!}">@endif
