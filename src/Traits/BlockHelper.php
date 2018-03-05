@@ -11,7 +11,7 @@ trait BlockHelper
 {
     public function validateBlock(Request $request, PageBlock $block): \Illuminate\Validation\Validator
     {
-        $configKey = preg_replace('/.blade.php/', '', $block->path);
+        $configKey = $block->path;
         $configFields = config("page-blocks.$configKey.fields");
         $validationMessages = array();
 
@@ -78,11 +78,7 @@ trait BlockHelper
 
     public function generatePlaceholders(Request $request): array
     {
-        $configKey = preg_replace(
-            '/.blade.php/',
-            '',
-            explode('|', $request->input('type'))
-        )[1];
+        $configKey = explode('|', $request->input('type'))[1];
 
         return array_map(function ($field) {
             return array_key_exists('placeholder', $field) ? $field['placeholder'] : '';

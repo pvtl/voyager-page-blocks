@@ -74,7 +74,7 @@ class PageBlock extends Model
             ];
         }
 
-        $templateKey = substr($this->path, 0, strpos($this->path, '.'));
+        $templateKey = $this->path;
         $templateConfig = json_encode(Config::get("page-blocks.$templateKey"));
 
         return json_decode($templateConfig);

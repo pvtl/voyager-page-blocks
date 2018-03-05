@@ -50,7 +50,7 @@ class PageController extends Controller
         }
 
         // Return the full page
-        return view('voyager-frontend::modules/pages/default', [
+        return view('voyager-frontend::modules.pages.default', [
             'page' => $page,
             'layout' => $layout,
         ]);
@@ -69,7 +69,7 @@ class PageController extends Controller
             // 'Include' block types
             if ($block->type === 'include' && !empty($block->path)) {
                 $block = $this->prepareIncludeBlockTypes($block);
-            } else if ($block->type === 'template' && !empty($block->path)) {
+            } else if ($block->type === 'template' && !empty($block->template)) {
                 $block = $this->prepareTemplateBlockTypes($block);
             }
 
@@ -87,10 +87,10 @@ class PageController extends Controller
      */
     protected function prepareTemplateBlockTypes($block)
     {
-        $templateKey = substr($block->path, 0, strpos($block->path, '.'));
+        $templateKey = $block->path;
         $templateConfig = Config::get("page-blocks.$templateKey");
 
-        foreach ($templateConfig['fields'] as $fieldName => $fieldConfig) {
+        foreach ((array)$templateConfig['fields'] as $fieldName => $fieldConfig) {
             if (!array_key_exists($fieldName, $block->data)) {
                 $block->data->$fieldName = null;
             }

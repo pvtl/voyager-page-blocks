@@ -94,9 +94,10 @@
                                     <optgroup label="Block Templates">
                                         @php $templates = config('page-blocks'); @endphp
 
-                                        @foreach ($templates as $template)
-                                            <option
-                                                value="template|{!! $template['template'] !!}.blade.php">{!! $template['name'] !!}</option>
+                                        @foreach ($templates as $path => $template)
+                                            <option value="template|{!! $path !!}">
+                                                {!! $template['name'] !!}
+                                            </option>
                                         @endforeach
                                     </optgroup>
                                 </select>

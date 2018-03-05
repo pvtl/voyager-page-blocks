@@ -40,7 +40,7 @@ $animationsField = [
  */
 $blocks['callout'] = [
     'name' => 'Callout',
-    'template' => 'callout',
+    'template' => 'voyager-page-blocks::blocks.callout',
     'fields' => [
         'size' => [
             'field' => 'size',
@@ -136,7 +136,7 @@ foreach ($columns as $i => $block) {
 
     $blocks[$block] = [
         'name' => "Content - {$numCols} Column/s",
-        'template' => $block,
+        'template' => 'voyager-page-blocks::blocks.' . $block,
     ];
     for ($col = 1; $col <= $numCols; $col++) {
         $blocks[$block]['fields']["html_content_{$col}"] = [
@@ -165,7 +165,7 @@ foreach ($columns as $i => $block) {
 
     $blocks[$block] = [
         'name' => "Cards - {$numCols} Column/s",
-        'template' => $block,
+        'template' => 'voyager-page-blocks::blocks.' . $block,
     ];
     for ($col = 1; $col <= $numCols; $col++) {
         $blocks[$block]['fields']["image_{$col}"] = [
@@ -240,7 +240,7 @@ foreach ($columns as $i => $block) {
  */
 $blocks['image_row'] = [
     'name' => 'Row of Images',
-    'template' => 'image_row',
+    'template' => 'voyager-page-blocks::blocks.image_row',
 ];
 $blocks['image_row']['fields']['title'] = [
     'field' => 'title',
@@ -284,7 +284,7 @@ $blocks['image_row']['fields']['animate'] = $animationsField;
  */
 $blocks['testimonial'] = [
     'name' => 'Testimonial',
-    'template' => 'testimonial',
+    'template' => 'voyager-page-blocks::blocks.testimonial',
     'fields' => [
         'content' => [
             'field' => 'content',
