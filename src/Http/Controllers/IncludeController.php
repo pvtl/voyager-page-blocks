@@ -13,22 +13,38 @@ class IncludeController
         $this->viewData = new \stdClass();
     }
 
+    /**
+     * @param $file
+     * @return $this
+     */
     protected function setViewFile($file)
     {
         $this->viewFile = $file;
+
+        return $this;
     }
 
+    /**
+     * @param $key
+     * @param $data
+     * @return $this
+     */
     protected function setViewData($key, $data)
     {
         $this->viewData->{$key} = $data;
+
+        return $this;
     }
 
+    /**
+     * @return object
+     */
     protected function buildViewComponents()
     {
         return (object)[
             'template' => 'include',
             'data' => $this->viewData,
-            'path' => base_path("resources/$this->viewFile"),
+            'path' => $this->viewFile,
         ];
     }
 }
