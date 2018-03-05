@@ -28,7 +28,7 @@ fields => options  | Used for selects/checkboxes/radios to supply options
 template  | This points to your blade file for your block template
 compatible  | TBA
 
-When you're ready to start structuring the display of your block, you'll need to create your blade template (located at `resources/views/block_templates/your_block.blade.php`) and use the accessors you defined in your module's configuration file to fetch each fields data (`{!! $blockData->image_content or '' !!}`).
+When you're ready to start structuring the display of your block, you'll need to create your blade template (located at `resources/views/blocks/your_block.blade.php`) and use the accessors you defined in your module's configuration file to fetch each fields data (`{!! $blockData->image_content or '' !!}`).
 
 __It is important to sanitise your field output, null values will cause errors__.
 
