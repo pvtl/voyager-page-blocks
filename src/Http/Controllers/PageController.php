@@ -102,15 +102,17 @@ class PageController extends Controller
 
     /**
      * Prepare each 'include' type block
+     *
      * @param $block
      * @return mixed
      */
     protected function prepareIncludeBlockTypes($block)
     {
         list($className, $methodName) = explode('::', $block->path);
-        $class = new $className();
 
+        $class = new $className();
         $block->html = $class->$methodName();
+
         return $block;
     }
 }
