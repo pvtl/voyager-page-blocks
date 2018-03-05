@@ -56,59 +56,54 @@ class PageController extends Controller
         ]);
     }
 
+
     /**
      * Ensure each page block has the correct data, in the correct format
      *
-     * @param obj $blocks
-     *
-     * @return obj
+     * @param Collection $blocks
+     * @return array
      */
     protected function prepareEachBlock(Collection $blocks)
     {
         return array_map(function ($block) {
-            if (!empty($block->path)) {
-                // 'Include' block types
-                if ($block->type === 'include') {
-                    $block = $this->prepareIncludeBlockTypes($block);
-                } else if ($block->type === 'template') {
-                    $block = $this->prepareTemplateBlockTypes($block);
-                }
-
-                return $block;
+            // 'Include' block types
+            if ($block->type === 'include' && !empty($block->path)) {
+                $block = $this->prepareIncludeBlockTypes($block);
+            } else if ($block->type === 'template' && !empty($block->path)) {
+                $block = $this->prepareTemplateBlockTypes($block);
             }
+
+            return $block;
         }, $blocks->toArray());
     }
+
 
     /**
      * Ensure each page block has all of the keys from
      * config, in the DB output (to prevent errors in views)
      *
-     * @param obj $blocks
-     *
-     * @return obj
+     * @param $block
+     * @return mixed
      */
     protected function prepareTemplateBlockTypes($block)
     {
         $templateKey = substr($block->path, 0, strpos($block->path, '.'));
         $templateConfig = Config::get("page-blocks.$templateKey");
 
-        if (!empty($templateConfig['fields'])) {
-            foreach ($templateConfig['fields'] as $fieldName => $fieldConfig) {
-                if (!array_key_exists($fieldName, $block->data)) {
-                    $block->data->$fieldName = null;
-                }
+        foreach ($templateConfig['fields'] as $fieldName => $fieldConfig) {
+            if (!array_key_exists($fieldName, $block->data)) {
+                $block->data->$fieldName = null;
             }
         }
 
         return $block;
     }
 
+
     /**
      * Prepare each 'include' type block
-     *
-     * @param obj $blocks
-     *
-     * @return obj
+     * @param $block
+     * @return mixed
      */
     protected function prepareIncludeBlockTypes($block)
     {
