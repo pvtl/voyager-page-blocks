@@ -25,6 +25,11 @@ trait BlockHelper
                 }
 
                 list($controller, $method) = explode('::', $controllerMethodPath);
+                preg_match('/\(.*?\)/', $controllerMethodPath, $parameters);
+
+                if (count($parameters) > 0) {
+                    $method = str_replace($parameters[0], '', $method);
+                }
 
                 if (empty($method)) {
                     $validator->errors()->add('path', "You must define a method on your included controller");

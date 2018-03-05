@@ -40,7 +40,7 @@
                                     type="text"
                                     name="path"
                                     value="{{ $block->path }}"
-                                    placeholder="Namespaced\Path\To\Controller::MethodName"
+                                    placeholder="Namespaced\Path\To\Controller::MethodName()"
                             >
                         </div>
                     </div>

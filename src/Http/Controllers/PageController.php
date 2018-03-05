@@ -109,9 +109,15 @@ class PageController extends Controller
     protected function prepareIncludeBlockTypes($block)
     {
         list($className, $methodName) = explode('::', $block->path);
+        preg_match('/\(.*?\)/', $methodName, $parameters);
+
+        if (count($parameters) > 0) {
+            $methodName = str_replace($parameters[0], '', $methodName);
+            $parameters = explode(',', str_replace(['(', ')'], '', $parameters[0]));
+        }
 
         $class = new $className();
-        $block->html = $class->$methodName();
+        $block->html = $class->$methodName(...$parameters);
 
         return $block;
     }
