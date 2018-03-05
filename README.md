@@ -16,7 +16,7 @@ The below table explains what each property does and how it is relevant to the b
 
 Key  | Purpose
 ------------- | -------------
-Main Key  | This is the name of your page block, used to load the configuration
+__Root key__  | This is the name of your page block, used to load the configuration
 name  | This is the display name of your page block, used in the block 'adder'
 fields  | This is where your page block fields live (text areas, images etc)
 fields => field  | The content name of your field, used to store/load its content
@@ -28,11 +28,11 @@ fields => options  | Used for selects/checkboxes/radios to supply options
 template  | This points to your blade file for your block template
 compatible  | TBA
 
-When you're ready to start structuring the display of your block, you'll need to create your blade template (located at `resources/views/block_templates/your_block.blade.php`) and use the accessors you defined in your module's configuration to fetch each fields data (`{!! $blockData->image_content or '' !!}`).
+When you're ready to start structuring the display of your block, you'll need to create your blade template (located at `resources/views/block_templates/your_block.blade.php`) and use the accessors you defined in your module's configuration file to fetch each fields data (`{!! $blockData->image_content or '' !!}`).
 
 __It is important to sanitise your field output, null values will cause errors__.
 
-It is very important that you following the naming scheme that is setup in the example page blocks as the keys reference other cogs in the system to stitch the blocks together. There are example blocks already setup in the `resources/views` directory and configuration file for you to get started.
+It is very important that you follow the naming scheme that is setup in the example page blocks as the keys reference other cogs in the system to stitch the blocks together. There are example blocks already set up in the `resources/views` directory and configuration file for you to get started.
 
 ## Developer Controller Blocks
 You may also wish to include custom logic and functionality into your page blocks which can be done with a Developer Controller Block - simply specify your controller namespace'd path and the method you wish to call, which should return a [view](https://laravel.com/docs/5.5/views) and you'll be on your way:
