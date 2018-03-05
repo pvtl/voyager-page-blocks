@@ -10,7 +10,7 @@
                         data-toggle="block-collapse"
                         style="cursor:pointer"
                 >
-                    Devloper Include
+                    Developer Include
                 </a>
             </h3>
             <div class="panel-actions">
