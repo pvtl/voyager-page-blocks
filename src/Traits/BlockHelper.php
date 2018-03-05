@@ -2,13 +2,14 @@
 
 namespace Pvtl\VoyagerPageBlocks\Traits;
 
+use Illuminate\Http\Request;
 use Pvtl\VoyagerPageBlocks\PageBlock;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 trait BlockHelper
 {
-    public function validateBlock(\Illuminate\Http\Request $request, PageBlock $block): \Illuminate\Validation\Validator
+    public function validateBlock(Request $request, PageBlock $block): Validator
     {
         $configKey = preg_replace('/.blade.php/', '', $block->path);
         $configFields = config("page-blocks.$configKey.fields");
@@ -32,7 +33,19 @@ trait BlockHelper
         return Validator::make($request->all(), $validationRules, $validationMessages);
     }
 
-    public function uploadImages(\Illuminate\Http\Request $request, array $data): array
+    public function validateIncludedFile(Request $request): string
+    {
+        $controllerMethodPath = $request->input('path');
+        list($controller, $method) = explode('@', $controllerMethodPath);
+
+        if (empty($method) || !class_exists($controller) || !method_exists($controller, $method)) {
+            return false;
+        }
+
+        return $controllerMethodPath;
+    }
+
+    public function uploadImages(Request $request, array $data): array
     {
         foreach ($request->files as $key => $file) {
             $filePath = $request->file($key)->store('public/blocks');
@@ -43,7 +56,7 @@ trait BlockHelper
         return $data;
     }
 
-    public function generatePlaceholders(\Illuminate\Http\Request $request): array
+    public function generatePlaceholders(Request $request): array
     {
         $configKey = preg_replace(
             '/.blade.php/',

@@ -80,7 +80,19 @@ class PageBlockController extends BaseVoyagerBreadController
                     ]);
             }
         } else {
-            $block->path = $request->input('path');
+
+            if ($controllerMethodPath = $this->validateIncludedFile($request)) {
+                $block->path = $controllerMethodPath;
+            } else {
+                $controllerMethodPath = $request->input('path');
+
+                return redirect()
+                    ->back()
+                    ->with([
+                        'message' => "Unable to locate Class/Method at $controllerMethodPath",
+                        'alert-type' => 'error',
+                    ]);
+            }
         }
 
         $data = $this->uploadImages($request, $data);
@@ -118,7 +130,7 @@ class PageBlockController extends BaseVoyagerBreadController
     /**
      * POST - Minimize Block
      *
-    * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      */
     public function minimize(Request $request)
     {
