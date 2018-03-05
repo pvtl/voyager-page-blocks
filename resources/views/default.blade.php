@@ -1,5 +1,7 @@
 @foreach($blocks as $block)
-    @if(View::exists('voyager-page-blocks::block_templates/' . $block->template))
+    @if (!empty($block->html))
+        {{ $block->html }}
+    @elseif(View::exists('voyager-page-blocks::block_templates/' . $block->template))
         @component('voyager-page-blocks::block_templates/' . $block->template, ['blockData' => $block->data])
         @endcomponent
     @elseif($block->template === 'include' && View::exists('voyager-page-blocks-includes::' . $block->path))

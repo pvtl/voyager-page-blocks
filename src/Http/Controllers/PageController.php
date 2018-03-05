@@ -6,6 +6,7 @@ use Pvtl\VoyagerPageBlocks\Page;
 use Illuminate\Support\Collection;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Config;
 
 class PageController extends Controller
 {
@@ -28,11 +29,12 @@ class PageController extends Controller
                     'template' => $block->template()->template,
                     'data' => $block->cachedData,
                     'path' => $block->path,
+                    'type' => $block->type,
                 ];
             });
 
         // Format and execute all includes ready for rendering
-        $blocks = $this->prepareIncludedControllers($blocks);
+        $blocks = $this->prepareEachBlock($blocks);
 
         // Override standard body content, with page block content
         $page['body'] = view('voyager-page-blocks::default', [
@@ -54,18 +56,66 @@ class PageController extends Controller
         ]);
     }
 
-    public function prepareIncludedControllers(Collection $blocks)
+    /**
+     * Ensure each page block has the correct data, in the correct format
+     *
+     * @param obj $blocks
+     *
+     * @return obj
+     */
+    protected function prepareEachBlock(Collection $blocks)
     {
         return array_map(function ($block) {
-            if ($block->template === 'include' && !empty($block->path)) {
-                list($className, $methodName) = explode('::', $block->path);
+            if (!empty($block->path)) {
+                // 'Include' block types
+                if ($block->type === 'include') {
+                    $block = $this->prepareIncludeBlockTypes($block);
+                } else if ($block->type === 'template') {
+                    $block = $this->prepareTemplateBlockTypes($block);
+                }
 
-                $class = new $className();
-
-                return $class->$methodName();
+                return $block;
             }
-
-            return $block;
         }, $blocks->toArray());
+    }
+
+    /**
+     * Ensure each page block has all of the keys from
+     * config, in the DB output (to prevent errors in views)
+     *
+     * @param obj $blocks
+     *
+     * @return obj
+     */
+    protected function prepareTemplateBlockTypes($block)
+    {
+        $templateKey = substr($block->path, 0, strpos($block->path, '.'));
+        $templateConfig = Config::get("page-blocks.$templateKey");
+
+        if (!empty($templateConfig['fields'])) {
+            foreach ($templateConfig['fields'] as $fieldName => $fieldConfig) {
+                if (!array_key_exists($fieldName, $block->data)) {
+                    $block->data->$fieldName = null;
+                }
+            }
+        }
+
+        return $block;
+    }
+
+    /**
+     * Prepare each 'include' type block
+     *
+     * @param obj $blocks
+     *
+     * @return obj
+     */
+    protected function prepareIncludeBlockTypes($block)
+    {
+        list($className, $methodName) = explode('::', $block->path);
+        $class = new $className();
+
+        $block->html = $class->$methodName();
+        return $block;
     }
 }

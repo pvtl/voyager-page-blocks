@@ -157,7 +157,7 @@ class PageBlockController extends BaseVoyagerBreadController
 
         if ($request->input('type') === 'include') {
             $type = $request->input('type');
-            $path = 'Pvtl\VoyagerPageBlocks\Http\Controllers\IncludeController@render';
+            $path = 'Pvtl\VoyagerPageBlocks\Http\Controllers\IncludeController::render';
         } else {
             list($type, $path) = explode('|', $request->input('type'));
         }

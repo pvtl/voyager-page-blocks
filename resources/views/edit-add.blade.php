@@ -89,7 +89,7 @@
                                 <select class="form-control" name="type" id="type">
                                     <option value="">-- Select --</option>
                                     <optgroup label="Developer Tools">
-                                        <option value="include">Devloper Controller</option>
+                                        <option value="include">Developer Controller</option>
                                     </optgroup>
                                     <optgroup label="Block Templates">
                                         @php $templates = config('page-blocks'); @endphp
