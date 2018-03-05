@@ -129,6 +129,7 @@ class PageBlockController extends BaseVoyagerBreadController
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id - the page id
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function changeLayout(Request $request, $id)
     {
@@ -191,7 +192,16 @@ class PageBlockController extends BaseVoyagerBreadController
         $block = PageBlock::findOrFail($id);
         $dataType = Voyager::model('DataType')->where('slug', '=', 'page-blocks')->first();
 
-        $block->delete();
+        try {
+            $block->delete();
+        } catch (\Exception $e) {
+            return redirect()
+                ->back()
+                ->with([
+                    'message' => "Unable to delete {$dataType->display_name_singular}",
+                    'alert-type' => 'error',
+                ]);
+        }
 
         return redirect()
             ->back()
