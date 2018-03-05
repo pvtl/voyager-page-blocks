@@ -2,7 +2,8 @@
 This module is designed to give developers the ability to simply implement and customise page blocks as they see fit, allowing ease of use and access to content and structure.
 
 ## Installation
-1. Run `composer require pvt/voyager-page-blocks` - that's it.
+1. Install `composer require pvtl/voyager-page-blocks`
+2. Run `php artisan voyager-page-blocks:install`
 
 ## Configuration / Block Setup
 The installation step of the module will do most things for you automatically, creating the page block scaffold, migrations and seeds for your application however the module itself has some pretty important configuration values (located in `app/config/page-blocks.php`) in relation to blocks themselves, so to understand it we'll need to explain things in a bit of detail:
@@ -32,3 +33,19 @@ When you're ready to start structuring the display of your block, you'll need to
 __It is important to sanitise your field output, null values will cause errors__.
 
 It is very important that you following the naming scheme that is setup in the example page blocks as the keys reference other cogs in the system to stitch the blocks together. There are example blocks already setup in the `resources/views` directory and configuration file for you to get started.
+
+## Developer Controller Blocks
+You may also wish to include custom logic and functionality into your page blocks which can be done with a Developer Controller Block - simply specify your controller namespace'd path and the method you wish to call, which should return a [view](https://laravel.com/docs/5.5/views) and you'll be on your way:
+```php
+Path: \App\Http\Controllers\MyCustomController::getAllPostsRoute('testaroo')
+
+public function getAllPosts($aParameter)
+{
+    $posts = Post::all();
+
+    return view('my-view', [
+        'posts' => $posts,
+        'customParameter' => $aParameter,
+    ]);
+}
+```
