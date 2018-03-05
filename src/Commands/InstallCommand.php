@@ -4,8 +4,6 @@ namespace Pvtl\VoyagerPageBlocks\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
-use Intervention\Image\ImageServiceProviderLaravel5;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Process\Process;
 use Pvtl\VoyagerPageBlocks\PageBlocksServiceProvider;
 
@@ -47,11 +45,9 @@ class InstallCommand extends Command
     /**
      * Execute the console command.
      *
-     * @param \Illuminate\Filesystem\Filesystem $filesystem
-     *
      * @return void
      */
-    public function handle(Filesystem $filesystem)
+    public function handle()
     {
 
         $this->info('Publishing Page Blocks assets, database, and config files');
