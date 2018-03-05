@@ -10,5 +10,11 @@ matrix:
 before_script:
   - travis_retry composer self-update
   - composer require tcg/voyager
+  - composer require pvtl/voyager-frontend
+  - php artisan voyager-frontend:install
+  - composer require pvtl/voyager-page-blocks
+  - php artisan voyager-page-blocks:install
+  - cd $TRAVIS_BUILD_DIR/vendor/pvtl/voyager-page-blocks
+  - $TRAVIS_BUILD_DIR/vendor/bin/phpunit
 script:
   - phpunit
