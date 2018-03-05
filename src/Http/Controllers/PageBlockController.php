@@ -54,45 +54,29 @@ class PageBlockController extends BaseVoyagerBreadController
         // Get all block data & validate
         $data = [];
 
-        if ($block->type !== 'include') {
-            foreach ($template->fields as $row) {
-                $existingData = $block->data;
+        foreach ($template->fields as $row) {
+            $existingData = $block->data;
 
-                if ($row->partial === 'voyager::formfields.image' && is_null($request->input($row->field))) {
-                    $data[$row->field] = $existingData->{$row->field};
+            if ($row->partial === 'voyager::formfields.image' && is_null($request->input($row->field))) {
+                $data[$row->field] = $existingData->{$row->field};
 
-                    continue;
-                }
-
-                $data[$row->field] = $request->input($row->field);
+                continue;
             }
 
-            // Just.Do.It! (Nike, TM)
-            $validator = $this->validateBlock($request, $block);
-            if ($validator->fails()) {
-                return redirect()
-                    ->back()
-                    ->withErrors($validator)
-                    ->withInput()
-                    ->with([
-                        'message' => __('voyager.json.validation_errors'),
-                        'alert-type' => 'error',
-                    ]);
-            }
-        } else {
+            $data[$row->field] = $request->input($row->field);
+        }
 
-            if ($controllerMethodPath = $this->validateIncludedFile($request)) {
-                $block->path = $controllerMethodPath;
-            } else {
-                $controllerMethodPath = $request->input('path');
-
-                return redirect()
-                    ->back()
-                    ->with([
-                        'message' => "Unable to locate Class/Method at $controllerMethodPath",
-                        'alert-type' => 'error',
-                    ]);
-            }
+        // Just.Do.It! (Nike, TM)
+        $validator = $this->validateBlock($request, $block);
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput()
+                ->with([
+                    'message' => __('voyager.json.validation_errors'),
+                    'alert-type' => 'error',
+                ]);
         }
 
         $data = $this->uploadImages($request, $data);

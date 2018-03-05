@@ -58,7 +58,7 @@ class PageController extends Controller
     {
         return array_map(function ($block) {
             if ($block->template === 'include' && !empty($block->path)) {
-                list($className, $methodName) = explode('@', $block->path);
+                list($className, $methodName) = explode('::', $block->path);
 
                 $class = new $className();
 

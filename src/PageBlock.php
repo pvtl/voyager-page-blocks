@@ -70,6 +70,7 @@ class PageBlock extends Model
         if ($this->type === 'include') {
             return (object)[
                 'template' => $this->type,
+                'fields' => [],
             ];
         }
 
