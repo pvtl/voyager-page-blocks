@@ -82,6 +82,7 @@ class PageBlockController extends BaseVoyagerBreadController
         $data = $this->uploadImages($request, $data);
 
         $block->data = $data;
+        $block->path = $block->type === 'include' ? $request->input('path') : $block->path;
         $block->is_hidden = $request->has('is_hidden');
         $block->is_delete_denied = $request->has('is_delete_denied');
         $block->cache_ttl = $request->input('cache_ttl');
