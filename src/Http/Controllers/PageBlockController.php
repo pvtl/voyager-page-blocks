@@ -31,7 +31,7 @@ class PageBlockController extends BaseVoyagerBreadController
     {
         $page = Page::findOrFail($id);
 
-        return view('voyager-page-blocks::edit-add', [
+        return view('voyager::page-blocks.edit-add', [
             'page' => $page,
             'pageBlocks' => $page->blocks->sortBy('order'),
         ]);

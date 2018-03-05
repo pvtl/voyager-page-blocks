@@ -169,9 +169,9 @@
                             @endphp
 
                             @if ($block->type === 'template')
-                                @include('voyager-page-blocks::partials.template')
+                                @include('voyager::page-blocks.partials.template')
                             @else
-                                @include('voyager-page-blocks::partials.include')
+                                @include('voyager::page-blocks.partials.include')
                             @endif
                         @endforeach
                     </ol> <!-- /.dd-list -->
