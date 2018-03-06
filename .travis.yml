@@ -1,4 +1,5 @@
 language: php
+services: mysql
 
 php:
   - 7.0
@@ -9,12 +10,28 @@ matrix:
 
 before_script:
   - travis_retry composer self-update
+
+  # Setup MySQL
+  - mysql -u root -e 'CREATE DATABASE homestead;'
+  - mysql -u root -e "CREATE USER 'homestead'@'localhost' IDENTIFIED BY 'homestead';"
+  - mysql -u root -e "GRANT ALL ON homestead.* TO 'homestead'@'localhost';"
+
+  ## Install Laravel
+  - composer create-project --prefer-dist laravel/laravel pvtl-laravel "5.5.*"
+  - cd pvtl-laravel
+
+  ## Pull in our vendor files (latest)
   - composer require tcg/voyager
   - composer require pvtl/voyager-frontend
-  - php artisan voyager-frontend:install
   - composer require pvtl/voyager-page-blocks
+
+  ## Setup Voyager and our modules
+  - php artisan voyager:install --with-dummy
+  - php artisan voyager-frontend:install
   - php artisan voyager-page-blocks:install
-  - cd $TRAVIS_BUILD_DIR/vendor/pvtl/voyager-page-blocks
-  - $TRAVIS_BUILD_DIR/vendor/bin/phpunit
+
+  ## cd into our vendor folder and execute PHPUnit from here
+  - cd $TRAVIS_BUILD_DIR/pvtl-laravel/vendor/pvtl/voyager-page-blocks
+  - $TRAVIS_BUILD_DIR/pvtl-laravel/vendor/bin/phpunit
 script:
   - phpunit
