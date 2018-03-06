@@ -6,6 +6,7 @@ use Pvtl\VoyagerPageBlocks\Page;
 use Illuminate\Support\Collection;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;
 
 class PageController extends Controller
@@ -26,6 +27,10 @@ class PageController extends Controller
             ->get()
             ->map(function ($block) {
                 return (object)[
+                    'id' => $block->id,
+                    'page_id' => $block->page_id,
+                    'updated_at' => $block->updated_at,
+                    'cache_ttl' => $block->cache_ttl,
                     'template' => $block->template()->template,
                     'data' => $block->cachedData,
                     'path' => $block->path,
@@ -67,7 +72,11 @@ class PageController extends Controller
                 $block = $this->prepareTemplateBlockTypes($block);
             }
 
-            return $block;
+            // Add HTML cache by key: $block->id - $block->page_id - $block->updated_at
+            $cacheKey = "blocks/$block->id-$block->page_id-$block->updated_at";
+            return Cache::remember($cacheKey, $block->cache_ttl, function () use ($block) {
+                return $block;
+            });
         }, $blocks->toArray());
     }
 
@@ -88,6 +97,10 @@ class PageController extends Controller
             if (!array_key_exists($fieldName, $block->data)) {
                 $block->data->$fieldName = null;
             }
+        }
+
+        if (View::exists($block->template)) {
+            $block->html = View::make($block->template, ['blockData' => $block->data])->render();
         }
 
         return $block;
@@ -111,7 +124,7 @@ class PageController extends Controller
         }
 
         $class = new $className();
-        $block->html = $class->$methodName(...$parameters);
+        $block->html = $class->$methodName(...$parameters)->render();
 
         return $block;
     }
