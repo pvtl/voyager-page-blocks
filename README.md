@@ -37,7 +37,7 @@ Page blocks are created & configured in 2 steps:
 
 ### 1. Define a Block
 
-Familiarize yourself with `/config/page-blocks.php`. This is where you'll define each block - you'll tell it which field fields it should have (for the admin to manage) and which Blade template it should use on the frontend.
+Familiarize yourself with `/config/page-blocks.php`. This is where you'll define each block - you'll tell it which fields the block should have (for the admin to manage) and which Blade template it should use on the frontend.
 
 - Each array inside this configuration file is a page block
 - Each block contains __fields__
@@ -64,7 +64,9 @@ compatible  | TBA
 
 When you're ready to start structuring the display of your block, you'll need to create (or override our defaults) your blade template (located at `/resources/views/vendor/voyager-page-blocks/blocks/your_block.blade.php`) and use the accessors you defined in your module's configuration file to fetch each fields data (`{!! $blockData->image_content or '' !!}`).
 
-### Putting it together
+---
+
+## Example. Putting it all together
 
 Let's say we want to create a new block with 1 WYSIWYG editor, called 'Company Overview'.
 
@@ -90,7 +92,7 @@ $blocks['company_overview'] = [
 
 __Step 2. Build the HTML__
 
-In `/resources/views/vendor/voyager-page-blocks/blocks`, we'll create a new file called `company_overview.blade.php`, with:
+In `/resources/views/vendor/voyager-page-blocks/blocks`, we'll create a new file called `company_overview.blade.php` with:
 
 ```php
 <div class="page-block">
