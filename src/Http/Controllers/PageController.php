@@ -33,26 +33,16 @@ class PageController extends Controller
                 ];
             });
 
-        // Format and execute all includes ready for rendering
-        $blocks = $this->prepareEachBlock($blocks);
-
         // Override standard body content, with page block content
         $page['body'] = view('voyager-page-blocks::default', [
             'page' => $page,
-            'blocks' => $blocks,
+            'blocks' => $this->prepareEachBlock($blocks),
         ]);
-
-        // Check that the page Layout View exists
-        $layout = (!empty($page->layout)) ? $page->layout : 'default';
-
-        if (!View::exists('voyager-frontend::layouts.' . $layout)) {
-            $layout = 'default';
-        }
 
         // Return the full page
         return view('voyager-frontend::modules.pages.default', [
             'page' => $page,
-            'layout' => $layout,
+            'layout' => $page->layout,
         ]);
     }
 
