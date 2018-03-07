@@ -28,8 +28,11 @@ class PageBlocksServiceProvider extends ServiceProvider
         ]);
 
         // Load views
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'voyager-page-blocks');
-        $this->loadViewsFrom(__DIR__.'/../resources/views/vendor/voyager', 'voyager');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'voyager-page-blocks');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views/vendor/voyager', 'voyager');
+
+        // Load migrations
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
 
         // Locate our factories for testing
         $this->app->make('Illuminate\Database\Eloquent\Factory')->load(
