@@ -53,7 +53,9 @@ trait BlockHelper
             // When this field already has data in DB, it doesn't need to be validated against 'required'
             if (array_key_exists('field', $field)) {
                 $fieldKey = $field['field'];
-                if (!empty($block->data->$fieldKey)) return '';
+                if (!empty($block->data->$fieldKey)) {
+                    return '';
+                }
             }
 
             // Replace the attribute field with its display name

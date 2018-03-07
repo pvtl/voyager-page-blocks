@@ -2,7 +2,6 @@
 
 namespace Pvtl\VoyagerPageBlocks;
 
-use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 
 class PageBlocksServiceProvider extends ServiceProvider
@@ -11,11 +10,9 @@ class PageBlocksServiceProvider extends ServiceProvider
     /**
      * Bootstrap the application services
      *
-     * @param Router $router
-     *
      * @return void
      */
-    public function boot(Router $router)
+    public function boot()
     {
         $this->loadRoutesFrom(base_path('/routes/web.php'));
         $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');

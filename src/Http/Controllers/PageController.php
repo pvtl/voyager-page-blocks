@@ -45,8 +45,12 @@ class PageController extends Controller
         ]);
 
         // Check that the page Layout and its View exists
-        if (empty($page->layout)) $page->layout = 'default';
-        if (!View::exists('voyager-frontend::layouts.' . $page->layout)) $page->layout = 'default';
+        if (empty($page->layout)) {
+            $page->layout = 'default';
+        }
+        if (!View::exists('voyager-frontend::layouts.' . $page->layout)) {
+            $page->layout = 'default';
+        }
 
         // Return the full page
         return view('voyager-frontend::modules.pages.default', [
@@ -68,7 +72,9 @@ class PageController extends Controller
             // 'Include' block types
             if ($block->type === 'include' && !empty($block->path)) {
                 $block = $this->prepareIncludeBlockTypes($block);
-            } else if ($block->type === 'template' && !empty($block->template)) {
+            }
+
+            if ($block->type === 'template' && !empty($block->template)) {
                 $block = $this->prepareTemplateBlockTypes($block);
             }
 

@@ -17,7 +17,9 @@ class Page extends \App\Page
 
         // Get list of layouts from module
         $vendorLayoutsDir = base_path('vendor/pvtl/voyager-frontend/resources/views/layouts');
-        if (is_dir($vendorLayoutsDir)) $layouts = scandir($vendorLayoutsDir);
+        if (is_dir($vendorLayoutsDir)) {
+            $layouts = scandir($vendorLayoutsDir);
+        }
 
         // Get list of layouts from project
         $projectLayoutsDir = resource_path('views/vendor/voyager-frontend/layouts');
@@ -25,24 +27,22 @@ class Page extends \App\Page
             $layouts = array_merge($layouts, scandir($projectLayoutsDir));
         }
 
-        if (count($layouts) > 0) {
-            foreach ($layouts as $i => $layout) {
-                // Only include files that are .blade.php files
-                if (strpos($layout, '.blade.php') === false) {
-                    unset($layouts[$i]);
-                    continue;
-                }
-
-                // Strip out .blade.php for DB reference
-                $layouts[$i] = str_replace('.blade.php', '', $layout);
+        foreach ($layouts as $i => $layout) {
+            // Only include files that are .blade.php files
+            if (strpos($layout, '.blade.php') === false) {
+                unset($layouts[$i]);
+                continue;
             }
 
-            // Remove duplicates
-            $layouts = array_unique($layouts);
-
-            // Reset indexes
-            $layouts = array_values($layouts);
+            // Strip out .blade.php for DB reference
+            $layouts[$i] = str_replace('.blade.php', '', $layout);
         }
+
+        // Remove duplicates
+        $layouts = array_unique($layouts);
+
+        // Reset indexes
+        $layouts = array_values($layouts);
 
         // Reset indexes and return
         return $layouts;

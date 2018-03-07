@@ -2,6 +2,7 @@
 
 namespace Pvtl\VoyagerPageBlocks\Http\Controllers;
 
+use Illuminate\View\View;
 use Illuminate\Http\Request;
 use TCG\Voyager\Facades\Voyager;
 use Pvtl\VoyagerPageBlocks\Page;
@@ -25,7 +26,7 @@ class PageBlockController extends BaseVoyagerBreadController
      * @param \Illuminate\Http\Request $request
      * @param int $id
      *
-     * @return view
+     * @return View
      */
     public function edit(Request $request, $id)
     {
