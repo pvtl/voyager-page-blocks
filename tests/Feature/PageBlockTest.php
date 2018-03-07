@@ -11,12 +11,29 @@ class PageBlockTest extends TestCase
 {
     use DatabaseMigrations;
 
+    protected function createPage()
+    {
+        return Page::create([
+            'id' => 1,
+            'author_id' => 1,
+            'title' => 'A page title',
+            'excerpt' => 'The home page',
+            'body' => '',
+            'slug' => 'home',
+            'meta_description' => 'A meta description',
+            'meta_keywords' => 'keyword1, keyword2',
+            'status' => 'ACTIVE',
+            'layout' => 'default',
+        ]);
+    }
+
     protected function createPageBlock($content = '<p>Hello world!</p>', $order = 10000, $hidden = false)
     {
         return factory(PageBlock::class)->create([
+            'page_id' => 1,
             'type' => 'template',
             'path' => 'content_one_column',
-            'data' => ['html_content_1' => $content],
+            'data' => ['html_content_1' => $content, 'spaces' => 0],
             'is_hidden' => (bool)$hidden,
             'is_minimized' => false,
             'is_delete_denied' => false,
@@ -28,12 +45,8 @@ class PageBlockTest extends TestCase
     public function testIfPageBlockIsVisible()
     {
         // Create new "/home" page and associate a page block
-        $page = Page::create([
-            'slug' => 'home',
-            'author_id' => 1,
-            'title' => 'A page title',
-            'meta_description' => 'Hello world!',
-        ]);
+        $page = $this->createPage();
+
         $page->blocks()->save($this->createPageBlock());
 
         // 2. Act
@@ -42,18 +55,14 @@ class PageBlockTest extends TestCase
         // 3. Assert
         $response
             ->assertStatus(200)
-            ->assertSee('Hello world!');
+            ->assertSee('<p>Hello world!</p>');
     }
 
     public function testIfPageBlockIsHidden()
     {
         // Create new "/home" page and associate a page block
-        $page = Page::create([
-            'slug' => 'home',
-            'author_id' => 1,
-            'title' => 'A page title',
-            'meta_description' => 'A meta description',
-        ]);
+        $page = $this->createPage();
+
         $page->blocks()->save($this->createPageBlock('', '', true));
 
         // 2. Act
@@ -73,12 +82,8 @@ class PageBlockTest extends TestCase
             '<p>The third string</p>',
         ];
         // Create new "/home" page and associate a page block
-        $page = Page::create([
-            'slug' => 'home',
-            'author_id' => 1,
-            'title' => 'Hello world!',
-            'meta_description' => 'Hello world!',
-        ]);
+        $page = $this->createPage();
+
         $page->blocks()->save($this->createPageBlock($strings[1], 2));
         $page->blocks()->save($this->createPageBlock($strings[2], 3));
         $page->blocks()->save($this->createPageBlock($strings[0], 1));

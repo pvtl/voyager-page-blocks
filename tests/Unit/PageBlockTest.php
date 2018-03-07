@@ -2,7 +2,6 @@
 
 namespace Pvtl\VoyagerPageBlocks\Tests\Unit;
 
-use Illuminate\Database\Eloquent\Factory;
 use Tests\TestCase;
 use Pvtl\VoyagerPageBlocks\PageBlock;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -33,7 +32,7 @@ class PageBlockTest extends TestCase
         $pageBlock->fresh();
 
         // 3. Assert
-        $this->assertObjectHasAttribute('glados', $pageBlock->data);
-        $this->assertEquals($pageBlock->data->glados, '<p>This was a triumph!</p>');
+        $this->assertObjectHasAttribute('html_content_1', $pageBlock->data);
+        $this->assertEquals($pageBlock->data->html_content_1, '<p>This was a triumph!</p>');
     }
 }
