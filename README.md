@@ -117,7 +117,7 @@ For example, the [Voyager Frontend](https://github.com/pvtl/voyager-frontend) pa
 From the _Add Block_ section of the page in the admin, add the block type of _Developer Controller_, then input the following into the path field:
 
 ```
-Pvtl\VoyagerFrontend\Http\Controllers\VoyagerFrontendController::recentBlogPosts(2)
+Pvtl\VoyagerFrontend\Http\Controllers\PostController::recentBlogPosts(2)
 ```
 
 This will output `2` blog posts on the frontend. You could change the first paramter of the method to 6, to output 6 blog posts. Simples.

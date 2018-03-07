@@ -159,7 +159,7 @@ class PageBlockController extends BaseVoyagerBreadController
 
         if ($request->input('type') === 'include') {
             $type = $request->input('type');
-            $path = '\Pvtl\VoyagerFrontend\Http\Controllers\VoyagerFrontendController::getAllPostsRoute()';
+            $path = '\Pvtl\VoyagerFrontend\Http\Controllers\PostController::recentBlogPosts()';
         } else {
             list($type, $path) = explode('|', $request->input('type'));
         }
