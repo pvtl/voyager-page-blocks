@@ -46,7 +46,7 @@
   },
   "scripts": {
     "test": "phpunit",
-    "post-install-cmd": [
+    "post-package-install": [
       "php artisan voyager-page-blocks:install"
     ]
   }
