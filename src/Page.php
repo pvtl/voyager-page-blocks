@@ -2,7 +2,7 @@
 
 namespace Pvtl\VoyagerPageBlocks;
 
-class Page extends \App\Page
+class Page extends \Pvtl\VoyagerFrontend\Page
 {
     // Add relation to page blocks
     public function blocks()
