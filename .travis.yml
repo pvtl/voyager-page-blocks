@@ -1,3 +1,14 @@
+# Allow Ubuntu Trusty (Installs MySQL 5.7)
+dist: trusty
+sudo: required
+addons:
+  apt:
+    sources:
+      - mysql-5.7-trusty
+    packages:
+      - mysql-server
+      - mysql-client
+
 language: php
 services: mysql
 
@@ -12,8 +23,10 @@ before_script:
   - travis_retry composer self-update
 
   # Setup MySQL
+  - sudo mysql_upgrade
+  - sudo service mysql restart
   - mysql -u root -e 'CREATE DATABASE homestead;'
-  - mysql -u root -e "CREATE USER 'homestead'@'localhost' IDENTIFIED BY 'homestead';"
+  - mysql -u root -e "CREATE USER 'homestead'@'localhost' IDENTIFIED BY 'secret';"
   - mysql -u root -e "GRANT ALL ON homestead.* TO 'homestead'@'localhost';"
 
   ## Install Laravel
