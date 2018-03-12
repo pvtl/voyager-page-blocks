@@ -7,6 +7,10 @@ use Illuminate\Support\ServiceProvider;
 
 class PageBlocksServiceProvider extends ServiceProvider
 {
+    /**
+     * Our root directory for this package to make traversal easier
+     */
+    const PACKAGE_DIR = __DIR__ . '/../../';
 
     /**
      * Bootstrap the application services
@@ -15,33 +19,11 @@ class PageBlocksServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadRoutesFrom(base_path('/routes/web.php'));
-        $this->loadRoutesFrom(__DIR__ . '/../../routes/web.php');
-
-        // Defines which files to copy the root project
-        $this->publishes([
-            __DIR__ . '/../../config' => base_path('config'),
-            __DIR__ . '/../../database/migrations' => base_path('database/migrations'),
-            __DIR__ . '/../../database/seeds' => base_path('database/seeds'),
-        ]);
-
-        // Load views
-        $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'voyager-page-blocks');
-        $this->loadViewsFrom(__DIR__ . '/../../resources/views/vendor/voyager', 'voyager');
-
-        // Load migrations
-        $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations');
-
-        // Locate our factories for testing
-        $this->app->make('Illuminate\Database\Eloquent\Factory')->load(
-            __DIR__ . '/../../database/factories'
-        );
-
-        if ($this->app->runningInConsole()) {
-            $this->commands([
-                Commands\InstallCommand::class
-            ]);
-        }
+        $this->strapRoutes();
+        $this->strapPublishers();
+        $this->strapViews();
+        $this->strapMigrations();
+        $this->strapCommands();
     }
 
     /**
@@ -51,5 +33,67 @@ class PageBlocksServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        //
+    }
+
+    /**
+     * Bootstrap our Routes
+     */
+    protected function strapRoutes()
+    {
+        // Pull default web routes
+        $this->loadRoutesFrom(base_path('/routes/web.php'));
+
+        // Then add our Pages and Posts Routes
+        $this->loadRoutesFrom(self::PACKAGE_DIR . 'routes/web.php');
+    }
+
+    /**
+     * Bootstrap our Publishers
+     */
+    protected function strapPublishers()
+    {
+        // Defines which files to copy the root project
+        $this->publishes([
+            self::PACKAGE_DIR . 'config' => base_path('config'),
+            self::PACKAGE_DIR . 'database/migrations' => base_path('database/migrations'),
+            self::PACKAGE_DIR . 'database/seeds' => base_path('database/seeds'),
+        ]);
+    }
+
+    /**
+     * Bootstrap our Views
+     */
+    protected function strapViews()
+    {
+        // Load views
+        $this->loadViewsFrom(self::PACKAGE_DIR . 'resources/views', 'voyager-page-blocks');
+        $this->loadViewsFrom(self::PACKAGE_DIR . 'resources/views/vendor/voyager', 'voyager');
+    }
+
+    /**
+     * Bootstrap our Migrations
+     */
+    protected function strapMigrations()
+    {
+        // Load migrations
+        $this->loadMigrationsFrom(self::PACKAGE_DIR . 'database/migrations');
+
+        // Locate our factories for testing
+        $this->app->make('Illuminate\Database\Eloquent\Factory')->load(
+            self::PACKAGE_DIR . 'database/factories'
+        );
+    }
+
+    /**
+     * Bootstrap our Commands/Schedules
+     */
+    protected function strapCommands()
+    {
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                Commands\InstallCommand::class
+            ]);
+        }
     }
 }
