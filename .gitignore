@@ -1,2 +1,8 @@
-
-\.idea/
+/vendor
+/node_modules
+!.gitignore
+/.idea
+/.vagrant
+npm-debug.log
+yarn-error.log
+.env
