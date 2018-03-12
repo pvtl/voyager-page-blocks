@@ -5,7 +5,7 @@ namespace Pvtl\VoyagerPageBlocks\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Symfony\Component\Process\Process;
-use Pvtl\VoyagerPageBlocks\PageBlocksServiceProvider;
+use Pvtl\VoyagerPageBlocks\Providers\PageBlocksServiceProvider;
 
 class InstallCommand extends Command
 {

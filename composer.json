@@ -40,7 +40,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Pvtl\\VoyagerPageBlocks\\PageBlocksServiceProvider"
+        "Pvtl\\VoyagerPageBlocks\\Providers\\PageBlocksServiceProvider"
       ]
     }
   },
