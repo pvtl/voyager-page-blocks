@@ -2,6 +2,8 @@
 
 namespace Pvtl\VoyagerPageBlocks;
 
+use Pvtl\VoyagerPageBlocks\Http\Controllers\PageController;
+
 class Page extends \Pvtl\VoyagerFrontend\Page
 {
     // Add relation to page blocks
@@ -46,5 +48,39 @@ class Page extends \Pvtl\VoyagerFrontend\Page
 
         // Reset indexes and return
         return $layouts;
+    }
+
+    /**
+     * Get the indexed data array for the model.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        $array = $this->toArray();
+
+        // Include page block data to be "Searchable"
+        $pageBlocks = $this->blocks()->get()->map(function ($block) {
+            // If it's an included file, return the HTML of this block to be searched
+            if ($block->type === 'include') {
+                return trim(preg_replace(
+                    '/\s+/',
+                    ' ',
+                    strip_tags(PageController::prepareIncludeBlockTypes($block)->html)
+                ));
+            }
+
+            $blockContent = [];
+
+            foreach ($block->data as $datum) {
+                $blockContent[] = strip_tags($datum);
+            }
+
+            return $blockContent;
+        });
+
+        $array['page_blocks'] = implode(' ', array_flatten($pageBlocks));
+
+        return $array;
     }
 }

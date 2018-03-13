@@ -71,7 +71,7 @@ class PageController extends Controller
         return array_map(function ($block) {
             // 'Include' block types
             if ($block->type === 'include' && !empty($block->path)) {
-                $block = $this->prepareIncludeBlockTypes($block);
+                $block = self::prepareIncludeBlockTypes($block);
             }
 
             if ($block->type === 'template' && !empty($block->template)) {
@@ -119,7 +119,7 @@ class PageController extends Controller
      * @param $block
      * @return mixed
      */
-    protected function prepareIncludeBlockTypes($block)
+    public static function prepareIncludeBlockTypes($block)
     {
         list($className, $methodName) = explode('::', $block->path);
         preg_match('/\(.*?\)/', $methodName, $parameters);

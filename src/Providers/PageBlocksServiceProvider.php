@@ -33,7 +33,8 @@ class PageBlocksServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        // Merge our Scout config over
+        $this->mergeConfigFrom(self::PACKAGE_DIR . 'config/scout.php', 'scout.tntsearch.searchableModels');
     }
 
     /**
