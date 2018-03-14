@@ -5,22 +5,22 @@
             <div class="cell small-12 medium-6" @if (!empty($blockData->animate)) data-scrollreveal @endif>
                 <div class="card">
                     @if (!empty($blockData->image_1))
-                        @if (!empty($blockData->link_1))<a href="{!! $blockData->link_1 or '' !!}">@endif
-                        <img src="{!! $blockData->image_1 or '' !!}">
+                        @if (!empty($blockData->link_1))<a href="{{ $blockData->link_1 or '' }}">@endif
+                        <img src="{{ $blockData->image_1 or '' }}">
                         @if (!empty($blockData->link_1))</a>@endif
                     @endif
 
                     <div class="card-section">
                         @if (!empty($blockData->title_1))
-                            <h4>{!! $blockData->title_1 or '' !!}</h4>
+                            <h4>{{ $blockData->title_1 or '' }}</h4>
                         @endif
 
                         @if (!empty($blockData->content_1))
-                            <p>{!! $blockData->content_1 or '' !!}</p>
+                            <p>{{ $blockData->content_1 or '' }}</p>
                         @endif
 
                         @if (!empty($blockData->link_1))
-                            <a href="{!! $blockData->link_1 or '' !!}" class="button">{!! $blockData->button_text_1 or 'Learn More' !!}</a>
+                            <a href="{{ $blockData->link_1 or '' }}" class="button">{{ $blockData->button_text_1 or 'Learn More' }}</a>
                         @endif
                     </div> <!-- /.card-section -->
                 </div> <!-- /.card -->
@@ -29,22 +29,22 @@
             <div class="cell small-12 medium-6" @if (!empty($blockData->animate)) data-scrollreveal @endif>
                 <div class="card">
                     @if (!empty($blockData->image_2))
-                        @if (!empty($blockData->link_2))<a href="{!! $blockData->link_2 or '' !!}">@endif
-                        <img src="{!! $blockData->image_2 or '' !!}">
+                        @if (!empty($blockData->link_2))<a href="{{ $blockData->link_2 or '' }}">@endif
+                        <img src="{{ $blockData->image_2 or '' }}">
                         @if (!empty($blockData->link_2))</a>@endif
                     @endif
 
                     <div class="card-section">
                         @if (!empty($blockData->title_2))
-                            <h4>{!! $blockData->title_2 or '' !!}</h4>
+                            <h4>{{ $blockData->title_2 or '' }}</h4>
                         @endif
 
                         @if (!empty($blockData->content_2))
-                            <p>{!! $blockData->content_2 or '' !!}</p>
+                            <p>{{ $blockData->content_2 or '' }}</p>
                         @endif
 
                         @if (!empty($blockData->link_2))
-                            <a href="{!! $blockData->link_2 or '' !!}" class="button">{!! $blockData->button_text_2 or 'Learn More' !!}</a>
+                            <a href="{{ $blockData->link_2 or '' }}" class="button">{{ $blockData->button_text_2 or 'Learn More' }}</a>
                         @endif
                     </div> <!-- /.card-section -->
                 </div> <!-- /.card -->

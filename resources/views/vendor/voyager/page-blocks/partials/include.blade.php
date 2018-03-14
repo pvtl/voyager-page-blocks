@@ -52,25 +52,25 @@
                             <div class="form-group">
                                 <label for="cache_ttl">Cache Time</label>
                                 <select name="cache_ttl" id="cache_ttl" class="form-control">
-                                    <option value="0" {!! $block->cache_ttl === 0 ? 'selected="selected"' : '' !!}>
+                                    <option value="0" {{ $block->cache_ttl === 0 ? 'selected="selected"' : '' }}>
                                         None / Off
                                     </option>
-                                    <option value="5" {!! $block->cache_ttl === 5 ? 'selected="selected"' : '' !!}>
+                                    <option value="5" {{ $block->cache_ttl === 5 ? 'selected="selected"' : '' }}>
                                         5 mins
                                     </option>
-                                    <option value="30" {!! $block->cache_ttl === 30 ? 'selected="selected"' : '' !!}>
+                                    <option value="30" {{ $block->cache_ttl === 30 ? 'selected="selected"' : '' }}>
                                         30 mins
                                     </option>
-                                    <option value="60" {!! $block->cache_ttl === 60 ? 'selected="selected"' : '' !!}>
+                                    <option value="60" {{ $block->cache_ttl === 60 ? 'selected="selected"' : '' }}>
                                         1 Hour
                                     </option>
-                                    <option value="240" {!! $block->cache_ttl === 240 ? 'selected="selected"' : '' !!}>
+                                    <option value="240" {{ $block->cache_ttl === 240 ? 'selected="selected"' : '' }}>
                                         4 Hours
                                     </option>
-                                    <option value="1440" {!! $block->cache_ttl === 1440 ? 'selected="selected"' : '' !!}>
+                                    <option value="1440" {{ $block->cache_ttl === 1440 ? 'selected="selected"' : '' }}>
                                         1 Day
                                     </option>
-                                    <option value="10080" {!! $block->cache_ttl === 10080 ? 'selected="selected"' : '' !!}>
+                                    <option value="10080" {{ $block->cache_ttl === 10080 ? 'selected="selected"' : '' }}>
                                         7 Days
                                     </option>
                                 </select>
@@ -90,7 +90,7 @@
                                                 data-name="is_hidden"
                                                 class="toggleswitch"
                                                 value="1"
-                                                data-on="Yes" {!! $block->is_hidden ? 'checked="checked"' : '' !!}
+                                                data-on="Yes" {{ $block->is_hidden ? 'checked="checked"' : '' }}
                                                 data-off="No"
                                         />
                                         <label for="is_hidden"> &nbsp;Hide Block</label>
@@ -107,7 +107,7 @@
                                                 class="toggleswitch"
                                                 value="1"
                                                 data-on="Yes"
-                                                {!! $block->is_delete_denied ? 'checked="checked"' : '' !!}
+                                                {{ $block->is_delete_denied ? 'checked="checked"' : '' }}
                                                 data-off="No"
                                         />
                                         <label for="is_delete_denied"> &nbsp;Prevent Deletion</label>

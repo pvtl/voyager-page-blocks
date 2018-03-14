@@ -95,8 +95,8 @@
                                         @php $templates = config('page-blocks'); @endphp
 
                                         @foreach ($templates as $path => $template)
-                                            <option value="template|{!! $path !!}">
-                                                {!! $template['name'] !!}
+                                            <option value="template|{{ $path }}">
+                                                {{ $template['name'] }}
                                             </option>
                                         @endforeach
                                     </optgroup>
