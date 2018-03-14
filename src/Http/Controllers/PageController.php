@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;
+use Pvtl\VoyagerFrontend\Helpers\BladeCompiler;
 
 class PageController extends Controller
 {
@@ -74,13 +75,15 @@ class PageController extends Controller
                 $block = self::prepareIncludeBlockTypes($block);
             }
 
+            // 'Template' block types
             if ($block->type === 'template' && !empty($block->template)) {
                 $block = $this->prepareTemplateBlockTypes($block);
             }
 
-            // Add HTML cache by key: $block->id - $block->page_id - $block->updated_at
+            // Add HTML to cache by key: $block->id - $block->page_id - $block->updated_at
             $cacheKey = "blocks/$block->id-$block->page_id-$block->updated_at";
-            return Cache::remember($cacheKey, $block->cache_ttl, function () use ($block) {
+            $ttl = $block->cache_ttl || 1; // Minimum of 1min cache
+            return Cache::remember($cacheKey, $ttl, function () use ($block) {
                 return $block;
             });
         }, $blocks->toArray());
@@ -90,6 +93,7 @@ class PageController extends Controller
     /**
      * Ensure each page block has all of the keys from
      * config, in the DB output (to prevent errors in views)
+     * + compile each peice of HTML (eg. for shortcodes)
      *
      * @param $block
      * @return mixed
@@ -99,12 +103,19 @@ class PageController extends Controller
         $templateKey = $block->path;
         $templateConfig = Config::get("page-blocks.$templateKey");
 
+        // Ensure every key from config exists in collection
         foreach ((array)$templateConfig['fields'] as $fieldName => $fieldConfig) {
             if (!array_key_exists($fieldName, $block->data)) {
                 $block->data->$fieldName = null;
             }
         }
 
+        // Compile each peice of content from the DB, into HTML
+        foreach ($block->data as $key => $data) {
+            $block->data->$key = BladeCompiler::getHtmlFromString($data);
+        }
+
+        // Compile the Blade View to give us HTML output
         if (View::exists($block->template)) {
             $block->html = View::make($block->template, ['blockData' => $block->data])->render();
         }
