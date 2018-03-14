@@ -82,7 +82,12 @@ class PageController extends Controller
 
             // Add HTML to cache by key: $block->id - $block->page_id - $block->updated_at
             $cacheKey = "blocks/$block->id-$block->page_id-$block->updated_at";
-            $ttl = $block->cache_ttl || 1; // Minimum of 1min cache
+
+            $ttl = $block->cache_ttl;
+             // When not in local dev (eg. prod), let's always cache for at least 1min
+            if (empty($ttl) && app('env') != 'local') {
+                $ttl = 1;
+            }
             return Cache::remember($cacheKey, $ttl, function () use ($block) {
                 return $block;
             });
