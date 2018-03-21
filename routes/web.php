@@ -6,13 +6,12 @@
 Route::group([
     'as' => 'voyager.page-blocks.',
     'prefix' => 'admin/page-blocks/',
-    'middleware' => ['web', 'admin.user']
+    'middleware' => ['web', 'admin.user'],
+    'namespace' => '\Pvtl\VoyagerPageBlocks\Http\Controllers'
 ], function () {
-    $controller = '\Pvtl\VoyagerPageBlocks\Http\Controllers\PageBlockController';
-
-    Route::post('layout/{id}', ['uses' => "$controller@changeLayout", 'as' => 'layout']);
-    Route::post('order', ['uses' => "$controller@order", 'as' => 'order']);
-    Route::post('minimize', ['uses' => "$controller@minimize", 'as' => 'minimize']);
+    Route::post('layout/{id}', ['uses' => "PageBlockController@changeLayout", 'as' => 'layout']);
+    Route::post('order', ['uses' => "PageBlockController@order", 'as' => 'order']);
+    Route::post('minimize', ['uses' => "PageBlockController@minimize", 'as' => 'minimize']);
 });
 
 /**
