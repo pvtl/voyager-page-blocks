@@ -1,5 +1,7 @@
 <?php
 
+use TCG\Voyager\Models\DataType;
+
 /**
  * Admin Route/s
  */
@@ -17,6 +19,21 @@ Route::group([
 /**
  * Frontend Route/s
  */
-if (!Request::is('posts')) {
+$excludeRoutes = array();
+
+try {
+    $namespacePrefix = '\\'.config('voyager.controllers.namespace').'\\';
+    foreach (DataType::all() as $dataType) {
+        $breadController = $dataType->controller
+                         ? $dataType->controller
+                         : $namespacePrefix.'VoyagerBreadController';
+
+        $excludeRoutes[] = $dataType->slug;
+    }
+} catch (\Exception $e) {
+    // do nothing, might just be because table not yet migrated.
+}
+
+if (!Request::is($excludeRoutes)) {
     Route::get('/{slug?}', '\Pvtl\VoyagerPageBlocks\Http\Controllers\PageController@getPage')->middleware('web');
 }
