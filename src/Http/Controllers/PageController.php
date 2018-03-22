@@ -85,7 +85,7 @@ class PageController extends Controller
             $cacheKey = "blocks/$block->id-$block->page_id-$block->updated_at";
 
             $ttl = $block->cache_ttl;
-             // When not in local dev (eg. prod), let's always cache for at least 1min
+            // When not in local dev (eg. prod), let's always cache for at least 1min
             if (empty($ttl) && app('env') != 'local') {
                 $ttl = 1;
             }
@@ -99,10 +99,11 @@ class PageController extends Controller
     /**
      * Ensure each page block has all of the keys from
      * config, in the DB output (to prevent errors in views)
-     * + compile each peice of HTML (eg. for shortcodes)
+     * + compile each piece of HTML (eg. for short codes)
      *
      * @param $block
      * @return mixed
+     * @throws \Exception
      */
     protected function prepareTemplateBlockTypes($block)
     {
@@ -116,7 +117,7 @@ class PageController extends Controller
             }
         }
 
-        // Compile each peice of content from the DB, into HTML
+        // Compile each piece of content from the DB, into HTML
         foreach ($block->data as $key => $data) {
             $block->data->$key = BladeCompiler::getHtmlFromString($data);
         }
