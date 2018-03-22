@@ -2,7 +2,7 @@
 
 namespace Pvtl\VoyagerPageBlocks;
 
-use Pvtl\VoyagerPageBlocks\Http\Controllers\PageController;
+use Pvtl\VoyagerFrontend\Helpers\ClassEvents;
 
 class Page extends \Pvtl\VoyagerFrontend\Page
 {
@@ -66,7 +66,7 @@ class Page extends \Pvtl\VoyagerFrontend\Page
                 return trim(preg_replace(
                     '/\s+/',
                     ' ',
-                    strip_tags(PageController::prepareIncludeBlockTypes($block)->html)
+                    strip_tags(ClassEvents::executeClass($block->path)->render()->html)
                 ));
             }
 

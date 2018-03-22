@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;
+use Pvtl\VoyagerFrontend\Helpers\ClassEvents;
 use Pvtl\VoyagerFrontend\Helpers\BladeCompiler;
 
 class PageController extends Controller
@@ -72,7 +73,7 @@ class PageController extends Controller
         return array_map(function ($block) {
             // 'Include' block types
             if ($block->type === 'include' && !empty($block->path)) {
-                $block = self::prepareIncludeBlockTypes($block);
+                $block->html = ClassEvents::executeClass($block->path)->render();
             }
 
             // 'Template' block types
@@ -124,29 +125,6 @@ class PageController extends Controller
         if (View::exists($block->template)) {
             $block->html = View::make($block->template, ['blockData' => $block->data])->render();
         }
-
-        return $block;
-    }
-
-
-    /**
-     * Prepare each 'include' type block
-     *
-     * @param $block
-     * @return mixed
-     */
-    public static function prepareIncludeBlockTypes($block)
-    {
-        list($className, $methodName) = explode('::', $block->path);
-        preg_match('/\(.*?\)/', $methodName, $parameters);
-
-        if (count($parameters) > 0) {
-            $methodName = str_replace($parameters[0], '', $methodName);
-            $parameters = explode(',', str_replace(['(', ')'], '', $parameters[0]));
-        }
-
-        $class = new $className();
-        $block->html = $class->$methodName(...$parameters)->render();
 
         return $block;
     }
