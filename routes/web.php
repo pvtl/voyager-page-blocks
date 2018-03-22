@@ -22,5 +22,5 @@ $excludedRoutes = \TCG\Voyager\Models\DataType::all()->map(function ($dataType) 
 })->toArray();
 
 if (!Request::is($excludedRoutes)) {
-    Route::get('/{slug?}', '\Pvtl\VoyagerPageBlocks\Http\Controllers\PageController@getPage')->middleware('web');
+    Route::get('/{slug?}', '\Pvtl\VoyagerPageBlocks\Http\Controllers\PageController@getPage')->middleware('web')->where('slug', '.+');
 }
