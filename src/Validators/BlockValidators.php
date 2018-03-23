@@ -1,15 +1,13 @@
 <?php
 
-namespace Pvtl\VoyagerPageBlocks\Traits;
+namespace Pvtl\VoyagerPageBlocks\Validators;
 
 use Illuminate\Http\Request;
-use Pvtl\VoyagerPageBlocks\PageBlock;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
-trait BlockHelper
+class BlockValidators
 {
-    public function validateBlock(Request $request, PageBlock $block): \Illuminate\Validation\Validator
+    public static function validateBlock(Request $request, $block): \Illuminate\Validation\Validator
     {
         $configKey = $block->path;
         $configFields = config("page-blocks.$configKey.fields");
@@ -65,25 +63,5 @@ trait BlockHelper
         }, $configFields);
 
         return Validator::make($request->all(), $validationRules, $validationMessages);
-    }
-
-    public function uploadImages(Request $request, array $data): array
-    {
-        foreach ($request->files as $key => $file) {
-            $filePath = $request->file($key)->store('public/blocks');
-
-            $data[$key] = env('APP_URL') . Storage::url($filePath);
-        }
-
-        return $data;
-    }
-
-    public function generatePlaceholders(Request $request): array
-    {
-        $configKey = explode('|', $request->input('type'))[1];
-
-        return array_map(function ($field) {
-            return array_key_exists('placeholder', $field) ? $field['placeholder'] : '';
-        }, config("page-blocks.$configKey.fields"));
     }
 }

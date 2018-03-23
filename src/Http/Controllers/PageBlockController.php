@@ -8,12 +8,13 @@ use TCG\Voyager\Facades\Voyager;
 use Pvtl\VoyagerPageBlocks\Page;
 use Illuminate\Support\Facades\URL;
 use Pvtl\VoyagerPageBlocks\PageBlock;
-use Pvtl\VoyagerPageBlocks\Traits\BlockHelper;
+use Pvtl\VoyagerPageBlocks\Traits\Blocks;
+use Pvtl\VoyagerPageBlocks\Validators\BlockValidators;
 use TCG\Voyager\Http\Controllers\VoyagerBreadController as BaseVoyagerBreadController;
 
 class PageBlockController extends BaseVoyagerBreadController
 {
-    use BlockHelper;
+    use Blocks;
 
     public function index(Request $request)
     {
@@ -68,7 +69,7 @@ class PageBlockController extends BaseVoyagerBreadController
         }
 
         // Just.Do.It! (Nike, TM)
-        $validator = $this->validateBlock($request, $block);
+        $validator = BlockValidators::validateBlock($request, $block);
         if ($validator->fails()) {
             return redirect()
                 ->back()
