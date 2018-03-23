@@ -66,7 +66,7 @@ class Page extends \Pvtl\VoyagerFrontend\Page
                 return trim(preg_replace(
                     '/\s+/',
                     ' ',
-                    strip_tags(ClassEvents::executeClass($block->path)->render()->html)
+                    strip_tags(ClassEvents::executeClass($block->path)->render())
                 ));
             }
 
