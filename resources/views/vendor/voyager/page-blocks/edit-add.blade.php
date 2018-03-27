@@ -122,15 +122,11 @@
                             enctype="multipart/form-data">
                             {{ csrf_field() }}
 
-                            @php
-                                $pageLayouts = $page->getPageLayouts();
-                            @endphp
-
                             <div class="form-group">
                                 <label for="layout">Change Page Layout</label>
                                 <select class="form-control" name="layout" id="layout">
                                     <option value="default">-- Select --</option>
-                                    @foreach($pageLayouts as $layout)
+                                    @foreach($layouts as $layout)
                                         <option
                                             value="{{ $layout }}"
                                             @if ($page->layout === $layout)

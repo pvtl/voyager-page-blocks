@@ -20,7 +20,7 @@
   "require": {
     "laravel/framework": "5.5.*",
     "tcg/voyager": "^1.0",
-    "pvtl/voyager-frontend": "~0.4.0"
+    "pvtl/voyager-frontend": "@dev"
   },
   "require-dev": {
     "phpunit/phpunit": "^5.7"
