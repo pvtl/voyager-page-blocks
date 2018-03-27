@@ -9,6 +9,7 @@ use Pvtl\VoyagerPageBlocks\Page;
 use Pvtl\VoyagerPageBlocks\PageBlock;
 use Pvtl\VoyagerFrontend\Helpers\Layouts;
 use Pvtl\VoyagerPageBlocks\Traits\Blocks;
+use Pvtl\VoyagerPageBlocks\Validators\BlockValidators;
 use TCG\Voyager\Facades\Voyager;
 use TCG\Voyager\Http\Controllers\VoyagerBreadController as BaseVoyagerBreadController;
 
