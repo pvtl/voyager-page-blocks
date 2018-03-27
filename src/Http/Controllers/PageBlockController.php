@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\URL;
 use Pvtl\VoyagerPageBlocks\Page;
 use Pvtl\VoyagerPageBlocks\PageBlock;
 use Pvtl\VoyagerFrontend\Helpers\Layouts;
-use Pvtl\VoyagerPageBlocks\Traits\BlockHelper;
+use Pvtl\VoyagerPageBlocks\Traits\Blocks;
 use TCG\Voyager\Facades\Voyager;
 use TCG\Voyager\Http\Controllers\VoyagerBreadController as BaseVoyagerBreadController;
 
@@ -36,7 +36,7 @@ class PageBlockController extends BaseVoyagerBreadController
         return view('voyager::page-blocks.edit-add', [
             'page' => $page,
             'pageBlocks' => $page->blocks->sortBy('order'),
-            'layouts' => Layouts::getLayouts('voyager-page-blocks'),
+            'layouts' => Layouts::getLayouts('voyager-frontend'),
         ]);
     }
 
