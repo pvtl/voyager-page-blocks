@@ -16,11 +16,17 @@ Route::group([
 
 /**
  * Frontend Route/s
+ * - The following is a "catch-all" route, so we need to exclude any (DB) registered
+ *   slugs to avoid overriding everything.
  */
-$excludedRoutes = \TCG\Voyager\Models\DataType::all()->map(function ($dataType) {
-    return $dataType->slug;
-})->toArray();
+$dataTypes = \TCG\Voyager\Models\DataType::all();
+$excludedRoutes = array();
+foreach ($dataTypes as $dataTypes) {
+    array_push($excludedRoutes, $dataTypes->slug, $dataTypes->slug . '/*');
+}
 
 if (!Request::is($excludedRoutes)) {
-    Route::get('/{slug?}', '\Pvtl\VoyagerPageBlocks\Http\Controllers\PageController@getPage')->middleware('web')->where('slug', '.+');
+    Route::get('/{slug?}', '\Pvtl\VoyagerPageBlocks\Http\Controllers\PageController@getPage')
+        ->middleware('web')
+        ->where('slug', '.+');
 }
