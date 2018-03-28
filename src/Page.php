@@ -2,12 +2,10 @@
 
 namespace Pvtl\VoyagerPageBlocks;
 
-use TCG\Voyager\Traits\Resizable;
 use Pvtl\VoyagerFrontend\Helpers\ClassEvents;
 
 class Page extends \Pvtl\VoyagerFrontend\Page
 {
-    use Resizable;
 
     // Add relation to page blocks
     public function blocks()

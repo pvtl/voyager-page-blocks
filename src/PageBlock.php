@@ -2,14 +2,12 @@
 
 namespace Pvtl\VoyagerPageBlocks;
 
-use TCG\Voyager\Traits\Resizable;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Database\Eloquent\Model;
 
 class PageBlock extends Model
 {
-    use Resizable;
 
     protected $touches = [
         'page',

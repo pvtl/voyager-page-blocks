@@ -17,12 +17,11 @@ trait Blocks
      * Ensure each page block has the correct data, in the correct format
      *
      * @param Collection $blocks
-     * @param Collection $page
      * @return array
      */
-    protected function prepareEachBlock(Collection $blocks, $page)
+    protected function prepareEachBlock(Collection $blocks)
     {
-        return array_map(function ($block) use ($page) {
+        return array_map(function ($block) {
             // 'Include' block types
             if ($block->type === 'include' && !empty($block->path)) {
                 $block->html = ClassEvents::executeClass($block->path)->render();
@@ -30,7 +29,7 @@ trait Blocks
 
             // 'Template' block types
             if ($block->type === 'template' && !empty($block->template)) {
-                $block = $this->prepareTemplateBlockTypes($block, $page);
+                $block = $this->prepareTemplateBlockTypes($block);
             }
 
             // Add HTML to cache by key: $block->id - $block->page_id - $block->updated_at
@@ -56,7 +55,7 @@ trait Blocks
      * @return mixed
      * @throws \Exception
      */
-    protected function prepareTemplateBlockTypes($block, $page)
+    protected function prepareTemplateBlockTypes($block)
     {
         $templateKey = $block->path;
         $templateConfig = Config::get("page-blocks.$templateKey");
@@ -76,7 +75,6 @@ trait Blocks
         // Compile the Blade View to give us HTML output
         if (View::exists($block->template)) {
             $block->html = View::make($block->template, [
-                'page' => $page,
                 'blockData' => $block->data,
             ])->render();
         }
