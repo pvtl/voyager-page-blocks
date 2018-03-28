@@ -19,11 +19,14 @@ Route::group([
  * - The following is a "catch-all" route, so we need to exclude any (DB) registered
  *   slugs to avoid overriding everything.
  */
-$dataTypes = \TCG\Voyager\Models\DataType::all();
-$excludedRoutes = array();
-foreach ($dataTypes as $dataTypes) {
-    array_push($excludedRoutes, $dataTypes->slug, $dataTypes->slug . '/*');
-}
+$excludedRoutes = Cache::remember('blocks/routes/excluded', 30, function () {
+    $dataTypes = \TCG\Voyager\Models\DataType::all();
+    $excludedRoutes = array();
+    foreach ($dataTypes as $dataTypes) {
+        array_push($excludedRoutes, $dataTypes->slug, $dataTypes->slug . '/*');
+    }
+    return $excludedRoutes;
+});
 
 if (!Request::is($excludedRoutes)) {
     Route::get('/{slug?}', '\Pvtl\VoyagerPageBlocks\Http\Controllers\PageController@getPage')
