@@ -17,11 +17,12 @@ trait Blocks
      * Ensure each page block has the correct data, in the correct format
      *
      * @param Collection $blocks
+     * @param Collection $page
      * @return array
      */
-    protected function prepareEachBlock(Collection $blocks)
+    protected function prepareEachBlock(Collection $blocks, $page)
     {
-        return array_map(function ($block) {
+        return array_map(function ($block) use ($page) {
             // 'Include' block types
             if ($block->type === 'include' && !empty($block->path)) {
                 $block->html = ClassEvents::executeClass($block->path)->render();
@@ -29,7 +30,7 @@ trait Blocks
 
             // 'Template' block types
             if ($block->type === 'template' && !empty($block->template)) {
-                $block = $this->prepareTemplateBlockTypes($block);
+                $block = $this->prepareTemplateBlockTypes($block, $page);
             }
 
             // Add HTML to cache by key: $block->id - $block->page_id - $block->updated_at
@@ -55,7 +56,7 @@ trait Blocks
      * @return mixed
      * @throws \Exception
      */
-    protected function prepareTemplateBlockTypes($block)
+    protected function prepareTemplateBlockTypes($block, $page)
     {
         $templateKey = $block->path;
         $templateConfig = Config::get("page-blocks.$templateKey");
@@ -74,7 +75,10 @@ trait Blocks
 
         // Compile the Blade View to give us HTML output
         if (View::exists($block->template)) {
-            $block->html = View::make($block->template, ['blockData' => $block->data])->render();
+            $block->html = View::make($block->template, [
+                'page' => $page,
+                'blockData' => $block->data,
+            ])->render();
         }
 
         return $block;
@@ -84,8 +88,7 @@ trait Blocks
     {
         foreach ($request->files as $key => $file) {
             $filePath = $request->file($key)->store('public/blocks');
-
-            $data[$key] = env('APP_URL') . Storage::url($filePath);
+            $data[$key] = str_replace('public/', '', $filePath);
         }
 
         return $data;

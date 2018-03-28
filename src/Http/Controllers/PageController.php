@@ -41,7 +41,7 @@ class PageController extends Controller
         // Override standard body content, with page block content
         $page['body'] = view('voyager-page-blocks::default', [
             'page' => $page,
-            'blocks' => $this->prepareEachBlock($blocks),
+            'blocks' => $this->prepareEachBlock($blocks, $page),
         ]);
 
         // Check that the page Layout and its View exists

@@ -2,7 +2,7 @@
 <div class="page-block @if (in_array($blockData->spaces, [0, 2])) page-block-space-bottom @endif @if (in_array($blockData->spaces, [1, 2])) page-block-space-top @endif">
     <div
         class="callout callout-size-{{ $blockData->size or '0' }} background-image @if ($blockData->fade_background === 'on') fade-background @endif"
-        style="background-image: url({{ $blockData->background_image or '' }});"
+        style="background-image: url({{ Voyager::image($blockData->background_image) }});"
     >
         <div
             class="grid-container column text-center"
@@ -17,7 +17,7 @@
             @if (!empty($blockData->content))
                 <p class="lead">{{ $blockData->content or '' }}</p>
             @endif
-            
+
             @if (!empty($blockData->link))
                 <a href="{{ $blockData->link or '#' }}" class="button light large">
                     {{ $blockData->button_text or 'Learn More' }}
@@ -26,4 +26,4 @@
         </div> <!-- /.container -->
     </div> <!-- /.callout -->
 </div> <!-- /.page-block -->
-<!-- /CALLOUT BLOCK -->
+<!-- /.CALLOUT BLOCK -->
