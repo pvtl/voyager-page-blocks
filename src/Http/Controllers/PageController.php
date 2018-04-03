@@ -20,6 +20,10 @@ class PageController extends Controller
      */
     public function getPage($slug = 'home')
     {
+        if ($slug === '/') {
+            $slug = 'home';
+        }
+
         $page = Page::where('slug', '=', $slug)->firstOrFail();
         $blocks = $page->blocks()
             ->where('is_hidden', '=', '0')

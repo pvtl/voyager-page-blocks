@@ -13,23 +13,3 @@ Route::group([
     Route::post('order', ['uses' => "PageBlockController@order", 'as' => 'order']);
     Route::post('minimize', ['uses' => "PageBlockController@minimize", 'as' => 'minimize']);
 });
-
-/**
- * Frontend Route/s
- * - The following is a "catch-all" route, so we need to exclude any (DB) registered
- *   slugs to avoid overriding everything.
- */
-$excludedRoutes = Cache::remember('blocks/routes/excluded', 30, function () {
-    $dataTypes = \TCG\Voyager\Models\DataType::all();
-    $excludedRoutes = array();
-    foreach ($dataTypes as $dataTypes) {
-        array_push($excludedRoutes, $dataTypes->slug, $dataTypes->slug . '/*');
-    }
-    return $excludedRoutes;
-});
-
-if (!Request::is($excludedRoutes)) {
-    Route::get('/{slug?}', '\Pvtl\VoyagerPageBlocks\Http\Controllers\PageController@getPage')
-        ->middleware('web')
-        ->where('slug', '.+');
-}
