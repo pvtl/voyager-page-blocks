@@ -24,7 +24,7 @@
 
                     @if (!empty($blockData->image))
                         <div class="avatar">
-                            <img src="{{ Voyager::image($blockData->image) }}" alt="Image 1" />
+                            <img src="{{ imageUrl($blockData->image, 110, 110, ['crop' => false]) }}" alt="Image 1" />
                         </div> <!-- /.avatar -->
                     @endif
                 </div> <!-- /.cell -->

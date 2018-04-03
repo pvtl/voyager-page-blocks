@@ -4,7 +4,7 @@
         <div class="block-image-text" @if (!empty($blockData->animate)) data-scrollreveal @endif>
             @if (!empty($blockData->image_1) && $blockData->image_position_1 == 0)
                 <div class="block-image-text-img">
-                    <img src="{{ Voyager::image($blockData->image_1) }}">
+                    <img src="{{ imageUrl($blockData->image_1, 590, null, ['crop' => false]) }}">
                 </div> <!-- /.block-image-text-img -->
             @endif
 
@@ -24,7 +24,7 @@
 
             @if (!empty($blockData->image_1) && $blockData->image_position_1 == 1)
                 <div class="block-image-text-img">
-                    <img src="{{ Voyager::image($blockData->image_1) }}">
+                    <img src="{{ imageUrl($blockData->image_1, 590, null, ['crop' => false]) }}">
                 </div> <!-- /.block-image-text-img -->
             @endif
         </div> <!-- /.block-image-text -->

@@ -6,7 +6,7 @@
                 <div class="card">
                     @if (!empty($blockData->image_1))
                         @if (!empty($blockData->link_1))<a href="{{ $blockData->link_1 or '' }}">@endif
-                        <img src="{{ Voyager::image($blockData->image_1) }}">
+                        <img src="{{ imageUrl($blockData->image_1, 370, 245) }}">
                         @if (!empty($blockData->link_1))</a>@endif
                     @endif
 
@@ -30,7 +30,7 @@
                 <div class="card">
                     @if (!empty($blockData->image_2))
                         @if (!empty($blockData->link_2))<a href="{{ $blockData->link_2 or '' }}">@endif
-                        <img src="{{ Voyager::image($blockData->image_2) }}">
+                        <img src="{{ imageUrl($blockData->image_2, 370, 245) }}">
                         @if (!empty($blockData->link_2))</a>@endif
                     @endif
 
@@ -54,7 +54,7 @@
                 <div class="card">
                     @if (!empty($blockData->image_3))
                         @if (!empty($blockData->link_3))<a href="{{ $blockData->link_3 or '' }}">@endif
-                        <img src="{{ Voyager::image($blockData->image_3) }}">
+                        <img src="{{ imageUrl($blockData->image_3, 370, 245) }}">
                         @if (!empty($blockData->link_3))</a>@endif
                     @endif
 

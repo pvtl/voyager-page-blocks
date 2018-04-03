@@ -15,7 +15,7 @@
                 >
                     @if (!empty($blockData->image_1))
                         @if (!empty($blockData->link_1))<a href="{{ $blockData->link_1 }}">@endif
-                            <img src="{{ Voyager::image($blockData->image_1) }}" class="thumbnail" alt="Image 1" />
+                            <img src="{{ imageUrl($blockData->image_1, 170, 170) }}" class="thumbnail" alt="Image 1">
                         @if (!empty($blockData->link_1))</a>@endif
                     @endif
                 </div> <!-- /.cell -->
@@ -26,7 +26,7 @@
                 >
                     @if (!empty($blockData->image_2))
                         @if (!empty($blockData->link_2))<a href="{{ $blockData->link_2 }}">@endif
-                            <img src="{{ Voyager::image($blockData->image_2) }}" class="thumbnail" alt="Image 2" />
+                            <img src="{{ imageUrl($blockData->image_2, 170, 170) }}" class="thumbnail" alt="Image 2">
                         @if (!empty($blockData->link_2))</a>@endif
                     @endif
                 </div> <!-- /.cell -->
@@ -34,7 +34,7 @@
                 <div class="cell" data-scrollreveal>
                     @if (!empty($blockData->image_3))
                         @if (!empty($blockData->link_3))<a href="{{ $blockData->link_3 }}">@endif
-                            <img src="{{ Voyager::image($blockData->image_3) }}" class="thumbnail" alt="Image 3" />
+                            <img src="{{ imageUrl($blockData->image_3, 170, 170) }}" class="thumbnail" alt="Image 3">
                         @if (!empty($blockData->link_3))</a>@endif
                     @endif
                 </div> <!-- /.cell -->
@@ -45,7 +45,7 @@
                 >
                     @if (!empty($blockData->image_4))
                         @if (!empty($blockData->link_4))<a href="{{ $blockData->link_4 }}">@endif
-                            <img src="{{ Voyager::image($blockData->image_4) }}" class="thumbnail" alt="Image 4" />
+                            <img src="{{ imageUrl($blockData->image_4, 170, 170) }}" class="thumbnail" alt="Image 4">
                         @if (!empty($blockData->link_4))</a>@endif
                     @endif
                 </div> <!-- /.cell -->
@@ -56,7 +56,7 @@
                 >
                     @if (!empty($blockData->image_5))
                         @if (!empty($blockData->link_5))<a href="{{ $blockData->link_5 }}">@endif
-                            <img src="{{ Voyager::image($blockData->image_5) }}" class="thumbnail" alt="Image 5" />
+                            <img src="{{ imageUrl($blockData->image_5, 170, 170) }}" class="thumbnail" alt="Image 5">
                         @if (!empty($blockData->link_5))</a>@endif
                     @endif
                 </div> <!-- /.cell -->
@@ -67,7 +67,7 @@
                 >
                     @if (!empty($blockData->image_6))
                         @if (!empty($blockData->link_6))<a href="{{ $blockData->link_6 }}">@endif
-                            <img src="{{ Voyager::image($blockData->image_6) }}" class="thumbnail" alt="Image 6" />
+                            <img src="{{ imageUrl($blockData->image_6, 170, 170) }}" class="thumbnail" alt="Image 6">
                         @if (!empty($blockData->link_6))</a>@endif
                     @endif
                 </div> <!-- /.cell -->
