@@ -57,8 +57,6 @@ class PageBlocksServiceProvider extends ServiceProvider
         // Defines which files to copy the root project
         $this->publishes([
             self::PACKAGE_DIR . 'config' => base_path('config'),
-            self::PACKAGE_DIR . 'database/migrations' => base_path('database/migrations'),
-            self::PACKAGE_DIR . 'database/seeds' => base_path('database/seeds'),
         ]);
     }
 

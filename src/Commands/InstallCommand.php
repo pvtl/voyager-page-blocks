@@ -2,13 +2,18 @@
 
 namespace Pvtl\VoyagerPageBlocks\Commands;
 
+use TCG\Voyager\Traits\Seedable;
+use Pvtl\VoyagerPageBlocks\Providers\PageBlocksServiceProvider;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Symfony\Component\Process\Process;
-use Pvtl\VoyagerPageBlocks\Providers\PageBlocksServiceProvider;
 
 class InstallCommand extends Command
 {
+    use Seedable;
+
+    protected $seedersPath = __DIR__.'/../../database/seeds/';
+
     /**
      * The console command name.
      *
@@ -62,7 +67,7 @@ class InstallCommand extends Command
         $this->call('migrate');
 
         $this->info('Seeding data into the database');
-        $this->call('db:seed', ['--class' => 'PageBlocksTableSeeder']);
+        $this->seed('PageBlocksTableSeeder');
 
         $this->info('Successfully installed Voyager Page Blocks! Enjoy');
     }
