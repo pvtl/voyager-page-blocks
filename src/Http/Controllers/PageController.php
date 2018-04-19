@@ -53,7 +53,7 @@ class PageController extends Controller
         }
 
         // Return the full page
-        return view('voyager-frontend::modules.pages.default', [
+        return view('voyager-pages::modules.pages.default', [
             'page' => $page,
             'layout' => $page->layout,
         ]);
