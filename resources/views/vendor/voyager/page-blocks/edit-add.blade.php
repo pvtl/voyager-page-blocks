@@ -116,33 +116,6 @@
                             <a class="panel-collapse-icon voyager-angle-down" data-toggle="block-collapse" aria-hidden="true"></a>
                         </div> <!-- /.panel-actions -->
                     </div> <!-- /.panel-heading -->
-
-                    <div class="panel-body">
-                        <form role="form" action="{{ route('voyager.page-blocks.layout', $page->id) }}" method="POST"
-                            enctype="multipart/form-data">
-                            {{ csrf_field() }}
-
-                            <div class="form-group">
-                                <label for="layout">Change Page Layout</label>
-                                <select class="form-control" name="layout" id="layout">
-                                    <option value="default">-- Select --</option>
-                                    @foreach($layouts as $layout)
-                                        <option
-                                            value="{{ $layout }}"
-                                            @if ($page->layout === $layout)
-                                                selected="selected"
-                                            @endif
-                                        >
-                                            {{ ucwords(str_replace(array('_', '-'), ' ', $layout)) }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div> <!-- /.form-group -->
-
-                            <input type="hidden" name="page_id" value="{{ $page->id }}"/>
-                            <button type="submit" class="btn btn-success btn-sm">{{ __('voyager.generic.update') }}</button>
-                        </form>
-                    </div> <!-- /.panel-body -->
                 </div> <!-- /.panel -->
             </div> <!-- /.col -->
 
