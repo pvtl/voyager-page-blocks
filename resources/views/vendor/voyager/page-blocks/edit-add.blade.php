@@ -108,15 +108,6 @@
                         </form>
                     </div> <!-- /.panel-body -->
                 </div> <!-- /.panel -->
-
-                <div class="panel panel-bordered panel-warning">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Page Layout</h3>
-                        <div class="panel-actions">
-                            <a class="panel-collapse-icon voyager-angle-down" data-toggle="block-collapse" aria-hidden="true"></a>
-                        </div> <!-- /.panel-actions -->
-                    </div> <!-- /.panel-heading -->
-                </div> <!-- /.panel -->
             </div> <!-- /.col -->
 
             <div class="col-md-9 col-lg-10">
