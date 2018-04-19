@@ -181,8 +181,8 @@
                                                 </a>
                                             @endcan
                                             @can('edit', $data)
-                                                <a href="{{ route('voyager.page-blocks.edit', $data->{$data->getKeyName()}) }}" title="{{ __('Content') }}" class="btn btn-sm btn-primary pull-right edit">
-                                                    <i class="voyager-edit"></i> <span class="hidden-xs hidden-sm">{{ __('Content') }}</span>
+                                                <a href="{{ route('voyager.page-blocks.edit', $data->{$data->getKeyName()}) }}" title="{{ __('Block Content') }}" class="btn btn-sm btn-primary pull-right edit">
+                                                    <i class="voyager-edit"></i> <span class="hidden-xs hidden-sm">{{ __('Block Content') }}</span>
                                                 </a>
                                                 <a href="{{ route('voyager.pages.edit', $data->{$data->getKeyName()}) }}" title="{{ __('voyager.generic.settings') }}" class="btn btn-sm btn-primary pull-right edit">
                                                     <i class="voyager-settings"></i> <span class="hidden-xs hidden-sm">{{ __('voyager.generic.settings') }}</span>
