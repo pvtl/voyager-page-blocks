@@ -30,19 +30,6 @@ class CreatePageBlocksTable extends Migration
 
             $table->timestamps();
         });
-
-        // Add Page layout column
-        Schema::table('pages', function (Blueprint $table) {
-            $table->text('layout')->nullable();
-        });
-
-        // If we take this approach, we'll need to also remove the respective row from data_rows.
-        // -- We can then delete resources/views/vendor/voyager/pages/edit-add.blade.php
-        //
-        // Remove the body attribute
-        // Schema::table('pages', function (Blueprint $table) {
-        //     $table->dropColumn('body');
-        // });
     }
 
     /**
@@ -54,15 +41,5 @@ class CreatePageBlocksTable extends Migration
     {
         // Remove Page Blocks table
         Schema::dropIfExists('page_blocks');
-
-        // Remove Page layout column
-        Schema::table('pages', function (Blueprint $table) {
-            $table->dropColumn('layout');
-        });
-
-        // Add the body attribute back
-        // Schema::table('pages', function (Blueprint $table) {
-        //     $table->text('body')->nullable();
-        // });
     }
 }
