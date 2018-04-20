@@ -3,11 +3,10 @@
 namespace Pvtl\VoyagerPageBlocks\Http\Controllers;
 
 use Pvtl\VoyagerPageBlocks\Page;
-use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\View;
 use Pvtl\VoyagerPageBlocks\Traits\Blocks;
 
-class PageController extends Controller
+class PageController extends \Pvtl\VoyagerFrontend\Http\Controllers\PageController
 {
     use Blocks;
 
@@ -48,12 +47,12 @@ class PageController extends Controller
         if (empty($page->layout)) {
             $page->layout = 'default';
         }
-        if (!View::exists('voyager-frontend::layouts.' . $page->layout)) {
+        if (!View::exists("{$this->viewPath}::layouts.{$page->layout}")) {
             $page->layout = 'default';
         }
 
         // Return the full page
-        return view('voyager-pages::modules.pages.default', [
+        return view("{$this->viewPath}::modules.pages.default", [
             'page' => $page,
             'layout' => $page->layout,
         ]);

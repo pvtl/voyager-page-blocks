@@ -6,7 +6,6 @@ use Pvtl\VoyagerFrontend\Helpers\ClassEvents;
 
 class Page extends \Pvtl\VoyagerFrontend\Page
 {
-
     // Add relation to page blocks
     public function blocks()
     {
