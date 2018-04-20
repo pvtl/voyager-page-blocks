@@ -1,38 +1,15 @@
 <?php
 
-use TCG\Voyager\Models\Role;
-use TCG\Voyager\Models\DataType;
-use TCG\Voyager\Models\Permission;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use TCG\Voyager\Models\DataType;
 
-class PageBlocksTableSeeder extends Seeder
+class PageBlocksDataTypesTableSeeder extends Seeder
 {
-    protected $permissions = [
-        'browse_page_blocks',
-        'read_page_blocks',
-        'edit_page_blocks',
-        'add_page_blocks',
-    ];
-
     /**
      * Auto generated seed file.
-     *
-     * @return void
      */
     public function run()
     {
-        DataType::firstOrNew([
-            'name' => 'page_blocks',
-            'slug' => 'page-blocks',
-            'display_name_singular' => 'Page Block',
-            'display_name_plural' => 'Page Blocks',
-            'icon' => 'voyager-file-text',
-            'model_name' => '\Pvtl\VoyagerPageBlocks\PageBlock',
-            'controller' => '\Pvtl\VoyagerPageBlocks\Http\Controllers\PageBlockController',
-            'generate_permissions' => '1',
-        ])->save();
-
         $dataType = $this->dataType('slug', 'pages');
         if (!$dataType->exists) {
             $dataType->fill([
@@ -55,6 +32,14 @@ class PageBlocksTableSeeder extends Seeder
         }
     }
 
+    /**
+     * [dataType description].
+     *
+     * @param [type] $field [description]
+     * @param [type] $for   [description]
+     *
+     * @return [type] [description]
+     */
     protected function dataType($field, $for)
     {
         return DataType::firstOrNew([$field => $for]);
