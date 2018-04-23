@@ -12,7 +12,7 @@ class InstallCommand extends Command
 {
     use Seedable;
 
-    protected $seedersPath = __DIR__.'/../../database/seeds/';
+    protected $seedersPath = __DIR__ . '/../../database/seeds/';
 
     /**
      * The console command name.
