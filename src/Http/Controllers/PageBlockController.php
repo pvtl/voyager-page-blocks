@@ -10,9 +10,9 @@ use Pvtl\VoyagerPageBlocks\PageBlock;
 use Pvtl\VoyagerPageBlocks\Traits\Blocks;
 use Pvtl\VoyagerPageBlocks\Validators\BlockValidators;
 use TCG\Voyager\Facades\Voyager;
-use TCG\Voyager\Http\Controllers\VoyagerBreadController as BaseVoyagerBreadController;
+use TCG\Voyager\Http\Controllers\VoyagerBaseController;
 
-class PageBlockController extends BaseVoyagerBreadController
+class PageBlockController extends VoyagerBaseController
 {
     use Blocks;
 
