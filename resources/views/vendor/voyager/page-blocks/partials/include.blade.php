@@ -123,7 +123,7 @@
                             style="float:left"
                             type="submit"
                             class="btn btn-success btn-lg save"
-                    >{{ __('voyager.generic.save') }} This Block</button>
+                    >{{ __('voyager::generic.save') }} This Block</button>
                 </span>
             </form>
 
@@ -138,7 +138,7 @@
                                 type="submit"
                                 style="float:right; margin-top:22px"
                                 class="btn btn-danger btn-xs delete"
-                        >{{ __('voyager.generic.delete') }} This Block</button>
+                        >{{ __('voyager::generic.delete') }} This Block</button>
                     </span>
                 </form>
             @endif

@@ -76,7 +76,7 @@ class PageBlockController extends VoyagerBaseController
                 ->withErrors($validator)
                 ->withInput()
                 ->with([
-                    'message' => __('voyager.json.validation_errors'),
+                    'message' => __('voyager::json.validation_errors'),
                     'alert-type' => 'error',
                 ]);
         }
@@ -93,7 +93,7 @@ class PageBlockController extends VoyagerBaseController
         return redirect()
             ->to(URL::previous() . "#block-id-" . $id)
             ->with([
-                'message' => __('voyager.generic.successfully_updated') . " {$dataType->display_name_singular}",
+                'message' => __('voyager::generic.successfully_updated') . " {$dataType->display_name_singular}",
                 'alert-type' => 'success',
             ]);
     }
@@ -142,7 +142,7 @@ class PageBlockController extends VoyagerBaseController
         return redirect()
             ->back()
             ->with([
-                'message' => __('voyager.generic.successfully_updated') . " Page Layout",
+                'message' => __('voyager::generic.successfully_updated') . " Page Layout",
                 'alert-type' => 'success',
             ]);
     }
@@ -176,7 +176,7 @@ class PageBlockController extends VoyagerBaseController
         return redirect()
             ->route('voyager.page-blocks.edit', array($page->id, '#block-id-' . $block->id))
             ->with([
-                'message' => __('voyager.generic.successfully_added_new') . " {$dataType->display_name_singular}",
+                'message' => __('voyager::generic.successfully_added_new') . " {$dataType->display_name_singular}",
                 'alert-type' => 'success',
             ]);
     }
@@ -208,7 +208,7 @@ class PageBlockController extends VoyagerBaseController
         return redirect()
             ->back()
             ->with([
-                'message' => __('voyager.generic.successfully_deleted') . " {$dataType->display_name_singular}",
+                'message' => __('voyager::generic.successfully_deleted') . " {$dataType->display_name_singular}",
                 'alert-type' => 'success',
             ]);
     }

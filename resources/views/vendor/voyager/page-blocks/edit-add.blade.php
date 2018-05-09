@@ -104,7 +104,7 @@
                             </div> <!-- /.form-group -->
 
                             <input type="hidden" name="page_id" value="{{ $page->id }}"/>
-                            <button type="submit" class="btn btn-success btn-sm">{{ __('voyager.generic.add') }}</button>
+                            <button type="submit" class="btn btn-success btn-sm">{{ __('voyager::generic.add') }}</button>
                         </form>
                     </div> <!-- /.panel-body -->
                 </div> <!-- /.panel -->
