@@ -30,6 +30,16 @@ class PageBlocksDataTypesTableSeeder extends Seeder
                 'controller' => '\\Pvtl\\VoyagerPageBlocks\\Http\\Controllers\\PageController',
             ]);
         }
+
+        // Let's hide the body from the page edit view
+        if ($dataType->exists) {
+            $body = \TCG\Voyager\Models\DataRow::where('data_type_id', $dataType->id)
+                ->where('field', 'body')
+                ->firstOrFail();
+
+            $body->type = 'hidden';
+            $body->save();
+        }
     }
 
     /**
