@@ -47,7 +47,7 @@ class PageBlockController extends VoyagerBaseController
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update_order(Request $request, $id)
     {
         $block = PageBlock::findOrFail($id);
         $template = $block->template();
