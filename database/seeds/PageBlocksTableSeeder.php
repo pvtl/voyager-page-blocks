@@ -28,7 +28,7 @@ class PageBlocksTableSeeder extends Seeder
             'display_name_singular' => 'Page Block',
             'display_name_plural' => 'Page Blocks',
             'icon' => 'voyager-file-text',
-            'model_name' => '\Pvtl\VoyagerPageBlocks\PageBlock',
+            'model_name' => 'Pvtl\VoyagerPageBlocks\PageBlock',
             'controller' => '\Pvtl\VoyagerPageBlocks\Http\Controllers\PageBlockController',
             'generate_permissions' => '1',
         ])->save();
