@@ -10,6 +10,17 @@ class PageBlocksDataTypesTableSeeder extends Seeder
      */
     public function run()
     {
+        DataType::firstOrNew([
+            'name' => 'page_blocks',
+            'slug' => 'page-blocks',
+            'display_name_singular' => 'Page Block',
+            'display_name_plural' => 'Page Blocks',
+            'icon' => 'voyager-file-text',
+            'model_name' => 'Pvtl\VoyagerPageBlocks\PageBlock',
+            'controller' => '\Pvtl\VoyagerPageBlocks\Http\Controllers\PageBlockController',
+            'generate_permissions' => '1',
+        ])->save();
+
         $dataType = $this->dataType('slug', 'pages');
         if (!$dataType->exists) {
             $dataType->fill([
