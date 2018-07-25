@@ -103,7 +103,7 @@ class PageBlockController extends VoyagerBaseController
      *
      * @param \Illuminate\Http\Request $request
      */
-    public function order(Request $request)
+    public function sort(Request $request)
     {
         $blockOrder = json_decode($request->input('order'));
 

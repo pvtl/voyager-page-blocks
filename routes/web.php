@@ -9,6 +9,6 @@ Route::group([
     'middleware' => ['web', 'admin.user'],
     'namespace' => '\Pvtl\VoyagerPageBlocks\Http\Controllers'
 ], function () {
-    Route::post('order', ['uses' => "PageBlockController@order", 'as' => 'order']);
+    Route::post('sort', ['uses' => "PageBlockController@sort", 'as' => 'sort']);
     Route::post('minimize', ['uses' => "PageBlockController@minimize", 'as' => 'minimize']);
 });
