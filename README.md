@@ -2,7 +2,7 @@
 
 ![Voyager Frontend Screenshot](/readme-intro.jpg)
 
-This [Laravel](https://laravel.com/)/[Voyager](https://laravelvoyager.com/) module is designed to give developers the ability to easily design page blocks, for Voyager admin users to build stunning frontend pages.
+This [Laravel](https://laravel.com/)/[Voyager Frontend](https://github.com/pvtl/voyager-frontend) module is designed to give developers the ability to easily design page blocks, for Voyager admin users to build stunning frontend pages.
 
 Built by [Pivotal Agency](https://pivotal.agency/).
 
@@ -13,6 +13,7 @@ Built by [Pivotal Agency](https://pivotal.agency/).
 - Composer Installed
 - [Install Laravel](https://laravel.com/docs/installation)
 - [Install Voyager](https://github.com/the-control-group/voyager)
+- [Install Voyager Frontend](https://github.com/pvtl/voyager-frontend)
 
 ---
 
@@ -24,6 +25,9 @@ composer require pvtl/voyager-page-blocks
 
 # 2. Run the Installer
 php artisan voyager-page-blocks:install
+
+# 3. (Optional) Seed the database with example page blocks.
+php artisan voyager-page-blocks:seed
 ```
 
 ---
@@ -46,23 +50,23 @@ Familiarize yourself with `/config/page-blocks.php`. This is where you'll define
 
 The below table explains what each property does and how it is relevant to the block itself:
 
-Key  | Purpose
-------------- | -------------
-__Root key__  | This is the name of your page block, used to load the configuration
-name  | This is the display name of your page block, used in the block 'adder'
-fields  | This is where your page block fields live (text areas, images etc)
-fields => field  | The content name of your field, used to store/load its content
-fields => display_name  | The display name of this field in the back-end
-fields => partial  | The partial that this field will use (check `TCG\Voyager\FormFields`)
-fields => required  | Self-explanatory, marks this field as required or not (not available for all partials)
-fields => placeholder  | Self-explanatory, adds a placeholder to the field (not available for all partials)
-fields => options  | Used for selects/checkboxes/radios to supply options
-template  | This points to your blade file for your block template
-compatible  | TBA
+| Key                    | Purpose                                                                                |
+| ---------------------- | -------------------------------------------------------------------------------------- |
+| __Root key__           | This is the name of your page block, used to load the configuration                    |
+| name                   | This is the display name of your page block, used in the block 'adder'                 |
+| fields                 | This is where your page block fields live (text areas, images etc)                     |
+| fields => field        | The content name of your field, used to store/load its content                         |
+| fields => display_name | The display name of this field in the back-end                                         |
+| fields => partial      | The partial that this field will use (check `TCG\Voyager\FormFields`)                  |
+| fields => required     | Self-explanatory, marks this field as required or not (not available for all partials) |
+| fields => placeholder  | Self-explanatory, adds a placeholder to the field (not available for all partials)     |
+| fields => options      | Used for selects/checkboxes/radios to supply options                                   |
+| template               | This points to your blade file for your block template                                 |
+| compatible             | TBA                                                                                    |
 
 ### 2. Build the HTML
 
-When you're ready to start structuring the display of your block, you'll need to create (or override our defaults) your blade template (located at `/resources/views/vendor/voyager-page-blocks/blocks/your_block.blade.php`) and use the accessors you defined in your module's configuration file to fetch each fields data (`{!! $blockData->image_content or '' !!}`).
+When you're ready to start structuring the display of your block, you'll need to create (or override our defaults) your blade template (located at `/resources/views/vendor/voyager-page-blocks/blocks/your_block.blade.php`) and use the accessors you defined in your module's configuration file to fetch each fields data (`{!! $blockData->image_content !!}`).
 
 ---
 
@@ -97,7 +101,7 @@ In `/resources/views/vendor/voyager-page-blocks/blocks`, we'll create a new file
 ```php
 <div class="page-block">
     <div class="grid-container column text-center">
-        {!! $blockData->content or '' !!}
+        {!! $blockData->content !!}
     </div>
 </div>
 ```
