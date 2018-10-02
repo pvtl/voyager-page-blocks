@@ -54,7 +54,6 @@ class InstallCommand extends Command
      */
     public function handle()
     {
-
         $this->info('Publishing Page Blocks assets, database, and config files');
         $this->call('vendor:publish', ['--provider' => PageBlocksServiceProvider::class]);
 
@@ -66,7 +65,7 @@ class InstallCommand extends Command
         $this->info('Migrating the database tables into your application');
         $this->call('migrate');
 
-        $this->info('Seeding data into the database');
+        $this->info('Seeding required data into the database');
         $this->seed('PageBlocksDatabaseSeeder');
 
         $this->info('Successfully installed Voyager Page Blocks! Enjoy');

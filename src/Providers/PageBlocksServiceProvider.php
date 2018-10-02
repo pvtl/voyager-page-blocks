@@ -91,7 +91,8 @@ class PageBlocksServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                Commands\InstallCommand::class
+                Commands\InstallCommand::class,
+                Commands\SeedCommand::class
             ]);
         }
     }

@@ -3,7 +3,7 @@
 use TCG\Voyager\Traits\Seedable;
 use Illuminate\Database\Seeder;
 
-class PageBlocksDatabaseSeeder extends Seeder
+class PageBlocksExamplesSeeder extends Seeder
 {
     use Seedable;
 
@@ -16,8 +16,6 @@ class PageBlocksDatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->seed('PageBlocksDataTypesTableSeeder');
-        $this->seed('PageBlocksPermissionsTableSeeder');
-        $this->seed('PageBlocksPermissionRoleTableSeeder');
+        $this->seed('PageBlocksTableSeeder');
     }
 }
