@@ -10,14 +10,14 @@
                     @if (!empty($blockData->animate)) data-scrollreveal @endif
                 >
                     @if (!empty($blockData->content))
-                        <h3 class="featured-testimonial-quote">{{ $blockData->content or '' }}</h3>
+                        <h3 class="featured-testimonial-quote">{{ $blockData->content }}</h3>
                     @endif
 
                     @if (!empty($blockData->title))
                         <p class="lead">
-                            {{ $blockData->title or '' }}
+                            {{ $blockData->title }}
                             @if (!empty($blockData->sub_title))
-                                <cite>{{ $blockData->sub_title or '' }}</cite>
+                                <cite>{{ $blockData->sub_title }}</cite>
                             @endif
                         </p>
                     @endif

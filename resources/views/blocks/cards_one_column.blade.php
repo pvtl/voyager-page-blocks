@@ -10,15 +10,15 @@
 
             <div class="block-image-text-content">
                 @if (!empty($blockData->title_1))
-                    <h4>{{ $blockData->title_1 or '' }}</h4>
+                    <h4>{{ $blockData->title_1 }}</h4>
                 @endif
 
                 @if (!empty($blockData->content_1))
-                    <p>{{ $blockData->content_1 or '' }}</p>
+                    <p>{{ $blockData->content_1 }}</p>
                 @endif
 
                 @if (!empty($blockData->link_1))
-                    <a href="{{ $blockData->link_1 or '' }}" class="button round">{{ $blockData->button_text_1 or 'Learn More' }}</a>
+                    <a href="{{ $blockData->link_1 }}" class="button round">{{ $blockData->button_text_1 }}</a>
                 @endif
             </div> <!-- /.block-image-text-content -->
 

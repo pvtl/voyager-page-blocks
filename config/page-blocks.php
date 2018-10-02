@@ -101,14 +101,14 @@ $blocks['callout'] = [
             'display_name' => 'Button Text',
             'partial' => 'voyager::formfields.text',
             'required' => 0,
-            'placeholder' => 'Learn More',
+            'placeholder' => '',
         ],
         'link' => [
             'field' => 'link',
             'display_name' => 'Link',
             'partial' => 'voyager::formfields.text',
             'required' => 0,
-            'placeholder' => '#',
+            'placeholder' => '',
         ],
         'br_4' => [
             'field' => 'br_4',
@@ -216,14 +216,14 @@ foreach ($columns as $i => $block) {
             'display_name' => "Button Column {$col}: Text",
             'partial' => 'voyager::formfields.text',
             'required' => 0,
-            'placeholder' => 'Learn More',
+            'placeholder' => '',
         ];
         $blocks[$block]['fields']["link_{$col}"] = [
             'field' => "link_{$col}",
             'display_name' => "Column {$col}: Link",
             'partial' => 'voyager::formfields.text',
             'required' => 0,
-            'placeholder' => '#',
+            'placeholder' => '',
         ];
         $blocks[$block]['fields']["br_{$col}_3"] = [
             'field' => "br_{$col}_3",
@@ -268,7 +268,7 @@ for ($col = 1; $col <= 6; $col++) {
         'display_name' => "Link for Image {$col}",
         'partial' => 'voyager::formfields.text',
         'required' => 0,
-        'placeholder' => '#',
+        'placeholder' => '',
     ];
     $blocks['image_row']['fields']["br_{$col}"] = [
         'field' => "br_{$col}",

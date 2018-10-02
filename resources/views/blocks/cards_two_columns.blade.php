@@ -12,15 +12,15 @@
 
                     <div class="card-section">
                         @if (!empty($blockData->title_1))
-                            <h4>{{ $blockData->title_1 or '' }}</h4>
+                            <h4>{{ $blockData->title_1 }}</h4>
                         @endif
 
                         @if (!empty($blockData->content_1))
-                            <p>{{ $blockData->content_1 or '' }}</p>
+                            <p>{{ $blockData->content_1 }}</p>
                         @endif
 
                         @if (!empty($blockData->link_1))
-                            <a href="{{ $blockData->link_1 or '' }}" class="button">{{ $blockData->button_text_1 or 'Learn More' }}</a>
+                            <a href="{{ $blockData->link_1 }}" class="button">{{ $blockData->button_text_1 }}</a>
                         @endif
                     </div> <!-- /.card-section -->
                 </div> <!-- /.card -->
@@ -36,15 +36,15 @@
 
                     <div class="card-section">
                         @if (!empty($blockData->title_2))
-                            <h4>{{ $blockData->title_2 or '' }}</h4>
+                            <h4>{{ $blockData->title_2 }}</h4>
                         @endif
 
                         @if (!empty($blockData->content_2))
-                            <p>{{ $blockData->content_2 or '' }}</p>
+                            <p>{{ $blockData->content_2 }}</p>
                         @endif
 
                         @if (!empty($blockData->link_2))
-                            <a href="{{ $blockData->link_2 or '' }}" class="button">{{ $blockData->button_text_2 or 'Learn More' }}</a>
+                            <a href="{{ $blockData->link_2 }}" class="button">{{ $blockData->button_text_2 }}</a>
                         @endif
                     </div> <!-- /.card-section -->
                 </div> <!-- /.card -->
