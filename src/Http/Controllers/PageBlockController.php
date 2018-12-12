@@ -59,13 +59,19 @@ class PageBlockController extends VoyagerBaseController
         foreach ($template->fields as $row) {
             $existingData = $block->data;
 
-            if ($row->partial === 'voyager::formfields.image' && is_null($request->input($row->field))) {
-                $data[$row->field] = $existingData->{$row->field};
+            if ($row->partial === 'voyager::formfields.image') {
+                if (is_null($request->file($row->field))) {
+                    if (isset($existingData->{$row->field})) {
+                        $data[$row->field] = $existingData->{$row->field};
+                    }
 
-                continue;
+                    continue;
+                }
+
+                $data[$row->field] = $request->file($row->field);
+            } else {
+                $data[$row->field] = $request->input($row->field);
             }
-
-            $data[$row->field] = $request->input($row->field);
         }
 
         // Just.Do.It! (Nike, TM)
