@@ -84,9 +84,18 @@ trait Blocks
 
     public function uploadImages(Request $request, array $data): array
     {
-        foreach ($request->files as $key => $file) {
-            $filePath = $request->file($key)->store('public/blocks');
-            $data[$key] = str_replace('public/', '', $filePath);
+        foreach ($request->files as $key => $field) {
+            if (is_array($request->file($key))) {
+                $multiImages = array();
+                foreach ($request->file($key) as $key2 => $file) {
+                    $filePath = $file->store('public/blocks');
+                    $multiImages[] = str_replace('public/', '', $filePath);
+                }
+                $data[$key] = json_encode($multiImages);
+            } else {
+                $filePath = $request->file($key)->store('public/blocks');
+                $data[$key] = str_replace('public/', '', $filePath);
+            }
         }
 
         return $data;

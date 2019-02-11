@@ -127,8 +127,6 @@
                             @php
                                 $template = $block->template();
                                 $dataTypeContent = $block->data;
-                                /* Hack: for latest Voyager "data-id" requirement on image field */
-                                $dataTypeContent->id = 0;
                             @endphp
 
                             @if ($block->type === 'template')
@@ -167,6 +165,21 @@
             $('input[type=file]').each(function() {
                 $(this).closest('.form-group').addClass('vpb-image-group');
             });
+
+            /**
+             * MULTIPLE-IMAGES Delete function
+             */
+            /*$(".remove-multi-image").on('click', function(e){
+                e.preventDefault();
+                var result = confirm("Are you sure you want to delete this image?");
+                if (result) {
+                    $.post('{{-- route('voyager.page-blocks.delete-multiple-image') --}}', {
+                        field: $(this).data('id'),
+                        file_name: $(this).data('file-name'),
+                        _token: '{{ csrf_token() }}'
+                    });
+                }
+            });*/
 
             /**
              * Confirm DELETE block

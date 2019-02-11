@@ -34,6 +34,10 @@
                     <div class="@if (strpos($row->partial, 'rich_text_box') !== false)col-md-12 @else col-md-6 @endif">
                         <div class="form-group">
                             <label>{{ $row->display_name }}</label>
+                            @php
+                                /* For 'multiple images' field - pass through the ID to identify the specific field */
+                                $dataTypeContent->id = $row->field;
+                            @endphp
                             @include($row->partial)
                         </div> <!-- /.form-group -->
                     </div> <!-- /.col -->
