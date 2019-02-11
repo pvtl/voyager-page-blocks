@@ -127,6 +127,8 @@
                             @php
                                 $template = $block->template();
                                 $dataTypeContent = $block->data;
+                                /* Hack: for latest Voyager "data-id" requirement on image field */
+                                $dataTypeContent->id = 0;
                             @endphp
 
                             @if ($block->type === 'template')
