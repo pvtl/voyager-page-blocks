@@ -128,7 +128,7 @@ class PageBlocksTableSeeder extends Seeder
                 $block->fill([
                     'path' => 'content_one_column',
                     'data' => [
-                        'html_content_1' => '<p>{!! forms(1) !!}</p>',
+                        'html_content_1' => '<p>You can install the <a href="https://github.com/pvtl/voyager-forms">Voyager Forms</a> module and add the appropriate tag here.</p>',
                         'spaces' => '1',
                         'animate' => 'on',
                     ],
