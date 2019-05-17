@@ -18,7 +18,7 @@
         }
     ],
     "require": {
-        "pvtl/voyager-frontend": "^0.9.1"
+        "pvtl/voyager-frontend": "^0.9"
     },
     "require-dev": {
         "phpunit/phpunit": "^5.7"
