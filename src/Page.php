@@ -2,6 +2,7 @@
 
 namespace Pvtl\VoyagerPageBlocks;
 
+use Illuminate\Support\Arr;
 use Pvtl\VoyagerFrontend\Helpers\ClassEvents;
 
 class Page extends \Pvtl\VoyagerFrontend\Page
@@ -41,7 +42,7 @@ class Page extends \Pvtl\VoyagerFrontend\Page
             return $blockContent;
         });
 
-        $array['page_blocks'] = implode(' ', array_flatten($pageBlocks));
+        $array['page_blocks'] = implode(' ', Arr::flatten($pageBlocks));
 
         return $array;
     }
