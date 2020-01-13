@@ -43,7 +43,12 @@ class Page extends \Pvtl\VoyagerFrontend\Page
         });
 
         $array['page_blocks'] = implode(' ', Arr::flatten($pageBlocks));
-
+        
+        if (isset($array['translations']) && is_array($array['translations'])) {
+            //Unset translations
+            unset($array['translations']);
+        }
+        
         return $array;
     }
 }
