@@ -19,7 +19,7 @@ class PageController extends \Pvtl\VoyagerFrontend\Http\Controllers\PageControll
      */
     public function getPage($slug = 'home')
     {
-        $page = Page::where('slug', '=', $slug)->firstOrFail();
+        $page = Page::where(['slug' => $slug, 'status' => 'ACTIVE'])->firstOrFail();
         $blocks = $page->blocks()
             ->where('is_hidden', '=', '0')
             ->orderBy('order', 'asc')
