@@ -62,7 +62,7 @@ trait Blocks
 
         // Ensure every key from config exists in collection
         foreach ((array)$templateConfig['fields'] as $fieldName => $fieldConfig) {
-            if (!array_key_exists($fieldName, $block->data)) {
+            if (!isset($block->data->$fieldName)) {
                 $block->data->$fieldName = null;
             }
         }
