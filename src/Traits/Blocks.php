@@ -85,6 +85,7 @@ trait Blocks
     public function uploadImages(Request $request, array $data): array
     {
         foreach ($request->files as $key => $field) {
+            unset($data[$key]);
             if (is_array($request->file($key))) {
                 $multiImages = array();
                 foreach ($request->file($key) as $key2 => $file) {
@@ -97,7 +98,6 @@ trait Blocks
                 $data[$key] = str_replace('public/', '', $filePath);
             }
         }
-
         return $data;
     }
 
