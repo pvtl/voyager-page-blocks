@@ -126,7 +126,7 @@
                         @foreach($pageBlocks as $block)
                             @php
                                 $template = $block->template();
-                                $dataTypeContent = $block->data;
+                                $dataTypeContent = new \Pvtl\VoyagerPageBlocks\MockedModel($block->data);
                             @endphp
 
                             @if ($block->type === 'template')
