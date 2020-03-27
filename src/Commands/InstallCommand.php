@@ -59,7 +59,7 @@ class InstallCommand extends Command
 
         $this->info('Dumping the autoloaded files and reloading all new files');
         $composer = $this->findComposer();
-        $process = new Process($composer . ' dump-autoload');
+        $process = new Process([$composer, 'dump-autoload']);
         $process->setWorkingDirectory(base_path())->mustRun();
 
         $this->info('Migrating the database tables into your application');
