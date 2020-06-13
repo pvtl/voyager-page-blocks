@@ -126,6 +126,9 @@
                         @foreach($pageBlocks as $block)
                             @php
                                 $template = $block->template();
+                                if( !is_array($block->data) && !is_object($block->data) ){
+                                    $block->data = [];
+                                }
                                 $dataTypeContent = new \Pvtl\VoyagerPageBlocks\MockedModel($block->data);
                             @endphp
 
@@ -238,6 +241,13 @@
                     });
                 }
             });
+
+            // Fix empty blocks submit
+            $('.form-blocks').on('submit', function(e) {
+                if( !$(this).find('[name=type]').val().length ){
+                    e.preventDefault();
+                }
+            })
         });
     </script>
 @endsection
