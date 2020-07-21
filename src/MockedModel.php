@@ -7,7 +7,7 @@ class MockedModel
 {
     public function __construct($datem)
     {
-        if (is_array($datem)) {
+        if (is_object($datem)) {
             foreach ($datem as $key => $data) {
                 $this->$key = $data;
             }
