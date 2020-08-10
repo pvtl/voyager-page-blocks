@@ -53,6 +53,10 @@ class PageBlockController extends VoyagerBaseController
         $template = $block->template();
         $dataType = Voyager::model('DataType')->where('slug', '=', 'page-blocks')->first();
 
+        $request->validate([
+            'type' => ['required']
+        ]);
+
         // Get all block data & validate
         $data = [];
 
