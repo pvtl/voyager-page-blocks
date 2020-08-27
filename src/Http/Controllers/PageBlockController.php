@@ -164,11 +164,11 @@ class PageBlockController extends VoyagerBaseController
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
-    {   
+    {
         $request->validate([
             'type' => ['required']
         ]);
-        
+
         $page = Page::findOrFail($request->input('page_id'));
         $dataType = Voyager::model('DataType')->where('slug', '=', 'page-blocks')->first();
 

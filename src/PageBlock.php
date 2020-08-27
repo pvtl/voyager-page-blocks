@@ -80,8 +80,8 @@ class PageBlock extends Model
 
         $templateConfig['fields'] = collect($templateConfig['fields'])
             ->map(function ($row) {
-                if (!isset($row['type'])) {
-                    return $row;
+                if ($row['type'] === 'break') {
+                    return (object)$row;
                 }
 
                 $dataRow = new DataRow();
