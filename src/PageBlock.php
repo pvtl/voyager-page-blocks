@@ -2,6 +2,7 @@
 
 namespace Pvtl\VoyagerPageBlocks;
 
+use TCG\Voyager\Models\DataRow;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Database\Eloquent\Model;
@@ -75,10 +76,26 @@ class PageBlock extends Model
             ];
         }
 
-        $templateKey = $this->path;
-        $templateConfig = json_encode(Config::get("page-blocks.$templateKey"));
+        $templateConfig = Config::get('page-blocks.' . $this->path);
 
-        return json_decode($templateConfig);
+        $templateConfig['fields'] = collect($templateConfig['fields'])
+            ->map(function ($row) {
+                if (!isset($row['type'])) {
+                    return $row;
+                }
+
+                $dataRow = new DataRow();
+                $dataRow->field = $row['field'];
+                $dataRow->display_name = $row['display_name'];
+                $dataRow->type = $row['type'];
+                $dataRow->required = $row['required'] ?? 0;
+                $dataRow->details = $row['details'] ?? null;
+                $dataRow->placeholder = $row['placeholder'] ?? 0;
+
+                return $dataRow;
+            });
+
+        return (object)$templateConfig;
     }
 
     public function getDataAttribute($value)

@@ -64,8 +64,8 @@ class PageBlockController extends VoyagerBaseController
             $existingData = $block->data;
 
             if (
-                $row->partial === 'voyager::formfields.image'
-                || $row->partial === 'voyager::formfields.multiple_images'
+                $row->type === 'image'
+                || $row->type === 'multiple_images'
             ) {
                 if (is_null($request->file($row->field))) {
                     if (isset($existingData->{$row->field})) {

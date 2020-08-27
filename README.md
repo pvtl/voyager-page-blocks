@@ -57,10 +57,10 @@ The below table explains what each property does and how it is relevant to the b
 | fields                 | This is where your page block fields live (text areas, images etc)                     |
 | fields => field        | The content name of your field, used to store/load its content                         |
 | fields => display_name | The display name of this field in the back-end                                         |
-| fields => partial      | The partial that this field will use (check `TCG\Voyager\FormFields`)                  |
+| fields => type         | The data row type that this field will use (check `TCG\Voyager\FormFields`)            |
 | fields => required     | Self-explanatory, marks this field as required or not (not available for all partials) |
 | fields => placeholder  | Self-explanatory, adds a placeholder to the field (not available for all partials)     |
-| fields => options      | Used for selects/checkboxes/radios to supply options                                   |
+| fields => details      | Used for selects/checkboxes/radios to supply options                                   |
 | template               | This points to your blade file for your block template                                 |
 | compatible             | TBA                                                                                    |
 
@@ -84,9 +84,9 @@ $blocks['company_overview'] = [
     'template' => 'voyager-page-blocks::blocks.company_overview',
     'fields' => [
         'content' => [
-            'field' => "content",
-            'display_name' => "Company Overview Content",
-            'partial' => 'voyager::formfields.rich_text_box',
+            'field' => 'content',
+            'display_name' => 'Company Overview Content',
+            'type' => 'rich_text_box',
             'required' => 1,
             'placeholder' => '<p>Lorem ipsum dolor sit amet. Nullam in dui mauris.</p>',
         ],
@@ -114,7 +114,7 @@ Next, jump into the Voyager Admin > Pages and click 'Content' next to a page. Yo
 
 ## Developer Controller Blocks
 
-You may also wish to include custom logic and functionality into your page blocks. This can be done with a __Developer Controller__ Block - simply specify your controller namespace'd path and the method you wish to call, which should return a [view](https://laravel.com/docs/5.5/views) and you'll be on your way.
+You may also wish to include custom logic and functionality into your page blocks. This can be done with a __Developer Controller__ Block - simply specify your controller namespace'd path and the method you wish to call, which should return a [view](https://laravel.com/docs/views) and you'll be on your way.
 
 For example, the [Voyager Frontend](https://github.com/pvtl/voyager-frontend) package comes with a _Recent Posts_ method/view that you can play with and review.
 

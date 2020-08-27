@@ -9,19 +9,21 @@
 | where each key is a block and each property is specific to that block.
 |
 */
-$blocks = array();
+$blocks = [];
 
 // The 'global' fields we'll use on multiple blocks
 $spacesField = [
     'field' => 'spaces',
     'display_name' => 'Add Vertical Space',
-    'partial' => 'voyager::formfields.select_dropdown',
+    'type' => 'select_dropdown',
     'required' => 0,
-    'options' => [
-        'Bottom',
-        'Top',
-        'Top & Bottom',
-        'None',
+    'details' => [
+        'options' => [
+            'Bottom',
+            'Top',
+            'Top & Bottom',
+            'None',
+        ],
     ],
     'placeholder' => 0,
 ];
@@ -29,7 +31,7 @@ $spacesField = [
 $animationsField = [
     'field' => 'animate',
     'display_name' => 'Animate this block (in)?',
-    'partial' => 'voyager::formfields.checkbox',
+    'type' => 'checkbox',
     'placeholder' => 'on',
     'required' => 0,
 ];
@@ -45,20 +47,22 @@ $blocks['callout'] = [
         'size' => [
             'field' => 'size',
             'display_name' => 'Size (height) of section',
-            'partial' => 'voyager::formfields.select_dropdown',
+            'type' => 'select_dropdown',
             'required' => 1,
-            'options' => [
-                'Small',
-                'Medium',
-                'Large',
-                'Extra Large',
+            'details' => [
+                'options' => [
+                    'Small',
+                    'Medium',
+                    'Large',
+                    'Extra Large',
+                ],
             ],
             'placeholder' => 0,
         ],
         'fade_background' => [
             'field' => 'fade_background',
             'display_name' => 'Fade out background',
-            'partial' => 'voyager::formfields.checkbox',
+            'type' => 'checkbox',
             'required' => 0,
         ],
         'br_1' => [
@@ -69,7 +73,7 @@ $blocks['callout'] = [
         'background_image' => [
             'field' => 'background_image',
             'display_name' => 'Background image',
-            'partial' => 'voyager::formfields.image',
+            'type' => 'image',
             'required' => 1,
         ],
         'br_2' => [
@@ -80,14 +84,14 @@ $blocks['callout'] = [
         'title' => [
             'field' => 'title',
             'display_name' => 'Title',
-            'partial' => 'voyager::formfields.text',
+            'type' => 'text',
             'required' => 0,
             'placeholder' => 'Changing the World!',
         ],
         'content' => [
             'field' => 'content',
             'display_name' => 'Content',
-            'partial' => 'voyager::formfields.text',
+            'type' => 'text',
             'required' => 0,
             'placeholder' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris.',
         ],
@@ -99,14 +103,14 @@ $blocks['callout'] = [
         'button_text' => [
             'field' => 'button_text',
             'display_name' => 'Button Text',
-            'partial' => 'voyager::formfields.text',
+            'type' => 'text',
             'required' => 0,
             'placeholder' => '',
         ],
         'link' => [
             'field' => 'link',
             'display_name' => 'Link',
-            'partial' => 'voyager::formfields.text',
+            'type' => 'text',
             'required' => 0,
             'placeholder' => '',
         ],
@@ -124,12 +128,12 @@ $blocks['callout'] = [
  * (Column'd) Content Block
  * - Can be used for standard WYSIWYG content
  */
-$columns = array(
+$columns = [
     'content_one_column',
     'content_two_columns',
     'content_three_columns',
     'content_four_columns',
-);
+];
 
 foreach ($columns as $i => $block) {
     $numCols = $i + 1;
@@ -142,7 +146,7 @@ foreach ($columns as $i => $block) {
         $blocks[$block]['fields']["html_content_{$col}"] = [
             'field' => "html_content_{$col}",
             'display_name' => "Column {$col} content",
-            'partial' => 'voyager::formfields.rich_text_box',
+            'type' => 'rich_text_box',
             'required' => 0,
             'placeholder' => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris.</p>',
         ];
@@ -154,11 +158,11 @@ foreach ($columns as $i => $block) {
 /**
  * (Column'd) Cards Block
  */
-$columns = array(
+$columns = [
     'cards_one_column',
     'cards_two_columns',
     'cards_three_columns',
-);
+];
 
 foreach ($columns as $i => $block) {
     $numCols = $i + 1;
@@ -171,14 +175,14 @@ foreach ($columns as $i => $block) {
         $blocks[$block]['fields']["image_{$col}"] = [
             'field' => "image_{$col}",
             'display_name' => "Column {$col}: Image",
-            'partial' => 'voyager::formfields.image',
+            'type' => 'image',
             'required' => 0,
         ];
         if ($numCols === 1) {
             $blocks[$block]['fields']["image_position_{$col}"] = [
                 'field' => "image_position_{$col}",
                 'display_name' => "Position of Column {$col}: Image",
-                'partial' => 'voyager::formfields.select_dropdown',
+                'type' => 'select_dropdown',
                 'required' => 0,
                 'options' => [
                     'Left',
@@ -195,14 +199,14 @@ foreach ($columns as $i => $block) {
         $blocks[$block]['fields']["title_{$col}"] = [
             'field' => "title_{$col}",
             'display_name' => "Column {$col}: Title",
-            'partial' => 'voyager::formfields.text',
+            'type' => 'text',
             'required' => 0,
             'placeholder' => 'Changing the World!',
         ];
         $blocks[$block]['fields']["content_{$col}"] = [
             'field' => "content_{$col}",
             'display_name' => "Column {$col}: Content",
-            'partial' => 'voyager::formfields.text',
+            'type' => 'text',
             'required' => 0,
             'placeholder' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris.',
         ];
@@ -214,14 +218,14 @@ foreach ($columns as $i => $block) {
         $blocks[$block]['fields']["button_text_{$col}"] = [
             'field' => "button_text_{$col}",
             'display_name' => "Button Column {$col}: Text",
-            'partial' => 'voyager::formfields.text',
+            'type' => 'text',
             'required' => 0,
             'placeholder' => '',
         ];
         $blocks[$block]['fields']["link_{$col}"] = [
             'field' => "link_{$col}",
             'display_name' => "Column {$col}: Link",
-            'partial' => 'voyager::formfields.text',
+            'type' => 'text',
             'required' => 0,
             'placeholder' => '',
         ];
@@ -245,14 +249,14 @@ $blocks['image_row'] = [
 $blocks['image_row']['fields']['title'] = [
     'field' => 'title',
     'display_name' => 'Person',
-    'partial' => 'voyager::formfields.text',
+    'type' => 'text',
     'required' => 0,
     'placeholder' => 'Our Partners',
 ];
 $blocks['image_row']['fields']['sub_title'] = [
     'field' => 'sub_title',
     'display_name' => 'Sub Text',
-    'partial' => 'voyager::formfields.text',
+    'type' => 'text',
     'required' => 0,
     'placeholder' => 'The glue that keeps our company thriving.',
 ];
@@ -260,13 +264,13 @@ for ($col = 1; $col <= 6; $col++) {
     $blocks['image_row']['fields']["image_{$col}"] = [
         'field' => "image_{$col}",
         'display_name' => "Image {$col}",
-        'partial' => 'voyager::formfields.image',
+        'type' => 'image',
         'required' => 0,
     ];
     $blocks['image_row']['fields']["link_{$col}"] = [
         'field' => "link_{$col}",
         'display_name' => "Link for Image {$col}",
-        'partial' => 'voyager::formfields.text',
+        'type' => 'text',
         'required' => 0,
         'placeholder' => '',
     ];
@@ -289,21 +293,21 @@ $blocks['testimonial'] = [
         'content' => [
             'field' => 'content',
             'display_name' => 'Testimonial Content',
-            'partial' => 'voyager::formfields.text_area',
+            'type' => 'text_area',
             'required' => 1,
             'placeholder' => 'Company X is both attractive and highly adaptable. Company X has really helped our business thrive - I can\'t wait to see what comes next for us.',
         ],
         'title' => [
             'field' => 'title',
             'display_name' => 'Person',
-            'partial' => 'voyager::formfields.text',
+            'type' => 'text',
             'required' => 1,
             'placeholder' => 'John Smith',
         ],
         'sub_title' => [
             'field' => 'sub_title',
             'display_name' => 'Sub Text',
-            'partial' => 'voyager::formfields.text',
+            'type' => 'text',
             'required' => 0,
             'placeholder' => 'Founder &amp; CEO',
         ],
@@ -315,7 +319,7 @@ $blocks['testimonial'] = [
         'image' => [
             'field' => 'image',
             'display_name' => 'Image',
-            'partial' => 'voyager::formfields.image',
+            'type' => 'image',
             'required' => 0,
         ],
         'br_2' => [
