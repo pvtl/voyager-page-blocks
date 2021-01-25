@@ -50,13 +50,13 @@
                                 <label for="cache_ttl_{{ $block->id }}">Cache Time</label>
                                 <select name="cache_ttl" id="cache_ttl_{{ $block->id }}" class="form-control">
                                     <option value="0" {{ $block->cache_ttl === 0 ? 'selected="selected"' : '' }}>
-                                        None / Off
+                                        Off
                                     </option>
                                     <option value="5" {{ $block->cache_ttl === 5 ? 'selected="selected"' : '' }}>
-                                        5 mins
+                                        5 Minutes
                                     </option>
                                     <option value="30" {{ $block->cache_ttl === 30 ? 'selected="selected"' : '' }}>
-                                        30 mins
+                                        30 Minutes
                                     </option>
                                     <option value="60" {{ $block->cache_ttl === 60 ? 'selected="selected"' : '' }}>
                                         1 Hour
