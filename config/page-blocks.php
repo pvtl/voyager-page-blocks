@@ -69,6 +69,7 @@ $blocks['callout'] = [
             'field' => 'br_1',
             'display_name' => 'Line Break',
             'partial' => 'break',
+            'type' => 'break',
         ],
         'background_image' => [
             'field' => 'background_image',
@@ -80,6 +81,7 @@ $blocks['callout'] = [
             'field' => 'br_2',
             'display_name' => 'Line Break',
             'partial' => 'break',
+            'type' => 'break',
         ],
         'title' => [
             'field' => 'title',
@@ -99,6 +101,7 @@ $blocks['callout'] = [
             'field' => 'br_3',
             'display_name' => 'Line Break',
             'partial' => 'break',
+            'type' => 'break',
         ],
         'button_text' => [
             'field' => 'button_text',
@@ -118,6 +121,7 @@ $blocks['callout'] = [
             'field' => 'br_4',
             'display_name' => 'Line Break',
             'partial' => 'break',
+            'type' => 'break',
         ],
         'spaces' => $spacesField,
         'animate' => $animationsField,
@@ -195,6 +199,7 @@ foreach ($columns as $i => $block) {
             'field' => "br_{$col}_1",
             'display_name' => "Line break",
             'partial' => 'break',
+            'type' => 'break',
         ];
         $blocks[$block]['fields']["title_{$col}"] = [
             'field' => "title_{$col}",
@@ -214,6 +219,7 @@ foreach ($columns as $i => $block) {
             'field' => "br_{$col}_2",
             'display_name' => "Line break",
             'partial' => 'break',
+            'type' => 'break',
         ];
         $blocks[$block]['fields']["button_text_{$col}"] = [
             'field' => "button_text_{$col}",
@@ -233,6 +239,7 @@ foreach ($columns as $i => $block) {
             'field' => "br_{$col}_3",
             'display_name' => "Line break",
             'partial' => 'break',
+            'type' => 'break',
         ];
     }
     $blocks[$block]['fields']['spaces'] = $spacesField;
@@ -278,6 +285,7 @@ for ($col = 1; $col <= 6; $col++) {
         'field' => "br_{$col}",
         'display_name' => 'Line Break',
         'partial' => 'break',
+        'type' => 'break',
     ];
 }
 $blocks['image_row']['fields']['spaces'] = $spacesField;
@@ -315,6 +323,7 @@ $blocks['testimonial'] = [
             'field' => 'br_1',
             'display_name' => 'Line Break',
             'partial' => 'break',
+            'type' => 'break',
         ],
         'image' => [
             'field' => 'image',
@@ -326,6 +335,7 @@ $blocks['testimonial'] = [
             'field' => 'br_2',
             'display_name' => 'Line Break',
             'partial' => 'break',
+            'type' => 'break',
         ],
         'spaces' => $spacesField,
         'animate' => $animationsField,
