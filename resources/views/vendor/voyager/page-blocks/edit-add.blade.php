@@ -106,6 +106,15 @@
                             <input type="hidden" name="page_id" value="{{ $page->id }}"/>
                             <button type="submit" class="btn btn-success btn-sm">{{ __('voyager::generic.add') }}</button>
                         </form>
+
+                        <iframe id="form_target" name="form_target" style="display:none"></iframe>
+                        <form id="my_form" action="{{ route('voyager.upload') }}" target="form_target" method="post"
+                              enctype="multipart/form-data" style="width:0;height:0;overflow:hidden">
+                            <input name="image" id="upload_file" type="file"
+                                   onchange="$('#my_form').submit();this.value='';">
+                            <input type="hidden" name="type_slug" id="type_slug" value="page_blocks">
+                            {{ csrf_field() }}
+                        </form>
                     </div> <!-- /.panel-body -->
                 </div> <!-- /.panel -->
             </div> <!-- /.col -->
