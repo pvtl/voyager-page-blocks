@@ -47,8 +47,8 @@
                     <div class="row">
                         <div class="col-mg-6 col-lg-4">
                             <div class="form-group">
-                                <label for="cache_ttl">Cache Time</label>
-                                <select name="cache_ttl" id="cache_ttl" class="form-control">
+                                <label for="cache_ttl_{{ $block->id }}">Cache Time</label>
+                                <select name="cache_ttl" id="cache_ttl_{{ $block->id }}" class="form-control">
                                     <option value="0" {{ $block->cache_ttl === 0 ? 'selected="selected"' : '' }}>
                                         None / Off
                                     </option>
@@ -83,14 +83,14 @@
                                         <input
                                             type="checkbox"
                                             name="is_hidden"
-                                            id="is_hidden"
+                                            id="is_hidden_{{ $block->id }}"
                                             data-name="is_hidden"
                                             class="toggleswitch"
                                             value="1"
                                             data-on="Yes" {{ $block->is_hidden ? 'checked="checked"' : '' }}
                                             data-off="No"
                                         />
-                                        <label for="is_hidden"> &nbsp;Hide Block</label>
+                                        <label for="is_hidden_{{ $block->id }}"> &nbsp;Hide Block</label>
                                     </div> <!-- /.form-group -->
                                 </div> <!-- /.col -->
 
@@ -99,14 +99,14 @@
                                         <input
                                             type="checkbox"
                                             name="is_delete_denied"
-                                            id="is_delete_denied"
+                                            id="is_delete_denied_{{ $block->id }}"
                                             data-name="is_delete_denied"
                                             class="toggleswitch"
                                             value="1"
                                             data-on="Yes" {{ $block->is_delete_denied ? 'checked="checked"' : '' }}
                                             data-off="No"
                                         />
-                                        <label for="is_delete_denied"> &nbsp;Prevent Deletion</label>
+                                        <label for="is_delete_denied_{{ $block->id }}"> &nbsp;Prevent Deletion</label>
                                     </div> <!-- /.form-group -->
                                 </div> <!-- /.col -->
                             </div> <!-- /.row -->
