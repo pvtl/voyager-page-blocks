@@ -1,3 +1,5 @@
+**This repository is no longer actively maintained**
+
 # Voyager Page Blocks
 
 ![Voyager Frontend Screenshot](/readme-intro.jpg)
